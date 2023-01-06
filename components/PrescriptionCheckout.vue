@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent } from "@nuxtjs/composition-api";
+import { defineComponent } from "vue";
 import GuideIcon from "./Icons/GuideIcon.vue";
 import IconTrash from "./Icons/IconTrash.vue";
 import ParagraphLarge from "./Paragraph/ParagraphLarge.vue";

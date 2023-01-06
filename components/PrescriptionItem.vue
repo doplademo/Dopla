@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { defineComponent } from "@nuxtjs/composition-api";
+import { defineComponent } from "vue";
 import MainButtonPressable from "./Button/MainButtonPressable.vue";
 import HeadingFive from "./Heading/HeadingFive.vue";
 import HeadingFour from "./Heading/HeadingFour.vue";

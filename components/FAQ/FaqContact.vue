@@ -46,7 +46,7 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from '@nuxtjs/composition-api'
+import { ref, defineComponent } from "vue"
 import MainButton from '../Button/MainButton.vue'
 import HeadingThree from '../Heading/HeadingThree.vue'
 import TextArea from '../Input/TextArea.vue'

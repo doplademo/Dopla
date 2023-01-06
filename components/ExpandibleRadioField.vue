@@ -1,5 +1,5 @@
 <script>
-import { defineComponent, ref } from "@nuxtjs/composition-api";
+import { defineComponent, ref } from "vue";
 import IconRadioSelected from "./Icons/IconRadioSelected.vue";
 import IconRadioUnselected from "./Icons/IconRadioUnselected.vue";
 import ParagraphNormal from "./Paragraph/ParagraphNormal.vue";

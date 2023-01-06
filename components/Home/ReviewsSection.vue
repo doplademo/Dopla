@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@nuxtjs/composition-api'
+import { defineComponent, ref } from "vue"
 import HeadingThree from '../Heading/HeadingThree.vue'
 import PagginationDot from '../PagginationDot.vue'
 import ReviewCard from '../ReviewCard.vue'

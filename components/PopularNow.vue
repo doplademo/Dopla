@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { defineComponent } from "@nuxtjs/composition-api";
+import { defineComponent } from "vue";
 import HeadingFour from "./Heading/HeadingFour.vue";
 import ParagraphNormal from "./Paragraph/ParagraphNormal.vue";
 import StoreProduct from "./StoreProduct.vue";

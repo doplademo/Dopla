@@ -40,7 +40,6 @@
 <script>
 import HeadingFour from '~/components/Heading/HeadingFour.vue'
 import TextInput from '~/components/Input/TextInput.vue'
-import MainLayout from '~/components/Layout/MainLayout.vue'
 import BackButton from '~/components/onboarding/BackButton.vue'
 import ParagraphNormal from '~/components/Paragraph/ParagraphNormal.vue'
 export default {
@@ -49,7 +48,6 @@ export default {
 		HeadingFour,
 		ParagraphNormal,
 		TextInput,
-		MainLayout,
 	},
 	data() {
 		const name = 'John Doe'
@@ -83,7 +81,7 @@ export default {
 			}
 		},
 		onSubmit() {
-			this.$router.replace(this.localePath('/onboarding/registration-result'))
+			this.$router.replace('onboarding/registration-result');
 		},
 	},
 }

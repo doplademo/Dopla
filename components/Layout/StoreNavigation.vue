@@ -15,7 +15,7 @@
       z-10
     "
   >
-    <nuxt-link :to="localePath('/store')">
+    <nuxt-link to="/">
       <img
         class="w-28"
         src="~/assets/images/common/logo.png"
@@ -26,17 +26,17 @@
     <div v-if="isOnboarding"></div>
 
     <div v-else-if="isLogged" class="flex items-center gap-2">
-      <nuxt-link :to="localePath('/checkout')">
+      <nuxt-link to="/">
         <profile-icon :size="20" :color="Colors.white" />
       </nuxt-link>
-      <nuxt-link to="/home">
+      <nuxt-link to="/checkout">
         <basket-icon :size="20" :color="Colors.white" />
       </nuxt-link>
       <button><hamburger-icon :color="Colors.white" /></button>
     </div>
 
     <div v-else class="flex items-center gap-2">
-      <nuxt-link class="text-white text-xs" :to="localePath('/checkout')">
+      <nuxt-link class="text-white text-xs" to="/store">
         Log in
       </nuxt-link>
       <main-button

@@ -52,7 +52,6 @@ import BasketIcon from '~/components/Icons/BasketIcon.vue'
 import CheckBox from '~/components/Input/CheckBox.vue'
 import ParagraphLarge from '~/components/Paragraph/ParagraphLarge.vue'
 import OnboardingInstruction from '~/components/onboarding/OnboardingInstruction.vue'
-import MainLayout from '~/components/Layout/MainLayout.vue'
 
 export default {
 	components: {
@@ -64,7 +63,6 @@ export default {
 		HyperlinkNormal,
 		CheckBox,
 		MainButton,
-		MainLayout,
 	},
 
 	data() {

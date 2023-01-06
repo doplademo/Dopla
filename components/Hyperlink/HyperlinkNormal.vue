@@ -1,6 +1,6 @@
 <template>
 	<a
-		:href="localePath(href)"
+		:href="to"
 		:class="
 			`text-[16px] leading-[17.4px] tracking-normal text-greenStrong underline ` +
 			className

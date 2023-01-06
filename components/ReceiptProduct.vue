@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { defineComponent } from "@nuxtjs/composition-api";
+import { defineComponent } from "vue";
 import ParagraphNormal from "./Paragraph/ParagraphNormal.vue";
 
 export default defineComponent({

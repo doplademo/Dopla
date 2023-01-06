@@ -1,5 +1,5 @@
 <template>
-    <a :href="localePath(href)" :class="'text-sm leading-[14px] tracking-normal underline ' + className">
+    <a :href="href" :class="'text-sm leading-[14px] tracking-normal underline ' + className">
         <slot />
     </a>
 </template>

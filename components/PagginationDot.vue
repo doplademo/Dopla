@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { ref } from "@nuxtjs/composition-api";
+import { ref } from "vue";
 export default {
   props: {
     pagesNumber: {

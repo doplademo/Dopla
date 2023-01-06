@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@nuxtjs/composition-api";
+import { defineComponent } from "vue";
 import IconMinus from "./Icons/IconMinus.vue";
 import IconPlus from "./Icons/IconPlus.vue";
 import ParagraphLarge from "./Paragraph/ParagraphLarge.vue";

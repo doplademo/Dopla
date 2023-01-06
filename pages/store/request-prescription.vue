@@ -1,6 +1,6 @@
 <!-- TODO replace all main-layout with this layout -->
 <script lang="ts">
-import { defineComponent, ref } from "@nuxtjs/composition-api";
+import { defineComponent, ref } from "vue";
 import MainButtonPressable from "~/components/Button/MainButtonPressable.vue";
 import HeadingFour from "~/components/Heading/HeadingFour.vue";
 import ParagraphNormal from "~/components/Paragraph/ParagraphNormal.vue";

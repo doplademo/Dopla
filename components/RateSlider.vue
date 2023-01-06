@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, watch } from "@nuxtjs/composition-api";
+import { defineComponent, onMounted, ref, watch } from "vue";
 import ParagraphNormal from "./Paragraph/ParagraphNormal.vue";
 import { Colors } from "~/utils/Colors";
 

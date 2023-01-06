@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent } from "vue"
 import EmptyCheckBox from '../Icons/EmptyCheckBox.vue'
 import SelectedCheckBoxIcon from '../Icons/SelectedCheckBoxIcon.vue'
 import ParagraphNormal from '../Paragraph/ParagraphNormal.vue'

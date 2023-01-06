@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, ref } from "@nuxtjs/composition-api";
+import { computed, defineComponent, PropType, ref } from "vue";
 import ArrowDown from "./Icons/ArrowDown.vue";
 import DropdownInfo from "./DropdownInfo.vue";
 import CheckIcon from "./Icons/CheckIcon.vue";

@@ -4,7 +4,7 @@
 			`p-2.5 flex items-center justify-center rounded-md bg-greenBold ` +
 			className
 		"
-		:to="localePath(to)"
+		:to="to"
 	>
 		<span
 			:class="

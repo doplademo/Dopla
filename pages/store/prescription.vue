@@ -82,7 +82,7 @@
   </template>
   
   <script lang="ts">
-  import { defineComponent, ref } from "@nuxtjs/composition-api";
+  import { defineComponent, ref } from "vue";
   import { prescribedProducts, PrescriptionType } from "~/dummy/dummyproducts";
   import MainButton from "~/components/Button/MainButton.vue";
   import HeadingFour from "~/components/Heading/HeadingFour.vue";

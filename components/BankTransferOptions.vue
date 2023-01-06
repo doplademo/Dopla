@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent } from "vue"
 import PSm from './Paragraph/PSm.vue'
 import PXs from './Paragraph/PXs.vue'
 export default defineComponent({

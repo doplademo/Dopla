@@ -7,20 +7,19 @@
   </main>
 </template>
   
-  <script lang="ts">
-import { defineComponent } from "@nuxtjs/composition-api";
-import MainLayout from "~/components/Layout/MainLayout.vue";
+<script lang="ts">
+import { defineComponent } from "vue";
 import OrderSuccessfulCard from "~/components/OrderSuccessfulCard.vue";
 import PopularNow from "~/components/PopularNow.vue";
 
 export default defineComponent({
   components: {
-    MainLayout,
     OrderSuccessfulCard,
     PopularNow,
   },
 });
 </script>
   
-  <style>
+<style>
+
 </style>

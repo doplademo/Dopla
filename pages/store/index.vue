@@ -73,7 +73,6 @@
 
 <script>
 import HeadingFour from "~/components/Heading/HeadingFour.vue";
-import MainLayout from "~/components/Layout/MainLayout.vue";
 import OrderReady from '~/components/OrderReady.vue';
 import ParagraphNormal from "~/components/Paragraph/ParagraphNormal.vue";
 import PendingPrescription from "~/components/PendingPrescription.vue";
@@ -88,11 +87,9 @@ export default {
     HeadingFour,
     StoreProduct,
     NewsSection,
-    MainLayout,
     GreetingSection,
     PendingPrescription,
     OrderReady,
-    ParagraphNormal
 },
   data() {
     return {

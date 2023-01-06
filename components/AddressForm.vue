@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { defineComponent, PropType } from "vue"
 import type { AddressType } from "../dummy/dummyAddress";
 import TextInput from './Input/TextInput.vue'
 import RadioField from './RadioField.vue';

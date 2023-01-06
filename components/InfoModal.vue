@@ -73,7 +73,7 @@
 
 <script lang="ts">
 import { PrescriptionType } from "~/dummy/dummyproducts";
-import { defineComponent, PropType } from "@nuxtjs/composition-api";
+import { defineComponent, PropType } from "vue";
 import CloseIcon from "./Icons/CloseIcon.vue";
 import HeadingFour from "./Heading/HeadingFour.vue";
 import PSm from "./Paragraph/PSm.vue";

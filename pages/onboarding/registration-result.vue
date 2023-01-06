@@ -32,10 +32,9 @@
 <script>
 import MainButton from '~/components/Button/MainButton.vue'
 import HeadingFour from '~/components/Heading/HeadingFour.vue'
-import MainLayout from '~/components/Layout/MainLayout.vue'
 import ParagraphNormal from '~/components/Paragraph/ParagraphNormal.vue'
 export default {
-	components: { HeadingFour, ParagraphNormal, MainButton, MainLayout },
+	components: { HeadingFour, ParagraphNormal, MainButton },
 }
 </script>
 
