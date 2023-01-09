@@ -2,7 +2,6 @@
 import { defineComponent, ref } from "vue";
 import { dummyProducts } from "~/dummy/dummyReviews";
 import { dummyAddress, emptyAddress } from "~/dummy/dummyAddress";
-import ParagraphNormal from "~/components/Paragraph/ParagraphNormal.vue";
 import BasketProduct from "~/components/BasketProduct.vue";
 import ExpandibleRadioField from "~/components/ExpandibleRadioField.vue";
 import AddressForm from "~/components/AddressForm.vue";
@@ -14,7 +13,6 @@ import CheckBox from "~/components/Input/CheckBox.vue";
 import MainButtonPressable from "~/components/Button/MainButtonPressable.vue";
 export default defineComponent({
     components: {
-        ParagraphNormal,
         BasketProduct,
         ExpandibleRadioField,
         AddressForm,
@@ -50,24 +48,23 @@ export default defineComponent({
 <template>
     <main>
         <section class="pt-20 pb-4 px-3 bg-greenHover">
-            <paragraph-normal
-                class="uppercase w-full text-center text-blackMedium font-semibold">Basket</paragraph-normal>
+            <p class="p-normal uppercase w-full text-center text-blackMedium font-semibold">Basket</p>
             <!-- billing -->
             <div class="p-6 mt-4 bg-white rounded">
                 <h4 class="heading-four bg-pinkLight font-semibold p-2 mb-2 ">Order Summary</h4>
-                <paragraph-normal>Alla näet yhteenvedon tämänhetkisestä tilauksestasi.
-                </paragraph-normal>
+                <p class="p-normal">Alla näet yhteenvedon tämänhetkisestä tilauksestasi.
+                </p>
 
                 <basket-product v-for="product in products" :id="product.id" :key="product.id" :name="product.name"
                     :price="product.price" :discount="product.discount" :final-price="product.finalPrice" />
 
                 <div class="flex justify-between text-blackMedium mt-4">
-                    <paragraph-normal>Total reimbursement</paragraph-normal>
-                    <paragraph-normal class="font-medium">-167.65 €</paragraph-normal>
+                    <p class="p-normal">Total reimbursement</p>
+                    <p class="p-normal font-medium">-167.65 €</p>
                 </div>
                 <div class="flex justify-between text-blackBold mt-1">
-                    <paragraph-normal>Amount due</paragraph-normal>
-                    <paragraph-normal class="font-medium">200.99 €</paragraph-normal>
+                    <p class="p-normal">Amount due</p>
+                    <p class="p-normal font-medium">200.99 €</p>
                 </div>
             </div>
         </section>
@@ -87,7 +84,7 @@ export default defineComponent({
                 <!-- Payment info -->
                 <h4 class="heading-four font-semibold mt-8">Payment</h4>
 
-                <paragraph-normal class="text-blackMedium mt-6">Payment cards</paragraph-normal>
+                <p class="p-normal text-blackMedium mt-6">Payment cards</p>
 
                 <!-- Add payment card -->
                 <radio-field class="mt-4" title="Visa-kortti" description="123* **** **** **56" selected />
@@ -95,7 +92,7 @@ export default defineComponent({
                     <card-form />
                 </add-field>
 
-                <paragraph-normal class="text-blackMedium mt-6">Other methods</paragraph-normal>
+                <p class="p-normal text-blackMedium mt-6">Other methods</p>
 
                 <expandible-radio-field :title="address.name" :description="address.address">
                     <address-form :addressInfo="address" @field-change="changeField" /></expandible-radio-field>

@@ -2,8 +2,8 @@
 	<main>
 		<div class="flex flex-col px-4 pb-16 pt-20" is-onboarding>
 			<h4 class="heading-four font-semibold mb-4">Melkein valmista!</h4>
-			<paragraph-large>Tarvitsemme vielä valtuutuksen, jotta palvelu toimii
-				jouhevasti.</paragraph-large>
+			<p class="p-large">Tarvitsemme vielä valtuutuksen, jotta palvelu toimii
+				jouhevasti.</p>
 			<!-- Instructions -->
 			<div class="flex flex-col mt-6">
 				<onboarding-instruction title="Apteekin valtuutus ja jatkuva palvelu" :description="`Valtuutan Matinkylän apteekin farmaseuttisen henkilökunnan tarkastelemaan reseptitietojani
@@ -49,12 +49,10 @@ import HyperlinkNormal from '~/components/Hyperlink/HyperlinkNormal.vue'
 import ArrowRightIcon from '~/components/Icons/ArrowRightIcon.vue'
 import BasketIcon from '~/components/Icons/BasketIcon.vue'
 import CheckBox from '~/components/Input/CheckBox.vue'
-import ParagraphLarge from '~/components/Paragraph/ParagraphLarge.vue'
 import OnboardingInstruction from '~/components/onboarding/OnboardingInstruction.vue'
 
 export default {
 	components: {
-		ParagraphLarge,
 		OnboardingInstruction,
 		ArrowRightIcon,
 		BasketIcon,

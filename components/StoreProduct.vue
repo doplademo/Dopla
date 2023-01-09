@@ -11,7 +11,7 @@
             <h5 class="heading-five ml-2 font-medium">{{additions}}</h5>
         </div>
         <div class="flex items-center justify-between w-full p-1.5 my-0.5 rounded">
-            <paragraph-large class="font-medium">{{price}}</paragraph-large>
+            <p class="p-large font-medium">{{price}}</p>
             <div class="px-2 py-1 bg-greenBold rounded">
                 <basket-icon :size="20" />
             </div>
@@ -23,9 +23,8 @@
 import BasketIcon from './Icons/BasketIcon.vue'
 import GuideIcon from './Icons/GuideIcon.vue'
 import PillsPackIcon from './Icons/PillsPackIcon.vue'
-import ParagraphLarge from './Paragraph/ParagraphLarge.vue'
 export default {
-  components: { PillsPackIcon, GuideIcon, BasketIcon, ParagraphLarge },
+  components: { PillsPackIcon, GuideIcon, BasketIcon },
 	props: {
 		id: {
 			type: Number,

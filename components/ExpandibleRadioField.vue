@@ -2,9 +2,8 @@
 import { defineComponent, ref } from "vue";
 import IconRadioSelected from "./Icons/IconRadioSelected.vue";
 import IconRadioUnselected from "./Icons/IconRadioUnselected.vue";
-import ParagraphNormal from "./Paragraph/ParagraphNormal.vue";
 export default defineComponent({
-  components: { IconRadioSelected, IconRadioUnselected, ParagraphNormal },
+  components: { IconRadioSelected, IconRadioUnselected },
   props: {
     selected: Boolean,
     title: String,
@@ -34,12 +33,12 @@ export default defineComponent({
         <icon-radio-unselected v-else />
       </button>
       <button class="flex-1 text-start" @click="toggleDetails()">
-        <paragraph-normal class="font-medium">{{
-            title
-        }}</paragraph-normal>
-        <paragraph-normal v-if="description" class="text-blackLight">{{
-            description
-        }}</paragraph-normal>
+        <p class="p-normal font-medium">{{
+          title
+        }}</p>
+        <p v-if="description" class="p-normal text-blackLight">{{
+          description
+        }}</p>
       </button>
     </div>
 

@@ -1,9 +1,9 @@
 <template>
 	<div>
 		<div class="flex justify-between items-center px-4 ">
-			<paragraph-large class="font-semibold">
+			<p class="p-large font-semibold">
 				{{ title }}
-			</paragraph-large>
+			</p>
 			<button @click="toggle()">
 				<plus-icon :size="30" :color="Colors.redLightest" />
 			</button>
@@ -17,10 +17,9 @@
 
 <script>
 import PlusIcon from './Icons/PlusIcon.vue'
-import ParagraphLarge from './Paragraph/ParagraphLarge.vue'
 import { Colors } from '~/utils/Colors'
 export default {
-	components: { ParagraphLarge, PlusIcon },
+	components: { PlusIcon },
 	props: {
 		title: {
 			type: String,

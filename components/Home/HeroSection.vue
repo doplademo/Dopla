@@ -12,13 +12,11 @@
 </template>
 
 <script lang="ts">
-import ParagraphNormal from '../Paragraph/ParagraphNormal.vue';
 import MainButton from '../Button/MainButton.vue';
 import { TWColor } from '~/types/colors';
 
 export default {
     components: {
-        ParagraphNormal,
         MainButton
     },
 

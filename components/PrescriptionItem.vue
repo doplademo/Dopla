@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col w-full">
-    <paragraph-large class="my-2">00{{ id }}</paragraph-large>
+    <p class="p-large my-2">00{{ id }}</p>
 
     <!-- Main section -->
     <div :class="`flex w-full items-start bg-white border rounded drop-shadow-md shadow-blackLightest p-2 ${selected ? 'border-greenBold' : 'border-blackLightest'
@@ -40,7 +40,6 @@ import { defineComponent } from "vue";
 import MainButtonPressable from "./Button/MainButtonPressable.vue";
 import GuideIcon from "./Icons/GuideIcon.vue";
 import CheckBox from "./Input/CheckBox.vue";
-import ParagraphLarge from "./Paragraph/ParagraphLarge.vue";
 import PSm from "./Paragraph/PSm.vue";
 import PXs from "./Paragraph/PXs.vue";
 
@@ -50,7 +49,6 @@ export default defineComponent({
     PXs,
     GuideIcon,
     PSm,
-    ParagraphLarge,
     MainButtonPressable,
   },
   props: {

@@ -4,16 +4,14 @@
 			<slot name="icon" />
 		</div>
 		<div>
-			<paragraph-normal class="font-medium" >{{ title }}</paragraph-normal>
+			<p class="p-normal font-medium">{{ title }}</p>
 			<h5 class="heading-five font-normal text-blackStrong">{{ description }}</h5>
 		</div>
 	</div>
 </template>
 
 <script>
-import ParagraphNormal from '../Paragraph/ParagraphNormal.vue'
 export default {
-	components: { ParagraphNormal },
 	props: {
 		title: {
 			type: String,

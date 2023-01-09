@@ -1,9 +1,9 @@
 <template>
 	<section class="p-4 pt-16">
 		<h3 class="heading-three text-redLightest text-center mb-4">Jäikö jokin vielä mietityttämään?</h3>
-		<paragraph-large class="text-white text-center">Ota meihin yhteyttä, niin apteekin farmaseutti palaa asiaan
+		<p class="p-large text-white text-center">Ota meihin yhteyttä, niin apteekin farmaseutti palaa asiaan
 			mahdollisimman pian.
-		</paragraph-large>
+		</p>
 		<form class="flex flex-col mt-8">
 			<text-input class="my-2" type="text" placeholder="nimi" field="name" :text="name" @on-change="onChange" />
 			<text-input class="my-2" type="text" placeholder="email" field="email" :text="email"
@@ -21,9 +21,8 @@ import { ref, defineComponent } from "vue"
 import MainButton from '../Button/MainButton.vue'
 import TextArea from '../Input/TextArea.vue'
 import TextInput from '../Input/TextInput.vue'
-import ParagraphLarge from '../Paragraph/ParagraphLarge.vue'
 export default defineComponent({
-	components: { ParagraphLarge, TextInput, TextArea, MainButton },
+	components: { TextInput, TextArea, MainButton },
 	setup(_) {
 		const name = ref('')
 		const email = ref('')

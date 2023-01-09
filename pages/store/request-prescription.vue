@@ -2,13 +2,11 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import MainButtonPressable from "~/components/Button/MainButtonPressable.vue";
-import ParagraphNormal from "~/components/Paragraph/ParagraphNormal.vue";
 import PrescriptionCheckout from "~/components/PrescriptionCheckout.vue";
 import RadioField from "~/components/RadioField.vue";
 import { prescribedProducts } from "~/dummy/dummyproducts";
 export default defineComponent({
   components: {
-    ParagraphNormal,
     PrescriptionCheckout,
     RadioField,
     MainButtonPressable,
@@ -46,17 +44,17 @@ export default defineComponent({
         mx-3
       ">
       <h4 class="heading-four font-semibold bg-redLightest rounded p-2 mb-2">Your prescriptions</h4>
-      <paragraph-normal class="mb-4">Alla näet tilauksesi, joka lähetetään farmaseutin
-        käsittelyyn.</paragraph-normal>
+      <p class="p-normal mb-4">Alla näet tilauksesi, joka lähetetään farmaseutin
+        käsittelyyn.</p>
 
       <prescription-checkout v-for="product in products" :key="product.id" :name="product.name" :id="product.id"
         @remove="remove" />
 
-      <paragraph-normal class="font-medium mt-4">{{ products.length }} product{{
+      <p class="p-normal font-medium mt-4">{{ products.length }} product{{
         products.length === 1 ? "" : "s"
-      }}</paragraph-normal>
-      <paragraph-normal class="text-blackLight mt-2">Farmaseutti laskee tilauksen lopullisen
-        hinnan.</paragraph-normal>
+      }}</p>
+      <p class="p-normal text-blackLight mt-2">Farmaseutti laskee tilauksen lopullisen
+        hinnan.</p>
     </section>
 
     <section class="bg-white mt-6 px-4 pt-6 pb-16">

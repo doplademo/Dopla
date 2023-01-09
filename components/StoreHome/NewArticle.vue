@@ -6,7 +6,7 @@
 		<h4 class="heading-four font-semibold text-lg my-1">{{
 			title
 		}}</h4>
-		<paragraph-normal class="my-1">{{ description }}</paragraph-normal>
+		<p class="p-normal my-1">{{ description }}</p>
 		<main-button class="flex-start bg-redLightest w-auto -ml-2" text-class="text-xs" title="lue lisää" upper next
 			:icon-size="18" />
 	</div>

@@ -5,9 +5,9 @@
                 <icon-plus v-if="!showDetails" />
                 <icon-minus v-else />
             </div>
-            <paragraph-normal class="font-medium">{{
+            <p class="p-normal font-medium">{{
                     title
-            }}</paragraph-normal>
+            }}</p>
         </button>
         <div v-if="showDetails" class="mt-2">
             <slot />

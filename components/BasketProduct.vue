@@ -1,12 +1,10 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import GuideIcon from "./Icons/GuideIcon.vue";
-import ParagraphLarge from "./Paragraph/ParagraphLarge.vue";
-import ParagraphNormal from "./Paragraph/ParagraphNormal.vue";
 import PSm from "./Paragraph/PSm.vue";
 
 export default defineComponent({
-  components: { PSm, GuideIcon, ParagraphLarge, ParagraphNormal },
+  components: { PSm, GuideIcon },
   props: {
     id: {
       type: Number,
@@ -30,22 +28,22 @@ export default defineComponent({
 
     <div class="flex flex-col flex-1 mx-2">
       <div class="flex justify-between mb-2">
-        <paragraph-large class="flex-1 font-medium ">{{
+        <p class="p-large flex-1 font-medium ">{{
           name
-        }}</paragraph-large>
-        <paragraph-large class="font-medium">{{ price }}</paragraph-large>
+        }}</p>
+        <p class="p-large font-medium">{{ price }}</p>
       </div>
       <div class="bg-greenHover flex items-center rounded p-1">
         <guide-icon :size="20" />
         <p-sm class="ml-2"> Puoli tablettia aamuin illoin...</p-sm>
       </div>
       <div class="flex justify-between text-blackMedium mt-1">
-          <paragraph-normal>Reimbursement</paragraph-normal>
-          <paragraph-normal class="font-medium">-{{discount}}</paragraph-normal>
+          <p class="p-normal">Reimbursement</p>
+          <p class="p-normal font-medium">-{{discount}}</p>
       </div>
       <div class="flex justify-between text-blackBold mt-1">
-          <paragraph-normal>Deductible</paragraph-normal>
-          <paragraph-normal class="font-medium">{{finalPrice}}</paragraph-normal>
+          <p class="p-normal">Deductible</p>
+          <p class="p-normal font-medium">{{finalPrice}}</p>
       </div>
     </div>
   </div>

@@ -2,19 +2,17 @@
     <div class="w-full">
         <input ref="slider" class="number-slider" type="range" :min="min" :max="max" v-model="value" />
         <div class="flex mt-2">
-            <paragraph-normal class="flex-1 text-center" v-for="number in numberOptions" :key="number">{{
-            number}}</paragraph-normal>
+            <p class="p-normal flex-1 text-center" v-for="number in numberOptions" :key="number">{{
+            number}}</p>
         </div>
     </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, ref, watch } from "vue";
-import ParagraphNormal from "./Paragraph/ParagraphNormal.vue";
 import { Colors } from "~/utils/Colors";
 
 export default defineComponent({
-    components: { ParagraphNormal },
     props: {
         min: { type: Number, required: true },
         max: { type: Number, required: true },

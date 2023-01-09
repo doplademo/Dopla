@@ -4,10 +4,7 @@
       <icon-minus />
     </button>
 
-    <paragraph-large
-      class="flex justify-center items-center font-bold w-8 h-8"
-      ><span>{{ count }}</span></paragraph-large
-    >
+    <p class="p-large flex justify-center items-center font-bold w-8 h-8"><span>{{ count }}</span></p>
 
     <button class="flex justify-center items-center" @click="$emit('add')">
       <icon-plus />
@@ -19,10 +16,9 @@
 import { defineComponent } from "vue";
 import IconMinus from "./Icons/IconMinus.vue";
 import IconPlus from "./Icons/IconPlus.vue";
-import ParagraphLarge from "./Paragraph/ParagraphLarge.vue";
 
 export default defineComponent({
-  components: { IconPlus, IconMinus, ParagraphLarge },
+  components: { IconPlus, IconMinus },
   props: {
     count: {
       type: Number,
@@ -34,4 +30,5 @@ export default defineComponent({
 </script>
 
 <style>
+
 </style>

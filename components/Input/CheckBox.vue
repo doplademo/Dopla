@@ -7,9 +7,9 @@
 				<empty-check-box v-else :size="size"></empty-check-box>
 			</button>
 			<div v-if="title || subtitle" class="ml-2">
-				<paragraph-normal class="font-medium">{{ title }}</paragraph-normal>
+				<p class="p-normal font-medium">{{ title }}</p>
 				<p-sm v-if="subtitle" class="text-blackLightest font-normal">{{
-						subtitle
+					subtitle
 				}}</p-sm>
 			</div>
 		</div>
@@ -21,10 +21,9 @@
 import { defineComponent } from "vue"
 import EmptyCheckBox from '../Icons/EmptyCheckBox.vue'
 import SelectedCheckBoxIcon from '../Icons/SelectedCheckBoxIcon.vue'
-import ParagraphNormal from '../Paragraph/ParagraphNormal.vue'
 import PSm from '../Paragraph/PSm.vue'
 export default defineComponent({
-	components: { EmptyCheckBox, SelectedCheckBoxIcon, PSm, ParagraphNormal },
+	components: { EmptyCheckBox, SelectedCheckBoxIcon, PSm },
 	props: {
 		selected: Boolean,
 		title: {

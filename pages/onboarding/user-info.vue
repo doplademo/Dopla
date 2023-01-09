@@ -3,8 +3,8 @@
 		<div class="flex flex-col mt-20 mb-8 px-4 ">
 			<back-button caps text="Edellinen" />
 			<h4 class="heading-four my-6 font-semibold">Yhteystiedot</h4>
-			<paragraph-normal>Tarkistathan vielä, että tietosi ovat oikein. Täyttämällä kaikki kohdat
-				voimme taata palvelun jouhevuuden.</paragraph-normal>
+			<p class="p-normal">Tarkistathan vielä, että tietosi ovat oikein. Täyttämällä kaikki kohdat
+				voimme taata palvelun jouhevuuden.</p>
 
 			<form class="flex flex-col" @submit.prevent="onSubmit()">
 				<text-input id="name" class="my-3" label="Nimi*" placeholder="Placeholder" :value="name" field="name" />
@@ -38,11 +38,9 @@
 <script>
 import TextInput from '~/components/Input/TextInput.vue'
 import BackButton from '~/components/onboarding/BackButton.vue'
-import ParagraphNormal from '~/components/Paragraph/ParagraphNormal.vue'
 export default {
 	components: {
 		BackButton,
-		ParagraphNormal,
 		TextInput,
 	},
 	data() {

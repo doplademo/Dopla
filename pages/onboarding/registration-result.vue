@@ -5,11 +5,11 @@
 			<h4 class="heading-four py-2 mt-8 w-full text-center font-semibold bg-pinkMedium">
 				Kaikki valmista
 			</h4>
-			<paragraph-normal class="mt-4">Käyttöönotto on valmis, ja palvelu on nyt valmis
-				käytettäväksi.</paragraph-normal>
+			<p class="p-normal mt-4">Käyttöönotto on valmis, ja palvelu on nyt valmis
+				käytettäväksi.</p>
 			<br />
-			<paragraph-normal class="mb-4">Reseptilääkkeiden näkymiseen menee vielä hetki. Farmaseutti on tuomassa
-				niitä palveluun nähtävillesi.</paragraph-normal>
+			<p class="p-normal mb-4">Reseptilääkkeiden näkymiseen menee vielä hetki. Farmaseutti on tuomassa
+				niitä palveluun nähtävillesi.</p>
 			<main-button class="w-full mt-2" title="aloita palvelun käyttö" upper />
 		</div>
 	</main>
@@ -17,9 +17,8 @@
 
 <script>
 import MainButton from '~/components/Button/MainButton.vue'
-import ParagraphNormal from '~/components/Paragraph/ParagraphNormal.vue'
 export default {
-	components: { ParagraphNormal, MainButton },
+	components: { MainButton },
 }
 </script>
 

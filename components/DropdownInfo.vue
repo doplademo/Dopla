@@ -1,18 +1,16 @@
 <template>
   <div :class="`flex flex-col items-start flex-1 p-2 ${className}`">
-    <paragraph-normal class="font-medium">{{ name }}</paragraph-normal>
-    <paragraph-normal class="text-blackLight">{{
+    <p class="p-normal font-medium">{{ name }}</p>
+    <p class="p-normal text-blackLight">{{
       description
-    }}</paragraph-normal>
+    }}</p>
   </div>
 </template>
 
 <script>
 import { defineComponent } from "vue";
-import ParagraphNormal from "./Paragraph/ParagraphNormal.vue";
 
 export default defineComponent({
-  components: { ParagraphNormal },
   props: {
     name: {
       type: String,
@@ -31,4 +29,5 @@ export default defineComponent({
 </script>
 
 <style>
+
 </style>

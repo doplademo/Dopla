@@ -1,7 +1,6 @@
 <template>
     <main class="bg-greenHover pt-20">
-        <paragraph-normal
-            class="font-semibold text-blackLight uppercase w-full text-center">Confirmation</paragraph-normal>
+        <p class="p-normal font-semibold text-blackLight uppercase w-full text-center">Confirmation</p>
         <h3 class="heading-three text-center font-medium mt-4">Thank you for your order</h3>
         <!-- Receipt -->
         <section class="mt-4 px-4 py-6">
@@ -32,47 +31,48 @@
                 <!-- Additional Calculation -->
                 <div class="py-3 border-b border-blackBold">
                     <div class="flex justify-between my-1">
-                        <paragraph-normal class="text-blackLight">Reimbursements total</paragraph-normal>
-                        <paragraph-normal class="font-medium">-99.99 €</paragraph-normal>
+                        <p class="p-normal text-blackLight">Reimbursements total</p>
+                        <p class="p-normal font-medium">-99.99 €</p>
                     </div>
                     <div class="flex justify-between my-1">
-                        <paragraph-normal class="text-blackLight">Delivery</paragraph-normal>
-                        <paragraph-normal class="font-medium">2.99 €</paragraph-normal>
+                        <p class="p-normal text-blackLight">Delivery</p>
+                        <p class="p-normal font-medium">2.99 €</p>
                     </div>
                 </div>
 
                 <div class="flex justify-between mt-2">
-                    <paragraph-normal class="font-medium">Amount due</paragraph-normal>
-                    <paragraph-normal class="font-medium">99.99 €</paragraph-normal>
+                    <p class="p-normal font-medium">Amount due</p>
+                    <p class="p-normal font-medium">99.99 €</p>
                 </div>
             </div>
         </section>
 
         <section class="bg-white p-4">
             <div class="pb-4 border-b border-pinkLight">
-                <paragraph-normal class="font-semibold">Saat vielä vahvistuksen, kun tilauksesi siirtyy Postin
+                <p class="p-normal font-semibold">Saat vielä vahvistuksen, kun tilauksesi siirtyy Postin
                     kuljetettavaksi. Kuittisi löytyy omista tiedoistasi, sähköpostistasi
                     sekä paketista.
-                </paragraph-normal>
+                </p>
 
-                <paragraph-normal class="py-4">TÄHÄN TEKSTI PALVELUN TOIMINNASTA JA MUISTUTTAJISTA YMS
-                    YMS.</paragraph-normal>
+                <p class="p-normal py-4">TÄHÄN TEKSTI PALVELUN TOIMINNASTA JA MUISTUTTAJISTA YMS
+                    YMS.</p>
 
-                <paragraph-normal>Here we put a link to
-                    <hyperlink-normal>your account.</hyperlink-normal></paragraph-normal>
+                <p class="p-normal">Here we put a link to
+                    <hyperlink-normal>your account.</hyperlink-normal>
+                </p>
             </div>
         </section>
 
         <section class="bg-white p-4 pb-10">
             <h4 class="heading-four font-medium">Would you recommend this to your friends</h4>
-            <paragraph-normal class="my-2">Move slider from left to right</paragraph-normal>
+            <p class="p-normal my-2">Move slider from left to right</p>
 
             <form class="mt-2">
                 <rate-slider :min="1" :max="10" :default="rangeValue" @on-slide="onSlide" />
 
                 <div v-if="showComment" class="mt-6">
-                    <paragraph-normal class="mb-2 font-semibold">Open comments</paragraph-normal>
-                    <paragraph-normal class="mb-4">Is important</paragraph-normal>
+                    <p class="p-normal mb-2 font-semibold">Open comments</p>
+                    <p class="p-normal mb-4">Is important</p>
 
                     <text-area class="w-full" :value="comment" @on-change="onComment" placeholder="Your comment"
                         :rows="6" :cols="3" />
@@ -89,13 +89,11 @@ import { defineComponent, ref } from "vue"
 import MainButtonPressable from '~/components/Button/MainButtonPressable.vue'
 import HyperlinkNormal from '~/components/Hyperlink/HyperlinkNormal.vue'
 import TextArea from '~/components/Input/TextArea.vue'
-import ParagraphNormal from '~/components/Paragraph/ParagraphNormal.vue'
 import PSm from '~/components/Paragraph/PSm.vue'
 import RateSlider from '~/components/RateSlider.vue'
 import ReceiptProduct from '~/components/ReceiptProduct.vue'
 export default defineComponent({
     components: {
-        ParagraphNormal,
         PSm,
         ReceiptProduct,
         HyperlinkNormal,

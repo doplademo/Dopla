@@ -18,27 +18,27 @@
 		</section>
 		<section class="px-4 my-6">
 			<h4 class="heading-four font-semibold">Available prescriptions</h4>
-			<paragraph-normal class="mt-4 font-medium">Painamalla lääkkeen nimeä pääset tarkastelemaan lääkkeen tietoja,
+			<p class="p-normal mt-4 font-medium">Painamalla lääkkeen nimeä pääset tarkastelemaan lääkkeen tietoja,
 				valitsemaan edullisemman lääkevalmisteen tai muuttamaan pakkauskokoa.
-			</paragraph-normal>
-			<paragraph-normal class="mt-4">Lisäät lääkkeen apteekin farmaseutin käsittelyyn painamalla sen
+			</p>
+			<p class="p-normal mt-4">Lisäät lääkkeen apteekin farmaseutin käsittelyyn painamalla sen
 				vieressä olevan boksin vihreäksi.
-			</paragraph-normal>
+			</p>
 		</section>
 		<section class="px-4 pb-12">
 			<prescription-item v-for="prescription in prescriptions" :name="prescription.name" :id="prescription.id"
 				:selected="prescription.selected" :key="prescription.id" @toggle="onSelect" @show-info="onShowInfo" />
-			<paragraph-normal class="mt-6">Painamalla Lähetä-painiketta, tilaus siirtyy Farmaseutin
+			<p class="p-normal mt-6">Painamalla Lähetä-painiketta, tilaus siirtyy Farmaseutin
 				käsiteltäväksi. Farmaseutti tarkistaa lääkkeistä saatavan
-				Kela-korvauksen määrän.</paragraph-normal>
+				Kela-korvauksen määrän.</p>
 			<main-button title="seuraava" upper class="w-full mt-6" />
 		</section>
 		<section class="px-4 py-6 bg-greenHover">
 			<h4 class="heading-four mb-4"> Other prescriptions </h4>
-			<paragraph-normal>Here’s other prescriptive drugs that you have already orderer inside
+			<p class="p-normal">Here’s other prescriptive drugs that you have already orderer inside
 				ordering allowance for which to get reimbursement. These prescriptions
 				will become available for reimbursement once a certain period has
-				lapped.</paragraph-normal>
+				lapped.</p>
 		</section>
 		<section class="px-4 pb-12 bg-greenHover">
 			<prescription-item v-for="prescription in prescriptionsOther" :name="prescription.name"
@@ -56,7 +56,6 @@
 import { defineComponent, ref } from "vue";
 import { prescribedProducts } from "~/dummy/dummyproducts";
 import MainButton from "~/components/Button/MainButton.vue";
-import ParagraphNormal from "~/components/Paragraph/ParagraphNormal.vue";
 import PSm from "~/components/Paragraph/PSm.vue";
 import PendingPrescription from "~/components/PendingPrescription.vue";
 import GreetingSection from "~/components/StoreHome/GreetingSection.vue";
@@ -69,7 +68,6 @@ export default defineComponent({
 		PendingPrescription,
 		MainButton,
 		PSm,
-		ParagraphNormal,
 		PrescriptionItem,
 		ModalContainer,
 		InfoModal,
