@@ -35,10 +35,10 @@
       <main-button-pressable class="flex-1 ml-2" title="Lisää tilaukseen" upper />
     </div>
 
-    <p-xs class="text-end text-blackMedium font-medium  mt-4">Apteekin farmaseutti voi laskea lopullisen hinnan
+    <p class="p-x-small text-end text-blackMedium font-medium  mt-4">Apteekin farmaseutti voi laskea lopullisen hinnan
       Kela-korvauksineen kun
       olet vahvistanut ehdotuksen. Näet lopullisen summan ennen maksamista.
-      Ehdotetuilla tuotteilla on edullisimman tuotteen takuu.</p-xs>
+      Ehdotetuilla tuotteilla on edullisimman tuotteen takuu.</p>
   </div>
 </template>
 
@@ -48,7 +48,6 @@ import CloseIcon from "./Icons/CloseIcon.vue";
 import DropdownPicker from "./DropdownPicker.vue";
 import AmoutCounter from "./AmoutCounter.vue";
 import MainButtonPressable from "./Button/MainButtonPressable.vue";
-import PXs from "./Paragraph/PXs.vue";
 import { PrescriptionType } from "~/dummy/dummyproducts";
 
 export default defineComponent({
@@ -57,7 +56,6 @@ export default defineComponent({
     DropdownPicker,
     AmoutCounter,
     MainButtonPressable,
-    PXs,
   },
   props: {
     product: {

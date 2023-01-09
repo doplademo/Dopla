@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col">
-        <p-xs>valitse verkkopankkisi</p-xs>
+        <p class="p-x-small">valitse verkkopankkisi</p>
         <div class="grid grid-cols-4 grid-flow-row gap-2 mt-2">
             <div class="bg-white text-center text- h-8 rounded border border-greenBold ">1</div>
             <div class="bg-white text-center text- h-8 rounded border border-redLightest ">2</div>
@@ -23,9 +23,7 @@
 
 <script>
 import { defineComponent } from "vue"
-import PXs from './Paragraph/PXs.vue'
 export default defineComponent({
-    components: { PXs },
 
 })
 </script>

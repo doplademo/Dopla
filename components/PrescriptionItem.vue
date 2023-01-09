@@ -10,10 +10,10 @@
       <div class="flex flex-col items-start flex-1 relative px-2 ml-2">
         <!-- Pink field -->
         <div class="bg-redLightest rounded p-2 mb-2">
-          <p-xs class="font-medium">
+          <p class="p-x-small font-medium">
             <span>!</span>
             <span class="ml-2">Edullisempi saatavilla</span>
-          </p-xs>
+          </p>
         </div>
         <!-- Product name -->
         <h4 class="heading-four my-2">{{ name }}</h4>
@@ -28,7 +28,7 @@
             @click="$emit('show-info', id)" />
         </div>
         <div class="bg-mainBold rounded absolute top-0 right-2 px-2 py-1.5">
-          <p-xs class="font-medium text-white uppercase">Prescriptive drug</p-xs>
+          <p class="p-x-small font-medium text-white uppercase">Prescriptive drug</p>
         </div>
       </div>
     </div>
@@ -40,12 +40,10 @@ import { defineComponent } from "vue";
 import MainButtonPressable from "./Button/MainButtonPressable.vue";
 import GuideIcon from "./Icons/GuideIcon.vue";
 import CheckBox from "./Input/CheckBox.vue";
-import PXs from "./Paragraph/PXs.vue";
 
 export default defineComponent({
   components: {
     CheckBox,
-    PXs,
     GuideIcon,
     MainButtonPressable,
   },
