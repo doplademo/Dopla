@@ -5,7 +5,47 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    font-family: 'Montserrat', sans-serif;
-  }
+	html {
+		font-family: 'Montserrat', sans-serif;
+	}
+}
+
+.heading-one {
+	@apply text-[40px] leading-9 font-normal tracking-[-2%];
+}
+
+.heading-two {
+	@apply text-[34px] leading-[30px] font-normal tracking-[-3%];
+}
+
+.heading-three {
+	@apply text-2xl leading-6 font-normal tracking-normal;
+}
+
+.heading-four {
+	@apply text-xl leading-5 tracking-normal;
+}
+
+.heading-five {
+	@apply text-sm leading-[14px] tracking-normal;
+}
+
+.heading-six {
+	@apply text-xs leading-[13px] tracking-normal;
+}
+
+.p-large {
+	@apply text-lg leading-[18px] tracking-normal;
+}
+
+.p-normal {
+	@apply text-[16px] leading-[17.4px] tracking-normal;
+}
+
+.p-small {
+	@apply text-sm leading-[14px] tracking-normal;
+}
+
+.p-x-small {
+	@apply text-xs leading-[12px] tracking-normal;
 }

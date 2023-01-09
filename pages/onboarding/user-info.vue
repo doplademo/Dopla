@@ -2,26 +2,24 @@
 	<main>
 		<div class="flex flex-col mt-20 mb-8 px-4 ">
 			<back-button caps text="Edellinen" />
-			<heading-four class-name="my-6 font-semibold">Yhteystiedot</heading-four>
+			<h4 class="heading-four my-6 font-semibold">Yhteystiedot</h4>
 			<paragraph-normal>Tarkistathan vielä, että tietosi ovat oikein. Täyttämällä kaikki kohdat
 				voimme taata palvelun jouhevuuden.</paragraph-normal>
 
 			<form class="flex flex-col" @submit.prevent="onSubmit()">
-				<text-input id="name" class-name="my-3" label="Nimi*" placeholder="Placeholder" :value="name"
-					field="name" />
-				<text-input id="email" class-name="my-3" label="Sähköpostiosoite*" placeholder="Placeholder"
-					:value="email" field="email" error="Kirjoitathan sähköpostin muodossa xxxx@sähköposti.com"
-					@on-change="setField" />
-				<text-input id="phone" class-name="my-3" label="Puhelinnumero*" placeholder="Placeholder"
+				<text-input id="name" class="my-3" label="Nimi*" placeholder="Placeholder" :value="name" field="name" />
+				<text-input id="email" class="my-3" label="Sähköpostiosoite*" placeholder="Placeholder" :value="email"
+					field="email" error="Kirjoitathan sähköpostin muodossa xxxx@sähköposti.com" @on-change="setField" />
+				<text-input id="phone" class="my-3" label="Puhelinnumero*" placeholder="Placeholder"
 					:value="phoneNumber" field="phoneNumber" @on-change="setField" />
 				<text-input id="city" label="Kotiosoite*" placeholder="Placeholder" :value="city" field="city"
 					@on-change="setField" />
 
 				<div class="flex justify-between my-3">
-					<text-input id="postecode" class-name="w-5/12" label="Postikoodi*" placeholder="Placeholder"
+					<text-input id="postecode" class="w-5/12" label="Postikoodi*" placeholder="Placeholder"
 						:value="posteCode" field="posteCode" @on-change="setField" />
-					<text-input id="post" class-name="w-5/12" label="Toimipaikka*" placeholder="Placeholder"
-						:value="post" field="post" @on-change="setField" />
+					<text-input id="post" class="w-5/12" label="Toimipaikka*" placeholder="Placeholder" :value="post"
+						field="post" @on-change="setField" />
 				</div>
 				<input type="submit" class="
 						p-2.5
@@ -38,14 +36,12 @@
 </template>
 
 <script>
-import HeadingFour from '~/components/Heading/HeadingFour.vue'
 import TextInput from '~/components/Input/TextInput.vue'
 import BackButton from '~/components/onboarding/BackButton.vue'
 import ParagraphNormal from '~/components/Paragraph/ParagraphNormal.vue'
 export default {
 	components: {
 		BackButton,
-		HeadingFour,
 		ParagraphNormal,
 		TextInput,
 	},

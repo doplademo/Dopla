@@ -1,7 +1,8 @@
 <template>
     <section class="px-4 pt-12 pb-4 flex flex-col">
-        <HeadingTwo>Huolehtii eduistasi</HeadingTwo>
-        <ParagraphLarge className="mt-4 mb-8">Dopla-palvelua käyttävän apteekin farmaseutit ehdottavat sinulle aina edullisimpia saatavilla
+        <h2 class="heading-two">Huolehtii eduistasi</h2>
+        <ParagraphLarge className="mt-4 mb-8">Dopla-palvelua käyttävän apteekin farmaseutit ehdottavat sinulle aina
+            edullisimpia saatavilla
             olevia reseptilääkkeitä lääkemääräyksesi perusteella sekä laskevat lääkkeistä saatavien Kela-korvausten
             määrän. </ParagraphLarge>
         <MainButton className="self-start" title="katso miten" upper />
@@ -10,11 +11,10 @@
 </template>
 
 <script>
-import HeadingTwo from '../Heading/HeadingTwo.vue';
 import ParagraphLarge from '../Paragraph/ParagraphLarge.vue';
 import MainButton from '../Button/MainButton.vue';
 export default {
-    components: { HeadingTwo, ParagraphLarge, MainButton }
+    components: { ParagraphLarge, MainButton }
 }
 </script>
 

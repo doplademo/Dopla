@@ -1,6 +1,6 @@
 <template>
     <section class="px-4 pt-12 pb-4 bg-brownNormal">
-        <HeadingTwo>Säästää aikaa</HeadingTwo>
+        <h2 class="heading-two">Säästää aikaa</h2>
         <ParagraphLarge className="mt-4 mb-8">
             Dopla-palvelu muistuttaa tulevista reseptilääketilauksista ja halutessasi apteekki uusii tilaukset
             voimassaolevan reseptisi mukaisesti.
@@ -11,13 +11,11 @@
 </template>
 
 <script>
-import HeadingTwo from '../Heading/HeadingTwo.vue';
 import ParagraphLarge from '../Paragraph/ParagraphLarge.vue';
 import MainButton from '../Button/MainButton.vue';
 
 export default {
     components: {
-        HeadingTwo,
         ParagraphLarge,
         MainButton
     }

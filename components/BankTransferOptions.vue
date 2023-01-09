@@ -11,7 +11,7 @@
             <div class="bg-white text-center text- h-8 rounded border border-redLightest ">7</div>
             <div class="bg-white text-center text- h-8 rounded border border-redLightest ">8</div>
         </div>
-        <p-sm class-name="text-blackLight mt-4 ">Seuraavaksi siirryt yhteistyökumpaniemme maksuportaaliin
+        <p-sm class="text-blackLight mt-4 ">Seuraavaksi siirryt yhteistyökumpaniemme maksuportaaliin
             viimeistelemään
             verkkomaksun.</p-sm>
 

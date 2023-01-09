@@ -2,7 +2,7 @@
     <div class="w-full">
         <input ref="slider" class="number-slider" type="range" :min="min" :max="max" v-model="value" />
         <div class="flex mt-2">
-            <paragraph-normal class-name="flex-1 text-center" v-for="number in numberOptions" :key="number">{{
+            <paragraph-normal class="flex-1 text-center" v-for="number in numberOptions" :key="number">{{
             number}}</paragraph-normal>
         </div>
     </div>

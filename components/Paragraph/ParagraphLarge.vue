@@ -5,9 +5,8 @@
 </template>
 
 <script >
-import Vue from 'vue';
-export default Vue.component('HeadingTwo', {
-    name: 'HeadingTwo',
+import { defineComponent } from 'vue';
+export default defineComponent({
     props: {
         fontWeight: {
             type: String,

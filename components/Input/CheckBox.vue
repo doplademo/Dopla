@@ -7,13 +7,13 @@
 				<empty-check-box v-else :size="size"></empty-check-box>
 			</button>
 			<div v-if="title || subtitle" class="ml-2">
-				<paragraph-normal class-name="font-medium">{{ title }}</paragraph-normal>
+				<paragraph-normal class="font-medium">{{ title }}</paragraph-normal>
 				<p-sm v-if="subtitle" class="text-blackLightest font-normal">{{
 						subtitle
 				}}</p-sm>
 			</div>
 		</div>
-		<p-sm v-if="error" class-name="text-redBold">{{ error}}</p-sm>
+		<p-sm v-if="error" class="text-redBold">{{ error}}</p-sm>
 	</div>
 </template>
 

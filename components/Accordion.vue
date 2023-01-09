@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="flex justify-between items-center px-4 ">
-			<paragraph-large class-name="font-semibold">
+			<paragraph-large class="font-semibold">
 				{{ title }}
 			</paragraph-large>
 			<button @click="toggle()">

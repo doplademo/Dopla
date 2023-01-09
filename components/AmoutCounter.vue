@@ -5,7 +5,7 @@
     </button>
 
     <paragraph-large
-      class-name="flex justify-center items-center font-bold w-8 h-8"
+      class="flex justify-center items-center font-bold w-8 h-8"
       ><span>{{ count }}</span></paragraph-large
     >
 

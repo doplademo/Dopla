@@ -5,7 +5,7 @@
                 <icon-plus v-if="!showDetails" />
                 <icon-minus v-else />
             </div>
-            <paragraph-normal class-name="font-medium">{{
+            <paragraph-normal class="font-medium">{{
                     title
             }}</paragraph-normal>
         </button>

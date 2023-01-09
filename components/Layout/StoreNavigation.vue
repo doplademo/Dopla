@@ -42,7 +42,7 @@
       <main-button
         to="/onboarding"
         text-class="text-xs"
-        class-name="py-1 px-2"
+        class="py-1 px-2"
         title="BEGIN"
       />
       <button><hamburger-icon :color="Colors.white" /></button>

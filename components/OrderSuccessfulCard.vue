@@ -10,10 +10,10 @@ export default defineComponent({
 <template>
   <div class="flex flex-col w-full bg-pinkBold rounded-lg p-8">
     <img class="self-center" src="~/assets/images/common/piece.png" />
-    <paragraph-normal class-name="mt-4 font-semibold"
+    <paragraph-normal class="mt-4 font-semibold"
       >Your order has now been sent to pharmacy</paragraph-normal
     >
-    <paragraph-normal class-name="font-medium mt-2"
+    <paragraph-normal class="font-medium mt-2"
       >Farmaseutti tarkastaa lääkkeesi ja laskee Kela-korvauksien
       määrän.</paragraph-normal
     ><paragraph-normal>

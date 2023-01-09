@@ -2,14 +2,12 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import MainButtonPressable from "~/components/Button/MainButtonPressable.vue";
-import HeadingFour from "~/components/Heading/HeadingFour.vue";
 import ParagraphNormal from "~/components/Paragraph/ParagraphNormal.vue";
 import PrescriptionCheckout from "~/components/PrescriptionCheckout.vue";
 import RadioField from "~/components/RadioField.vue";
 import { prescribedProducts } from "~/dummy/dummyproducts";
 export default defineComponent({
   components: {
-    HeadingFour,
     ParagraphNormal,
     PrescriptionCheckout,
     RadioField,
@@ -47,30 +45,30 @@ export default defineComponent({
         p-4
         mx-3
       ">
-      <heading-four class-name="font-semibold bg-redLightest rounded p-2 mb-2">Your prescriptions</heading-four>
-      <paragraph-normal class-name="mb-4">Alla näet tilauksesi, joka lähetetään farmaseutin
+      <h4 class="heading-four font-semibold bg-redLightest rounded p-2 mb-2">Your prescriptions</h4>
+      <paragraph-normal class="mb-4">Alla näet tilauksesi, joka lähetetään farmaseutin
         käsittelyyn.</paragraph-normal>
 
       <prescription-checkout v-for="product in products" :key="product.id" :name="product.name" :id="product.id"
         @remove="remove" />
 
-      <paragraph-normal class-name="font-medium mt-4">{{ products.length }} product{{
-          products.length === 1 ? "" : "s"
+      <paragraph-normal class="font-medium mt-4">{{ products.length }} product{{
+        products.length === 1 ? "" : "s"
       }}</paragraph-normal>
-      <paragraph-normal class-name="text-blackLight mt-2">Farmaseutti laskee tilauksen lopullisen
+      <paragraph-normal class="text-blackLight mt-2">Farmaseutti laskee tilauksen lopullisen
         hinnan.</paragraph-normal>
     </section>
 
     <section class="bg-white mt-6 px-4 pt-6 pb-16">
-      <heading-four>Medical guidance</heading-four>
+      <h4 class="heading-four ">Medical guidance</h4>
       <div class="flex flex-col w-full mt-6">
         <radio-field title="I want medical assistance through telephone" :selected="selectedHelp === 1"
           @select="setSelected(1)" />
         <radio-field title="I don't need medical assistance" :selected="selectedHelp === 2" @select="setSelected(2)"
-          class-name="mt-2" />
+          class="mt-2" />
       </div>
 
-      <main-button-pressable v-if="selectedHelp" class-name="w-full mt-4" title="Send to pharmacy" upper />
+      <main-button-pressable v-if="selectedHelp" class="w-full mt-4" title="Send to pharmacy" upper />
     </section>
   </main>
 </template>

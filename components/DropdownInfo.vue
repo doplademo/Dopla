@@ -1,7 +1,7 @@
 <template>
   <div :class="`flex flex-col items-start flex-1 p-2 ${className}`">
-    <paragraph-normal class-name="font-medium">{{ name }}</paragraph-normal>
-    <paragraph-normal class-name="text-blackLight">{{
+    <paragraph-normal class="font-medium">{{ name }}</paragraph-normal>
+    <paragraph-normal class="text-blackLight">{{
       description
     }}</paragraph-normal>
   </div>

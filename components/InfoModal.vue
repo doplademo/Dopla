@@ -10,23 +10,23 @@
         <close-icon size="small" />
       </button>
     </div>
-    <heading-four
-      class-name="font-semibold bg-redLightest rounded-md p-1 mt-5"
-      >{{ product.name }}</heading-four
+    <h4
+      class="heading-four font-semibold bg-redLightest rounded-md p-1 mt-5"
+      >{{ product.name }}</h4
     >
 
-    <p-sm class-name="text-blackLight mt-4 mb-1">Product details</p-sm>
+    <p-sm class="text-blackLight mt-4 mb-1">Product details</p-sm>
     <div class="border border-redLightest rounded-md px-2.5 py-1.5">
       <p-sm
         v-for="detail in product.details"
         :key="detail"
-        class-name="text-blackMedium my-1"
+        class="text-blackMedium my-1"
         >{{ detail }}</p-sm
       >
     </div>
 
     <div class="mt-5">
-      <paragraph-normal class-name="inline-block font-semibold"
+      <paragraph-normal class="inline-block font-semibold"
         >Medicine exchange program</paragraph-normal
       >
       <button class="inline-block bg-redLightest font-semibold px-2 mr-2">
@@ -40,7 +40,7 @@
       @on-select-option="onChangeOption"
     />
     <div class="mt-2">
-      <p-sm class-name="inline-block text-blackLight"
+      <p-sm class="inline-block text-blackLight"
         >Tuotteella on hintatakuu</p-sm
       >
       <button
@@ -57,13 +57,13 @@
         @subtract="$emit('subtract')"
       />
       <main-button-pressable
-        class-name="flex-1 ml-2"
+        class="flex-1 ml-2"
         title="Lisää tilaukseen"
         upper
       />
     </div>
 
-    <p-xs class-name="text-end text-blackMedium font-medium  mt-4"
+    <p-xs class="text-end text-blackMedium font-medium  mt-4"
       >Apteekin farmaseutti voi laskea lopullisen hinnan Kela-korvauksineen kun
       olet vahvistanut ehdotuksen. Näet lopullisen summan ennen maksamista.
       Ehdotetuilla tuotteilla on edullisimman tuotteen takuu.</p-xs
@@ -72,21 +72,19 @@
 </template>
 
 <script lang="ts">
-import { PrescriptionType } from "~/dummy/dummyproducts";
 import { defineComponent, PropType } from "vue";
 import CloseIcon from "./Icons/CloseIcon.vue";
-import HeadingFour from "./Heading/HeadingFour.vue";
 import PSm from "./Paragraph/PSm.vue";
 import ParagraphNormal from "./Paragraph/ParagraphNormal.vue";
 import DropdownPicker from "./DropdownPicker.vue";
 import AmoutCounter from "./AmoutCounter.vue";
 import MainButtonPressable from "./Button/MainButtonPressable.vue";
 import PXs from "./Paragraph/PXs.vue";
+import { PrescriptionType } from "~/dummy/dummyproducts";
 
 export default defineComponent({
   components: {
     CloseIcon,
-    HeadingFour,
     PSm,
     ParagraphNormal,
     DropdownPicker,

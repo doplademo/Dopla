@@ -34,10 +34,10 @@ export default defineComponent({
         <icon-radio-unselected v-else />
       </button>
       <button class="flex-1 text-start" @click="toggleDetails()">
-        <paragraph-normal class-name="font-medium">{{
+        <paragraph-normal class="font-medium">{{
             title
         }}</paragraph-normal>
-        <paragraph-normal v-if="description" class-name="text-blackLight">{{
+        <paragraph-normal v-if="description" class="text-blackLight">{{
             description
         }}</paragraph-normal>
       </button>

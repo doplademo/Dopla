@@ -38,7 +38,7 @@ export default {
     '@nuxtjs/axios',
   ],
 
-  // target: 'static',
+  target: 'static',
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

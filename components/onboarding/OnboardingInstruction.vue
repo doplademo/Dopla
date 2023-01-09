@@ -4,17 +4,16 @@
 			<slot name="icon" />
 		</div>
 		<div>
-			<paragraph-normal class-name="font-medium" >{{ title }}</paragraph-normal>
-			<heading-five class-name="font-normal text-blackStrong">{{ description }}</heading-five>
+			<paragraph-normal class="font-medium" >{{ title }}</paragraph-normal>
+			<h5 class="heading-five font-normal text-blackStrong">{{ description }}</h5>
 		</div>
 	</div>
 </template>
 
 <script>
-import HeadingFive from '../Heading/HeadingFive.vue'
 import ParagraphNormal from '../Paragraph/ParagraphNormal.vue'
 export default {
-	components: { ParagraphNormal, HeadingFive },
+	components: { ParagraphNormal },
 	props: {
 		title: {
 			type: String,

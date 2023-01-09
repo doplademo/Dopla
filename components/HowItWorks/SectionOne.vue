@@ -1,11 +1,9 @@
 <template>
 	<section class="flex flex-col px-4 pt-24 pb-6 bg-mainBold">
 		<img src="~/assets/images/how-it-works/hands.png" alt="hands" />
-		<HeadingOne class-name="my-6 text-redLightest"
-			>Lääkkeet vaivatto-masti verkosta</HeadingOne
-		>
-		<ParagraphLarge class-name="text-redLightest"
-			>Doplasta tilaat reseptilääkkeitä ja apteekin tuotteita, jotka toimitetaan
+		<h1 class="heading-one my-6 text-redLightest">Lääkkeet vaivatto-masti verkosta</h1>
+		<ParagraphLarge class="text-redLightest">Doplasta tilaat reseptilääkkeitä ja apteekin tuotteita, jotka
+			toimitetaan
 			oikea-aikaisesti suoraan kotiovelle. Palvelu muistuttaa tulevien
 			reseptilääketilausten uusiutumisesta tekstiviestillä.
 		</ParagraphLarge>
@@ -13,13 +11,13 @@
 </template>
 
 <script>
-import HeadingOne from '../Heading/HeadingOne.vue'
 import ParagraphLarge from '../Paragraph/ParagraphLarge.vue'
 
 export default {
-	components: { HeadingOne, ParagraphLarge },
+	components: { ParagraphLarge },
 }
 </script>
 
 <style>
+
 </style>

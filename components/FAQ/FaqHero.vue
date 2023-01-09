@@ -1,6 +1,6 @@
 <template>
 	<section class="pt-32 px-4">
-		<heading-one class-name="text-center">Usein kysyttyä</heading-one>
+		<h1 class="heading-one text-center">Usein kysyttyä</h1>
 		<div class="mt-16">
 			<accordion title="Mikä on Dopla?">
 				<!-- TODO here will be placed the element that will be reviewed on pressing plus icon -->
@@ -36,9 +36,8 @@
 
 <script>
 import Accordion from '../Accordion.vue'
-import HeadingOne from '../Heading/HeadingOne.vue'
 export default {
-	components: { HeadingOne, Accordion },
+	components: { Accordion },
 }
 </script>
 

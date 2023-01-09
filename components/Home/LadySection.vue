@@ -2,7 +2,7 @@
 	<section class="bg-white">
 		<slot name="top"/>
 		<div class="px-4 pb-6 bg-white">
-			<heading-4 className="font-semibold mt-4">{{ text }}</heading-4>
+			<h4 class="heading-four font-semibold mt-4">{{ text }}</h4>
 			<paragraph-large className="font-bold mt-4">{{
 				person
 			}}</paragraph-large>
@@ -12,11 +12,9 @@
 </template>
 
 <script>
-import Heading4 from '../Heading/HeadingFour.vue'
 import ParagraphLarge from '../Paragraph/ParagraphLarge.vue'
 export default {
 	components: {
-		Heading4,
 		ParagraphLarge,
 	},
 	props: {

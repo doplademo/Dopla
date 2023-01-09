@@ -26,26 +26,26 @@ export default defineComponent({
   <div
     :class="`flex items-start py-4 ${!isLast ? 'border-b border-b-blackLightest' : ''}`"
   >
-    <p-sm class-name="text-blackLight">{{ id }}</p-sm>
+    <p-sm class="text-blackLight">{{ id }}</p-sm>
 
     <div class="flex flex-col flex-1 mx-2">
       <div class="flex justify-between mb-2">
-        <paragraph-large class-name="flex-1 font-medium ">{{
+        <paragraph-large class="flex-1 font-medium ">{{
           name
         }}</paragraph-large>
-        <paragraph-large class-name="font-medium">{{ price }}</paragraph-large>
+        <paragraph-large class="font-medium">{{ price }}</paragraph-large>
       </div>
       <div class="bg-greenHover flex items-center rounded p-1">
         <guide-icon :size="20" />
-        <p-sm class-name="ml-2"> Puoli tablettia aamuin illoin...</p-sm>
+        <p-sm class="ml-2"> Puoli tablettia aamuin illoin...</p-sm>
       </div>
       <div class="flex justify-between text-blackMedium mt-1">
           <paragraph-normal>Reimbursement</paragraph-normal>
-          <paragraph-normal class-name="font-medium">-{{discount}}</paragraph-normal>
+          <paragraph-normal class="font-medium">-{{discount}}</paragraph-normal>
       </div>
       <div class="flex justify-between text-blackBold mt-1">
           <paragraph-normal>Deductible</paragraph-normal>
-          <paragraph-normal class-name="font-medium">{{finalPrice}}</paragraph-normal>
+          <paragraph-normal class="font-medium">{{finalPrice}}</paragraph-normal>
       </div>
     </div>
   </div>

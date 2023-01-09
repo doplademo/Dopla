@@ -20,13 +20,13 @@ export default defineComponent({
 
 <template>
   <div class="flex items-start border-b border-b-blackLightest py-4">
-    <p-sm class-name="text-blackLight">00{{ id }}</p-sm>
+    <p-sm class="text-blackLight">00{{ id }}</p-sm>
 
     <div class="flex flex-col flex-1 mx-2">
       <paragraph-large class="font-medium mb-2">{{ name }}</paragraph-large>
       <div class="bg-greenHover flex items-center rounded p-1">
         <guide-icon :size="20" />
-        <p-sm class-name="ml-2"> Puoli tablettia aamuin illoin...</p-sm>
+        <p-sm class="ml-2"> Puoli tablettia aamuin illoin...</p-sm>
       </div>
     </div>
 

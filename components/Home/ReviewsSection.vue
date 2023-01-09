@@ -1,6 +1,6 @@
 <template>
 	<section class="py-8 flex flex-col items-center">
-		<HeadingThree class-name="mb-8"> Asiakkaamme kertovat </HeadingThree>
+		<h3 class="heading-three mb-8"> Asiakkaamme kertovat </h3>
 		<div>
 			<!-- TODO v-for when more reviews  -->
 			<review-card />
@@ -8,18 +8,10 @@
 		<paggination-dot :pages-number="dots" />
 		<div class="mt-8">
 			<button>
-				<img
-					class="w-6 h-6 mx-3"
-					src="~/assets/images/icons/arrow-left.png"
-					alt="move to previous review"
-				/>
+				<img class="w-6 h-6 mx-3" src="~/assets/images/icons/arrow-left.png" alt="move to previous review" />
 			</button>
 			<button>
-				<img
-					class="w-6 h-6 mx-3"
-					src="~/assets/images/icons/arrow-right.png"
-					alt="move to next review"
-				/>
+				<img class="w-6 h-6 mx-3" src="~/assets/images/icons/arrow-right.png" alt="move to next review" />
 			</button>
 		</div>
 	</section>
@@ -27,13 +19,11 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue"
-import HeadingThree from '../Heading/HeadingThree.vue'
 import PagginationDot from '../PagginationDot.vue'
 import ReviewCard from '../ReviewCard.vue'
 
 export default defineComponent({
 	components: {
-		HeadingThree,
 		ReviewCard,
 		PagginationDot,
 	},
