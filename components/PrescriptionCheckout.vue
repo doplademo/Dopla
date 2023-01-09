@@ -2,10 +2,9 @@
 import { defineComponent } from "vue";
 import GuideIcon from "./Icons/GuideIcon.vue";
 import IconTrash from "./Icons/IconTrash.vue";
-import PSm from "./Paragraph/PSm.vue";
 
 export default defineComponent({
-  components: { PSm, GuideIcon, IconTrash },
+  components: { GuideIcon, IconTrash },
   props: {
     id: {
       type: Number,
@@ -19,13 +18,13 @@ export default defineComponent({
 
 <template>
   <div class="flex items-start border-b border-b-blackLightest py-4">
-    <p-sm class="text-blackLight">00{{ id }}</p-sm>
+    <p class="p-small text-blackLight">00{{ id }}</p>
 
     <div class="flex flex-col flex-1 mx-2">
       <p class="p-large font-medium mb-2">{{ name }}</p>
       <div class="bg-greenHover flex items-center rounded p-1">
         <guide-icon :size="20" />
-        <p-sm class="ml-2"> Puoli tablettia aamuin illoin...</p-sm>
+        <p class="p-small ml-2"> Puoli tablettia aamuin illoin...</p>
       </div>
     </div>
 

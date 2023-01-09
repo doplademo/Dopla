@@ -1,10 +1,9 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import GuideIcon from "./Icons/GuideIcon.vue";
-import PSm from "./Paragraph/PSm.vue";
 
 export default defineComponent({
-  components: { PSm, GuideIcon },
+  components: { GuideIcon },
   props: {
     id: {
       type: Number,
@@ -24,7 +23,7 @@ export default defineComponent({
   <div
     :class="`flex items-start py-4 ${!isLast ? 'border-b border-b-blackLightest' : ''}`"
   >
-    <p-sm class="text-blackLight">{{ id }}</p-sm>
+    <p class="p-small text-blackLight">{{ id }}</p>
 
     <div class="flex flex-col flex-1 mx-2">
       <div class="flex justify-between mb-2">
@@ -35,7 +34,7 @@ export default defineComponent({
       </div>
       <div class="bg-greenHover flex items-center rounded p-1">
         <guide-icon :size="20" />
-        <p-sm class="ml-2"> Puoli tablettia aamuin illoin...</p-sm>
+        <p class="p-small ml-2"> Puoli tablettia aamuin illoin...</p>
       </div>
       <div class="flex justify-between text-blackMedium mt-1">
           <p class="p-normal">Reimbursement</p>

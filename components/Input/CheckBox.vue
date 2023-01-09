@@ -8,12 +8,12 @@
 			</button>
 			<div v-if="title || subtitle" class="ml-2">
 				<p class="p-normal font-medium">{{ title }}</p>
-				<p-sm v-if="subtitle" class="text-blackLightest font-normal">{{
+				<p v-if="subtitle" class="p-small text-blackLightest font-normal">{{
 					subtitle
-				}}</p-sm>
+				}}</p>
 			</div>
 		</div>
-		<p-sm v-if="error" class="text-redBold">{{ error}}</p-sm>
+		<p v-if="error" class="p-small text-redBold">{{ error}}</p>
 	</div>
 </template>
 
@@ -21,9 +21,8 @@
 import { defineComponent } from "vue"
 import EmptyCheckBox from '../Icons/EmptyCheckBox.vue'
 import SelectedCheckBoxIcon from '../Icons/SelectedCheckBoxIcon.vue'
-import PSm from '../Paragraph/PSm.vue'
 export default defineComponent({
-	components: { EmptyCheckBox, SelectedCheckBoxIcon, PSm },
+	components: { EmptyCheckBox, SelectedCheckBoxIcon },
 	props: {
 		selected: Boolean,
 		title: {

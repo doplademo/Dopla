@@ -5,14 +5,14 @@
 			<pending-prescription title="Your prescriptions">
 				<main-button title="update" upper />
 				<template #body>
-					<p-sm class="text-white font-medium">
+					<p class="p-small text-white font-medium">
 						<span> Prescriptions updated 25.02.2022 klo 13:59 </span>
-						<p-sm class="text-blackLightest">You may request next update 25.02.2022 klo 15:59</p-sm>
+						<p class="p-small text-blackLightest">You may request next update 25.02.2022 klo 15:59</p>
 						<br />
-						<p-sm>Alla näet apteekista tilattavissa olevat reseptilääkkeet. Kun
+						<p class="p-small">Alla näet apteekista tilattavissa olevat reseptilääkkeet. Kun
 							olet valinnut toimitettavat tuotteet, farmaseutti tarkistaa
-							tilauksen ja Kela-korvauksen määrän.</p-sm>
-					</p-sm>
+							tilauksen ja Kela-korvauksen määrän.</p>
+					</p>
 				</template>
 			</pending-prescription>
 		</section>
@@ -56,7 +56,6 @@
 import { defineComponent, ref } from "vue";
 import { prescribedProducts } from "~/dummy/dummyproducts";
 import MainButton from "~/components/Button/MainButton.vue";
-import PSm from "~/components/Paragraph/PSm.vue";
 import PendingPrescription from "~/components/PendingPrescription.vue";
 import GreetingSection from "~/components/StoreHome/GreetingSection.vue";
 import PrescriptionItem from "~/components/PrescriptionItem.vue";
@@ -67,7 +66,6 @@ export default defineComponent({
 		GreetingSection,
 		PendingPrescription,
 		MainButton,
-		PSm,
 		PrescriptionItem,
 		ModalContainer,
 		InfoModal,

@@ -11,9 +11,9 @@
             <div class="bg-white text-center text- h-8 rounded border border-redLightest ">7</div>
             <div class="bg-white text-center text- h-8 rounded border border-redLightest ">8</div>
         </div>
-        <p-sm class="text-blackLight mt-4 ">Seuraavaksi siirryt yhteistyökumpaniemme maksuportaaliin
+        <p class="p-small text-blackLight mt-4 ">Seuraavaksi siirryt yhteistyökumpaniemme maksuportaaliin
             viimeistelemään
-            verkkomaksun.</p-sm>
+            verkkomaksun.</p>
 
         <input type="submit"
             class="p-2.5 mt-4 ml-auto text-blackBold bg-greenBold text-center text-[15px] font-semibold rounded-md"
@@ -23,10 +23,9 @@
 
 <script>
 import { defineComponent } from "vue"
-import PSm from './Paragraph/PSm.vue'
 import PXs from './Paragraph/PXs.vue'
 export default defineComponent({
-    components: { PXs, PSm },
+    components: { PXs },
 
 })
 </script>

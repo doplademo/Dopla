@@ -6,7 +6,7 @@
         <section class="mt-4 px-4 py-6">
             <div class="bg-white p-4 pb-32">
                 <h4 class="heading-four ">Ison Omenan apteekki</h4>
-                <p-sm class="my-6">Tilausnumero: 123456789</p-sm>
+                <p class="p-small my-6">Tilausnumero: 123456789</p>
                 <!-- Order info header -->
                 <div class="
 						flex
@@ -17,8 +17,8 @@
 						pb-2
 						border-b border-blackBold
 					">
-                    <p-sm>Määrä</p-sm>
-                    <p-sm>hinta</p-sm>
+                    <p class="p-small">Määrä</p>
+                    <p class="p-small">hinta</p>
                 </div>
 
                 <!-- Order body -->
@@ -89,12 +89,10 @@ import { defineComponent, ref } from "vue"
 import MainButtonPressable from '~/components/Button/MainButtonPressable.vue'
 import HyperlinkNormal from '~/components/Hyperlink/HyperlinkNormal.vue'
 import TextArea from '~/components/Input/TextArea.vue'
-import PSm from '~/components/Paragraph/PSm.vue'
 import RateSlider from '~/components/RateSlider.vue'
 import ReceiptProduct from '~/components/ReceiptProduct.vue'
 export default defineComponent({
     components: {
-        PSm,
         ReceiptProduct,
         HyperlinkNormal,
         RateSlider,

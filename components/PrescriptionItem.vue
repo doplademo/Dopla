@@ -21,7 +21,7 @@
         <div class="flex items-center justify-between w-full my-2">
           <div class="flex items-center bg-oceanLight rounded p-1.5">
             <guide-icon :size="16" />
-            <p-sm class="ml-2">Here's how to use...</p-sm>
+            <p class="p-small ml-2">Here's how to use...</p>
           </div>
           <!-- Info button -->
           <main-button-pressable text-class="text-xs" class="p-1 py-1.5" title="info" upper
@@ -40,7 +40,6 @@ import { defineComponent } from "vue";
 import MainButtonPressable from "./Button/MainButtonPressable.vue";
 import GuideIcon from "./Icons/GuideIcon.vue";
 import CheckBox from "./Input/CheckBox.vue";
-import PSm from "./Paragraph/PSm.vue";
 import PXs from "./Paragraph/PXs.vue";
 
 export default defineComponent({
@@ -48,7 +47,6 @@ export default defineComponent({
     CheckBox,
     PXs,
     GuideIcon,
-    PSm,
     MainButtonPressable,
   },
   props: {

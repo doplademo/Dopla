@@ -9,9 +9,9 @@
     </div>
     <h4 class="heading-four font-semibold bg-redLightest rounded-md p-1 mt-5">{{ product.name }}</h4>
 
-    <p-sm class="text-blackLight mt-4 mb-1">Product details</p-sm>
+    <p class="p-small text-blackLight mt-4 mb-1">Product details</p>
     <div class="border border-redLightest rounded-md px-2.5 py-1.5">
-      <p-sm v-for="detail in product.details" :key="detail" class="text-blackMedium my-1">{{ detail }}</p-sm>
+      <p v-for="detail in product.details" :key="detail" class="p-small text-blackMedium my-1">{{ detail }}</p>
     </div>
 
     <div class="mt-5">
@@ -24,7 +24,7 @@
     <dropdown-picker :selected-option="product.selectedOption" :options="product.options"
       @on-select-option="onChangeOption" />
     <div class="mt-2">
-      <p-sm class="inline-block text-blackLight">Tuotteella on hintatakuu</p-sm>
+      <p class="p-small inline-block text-blackLight">Tuotteella on hintatakuu</p>
       <button class="inline-block bg-redLightest font-semibold text-xs px-2 mr-2">
         i
       </button>
@@ -45,7 +45,6 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import CloseIcon from "./Icons/CloseIcon.vue";
-import PSm from "./Paragraph/PSm.vue";
 import DropdownPicker from "./DropdownPicker.vue";
 import AmoutCounter from "./AmoutCounter.vue";
 import MainButtonPressable from "./Button/MainButtonPressable.vue";
@@ -55,7 +54,6 @@ import { PrescriptionType } from "~/dummy/dummyproducts";
 export default defineComponent({
   components: {
     CloseIcon,
-    PSm,
     DropdownPicker,
     AmoutCounter,
     MainButtonPressable,
