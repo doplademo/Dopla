@@ -30,9 +30,9 @@
 		</div>
 		<div class="flex flex-col items-center w-full mt-10">
 			<h4 class="heading-four text-white my-2">Newsletter</h4>
-			<text-input class="w-full my-2" type="email" :value="email" field="email" placeholder="email@example.com"
+			<text-input class-name="w-full my-2" type="email" :value="email" field="email" placeholder="email@example.com"
 				@change="setEmail" />
-			<main-button class="w-full my-2" title="TILAA" />
+			<main-button class-name="w-full my-2" title="TILAA" />
 		</div>
 
 		<div class="flex justify-between w-full mt-10">

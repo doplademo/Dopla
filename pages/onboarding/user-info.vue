@@ -7,18 +7,18 @@
 				voimme taata palvelun jouhevuuden.</p>
 
 			<form class="flex flex-col" @submit.prevent="onSubmit()">
-				<text-input id="name" class="my-3" label="Nimi*" placeholder="Placeholder" :value="name" field="name" />
-				<text-input id="email" class="my-3" label="Sähköpostiosoite*" placeholder="Placeholder" :value="email"
+				<text-input id="name" class-name="my-3" label="Nimi*" placeholder="Placeholder" :value="name" field="name" />
+				<text-input id="email" class-name="my-3" label="Sähköpostiosoite*" placeholder="Placeholder" :value="email"
 					field="email" error="Kirjoitathan sähköpostin muodossa xxxx@sähköposti.com" @on-change="setField" />
-				<text-input id="phone" class="my-3" label="Puhelinnumero*" placeholder="Placeholder"
+				<text-input id="phone" class-name="my-3" label="Puhelinnumero*" placeholder="Placeholder"
 					:value="phoneNumber" field="phoneNumber" @on-change="setField" />
 				<text-input id="city" label="Kotiosoite*" placeholder="Placeholder" :value="city" field="city"
 					@on-change="setField" />
 
 				<div class="flex justify-between my-3">
-					<text-input id="postecode" class="w-5/12" label="Postikoodi*" placeholder="Placeholder"
+					<text-input id="postecode" class-name="w-5/12" label="Postikoodi*" placeholder="Placeholder"
 						:value="posteCode" field="posteCode" @on-change="setField" />
-					<text-input id="post" class="w-5/12" label="Toimipaikka*" placeholder="Placeholder" :value="post"
+					<text-input id="post" class-name="w-5/12" label="Toimipaikka*" placeholder="Placeholder" :value="post"
 						field="post" @on-change="setField" />
 				</div>
 				<input type="submit" class="

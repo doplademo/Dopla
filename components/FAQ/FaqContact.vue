@@ -5,11 +5,11 @@
 			mahdollisimman pian.
 		</p>
 		<form class="flex flex-col mt-8">
-			<text-input class="my-2" type="text" placeholder="nimi" field="name" :text="name" @on-change="onChange" />
-			<text-input class="my-2" type="text" placeholder="email" field="email" :text="email"
+			<text-input class-name="my-2" type="text" placeholder="nimi" field="name" :text="name" @on-change="onChange" />
+			<text-input class-name="my-2" type="text" placeholder="email" field="email" :text="email"
 				@on-change="onChange" />
-			<text-input class="my-2" type="text" placeholder="idk" field="idk" :text="idk" @on-change="onChange" />
-			<text-area class="mb-4" placeholder="message" field="message" :text="message" :rows="5"
+			<text-input class-name="my-2" type="text" placeholder="idk" field="idk" :text="idk" @on-change="onChange" />
+			<text-area class-name="mb-4" placeholder="message" field="message" :text="message" :rows="5"
 				@on-change="onChange" />
 			<main-button class="" upper title="lähetä" />
 		</form>

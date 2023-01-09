@@ -74,7 +74,7 @@
                     <p class="p-normal mb-2 font-semibold">Open comments</p>
                     <p class="p-normal mb-4">Is important</p>
 
-                    <text-area class="w-full" :value="comment" @on-change="onComment" placeholder="Your comment"
+                    <text-area class-name="w-full" :value="comment" @on-change="onComment" placeholder="Your comment"
                         :rows="6" :cols="3" />
 
                     <main-button-pressable title="send" upper class="w-full mt-4" />

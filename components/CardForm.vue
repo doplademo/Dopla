@@ -4,8 +4,8 @@
     <text-input label="Name on card*" placeholder="Placeholder" />
     <text-input label="Card number*" placeholder="Placeholder" />
     <div class="flex justify-between gap-2">
-      <text-input class="w-5/12" label="MM/YY*" />
-      <text-input class="w-5/12" label="CVV*" />
+      <text-input class-name="w-5/12" label="MM/YY*" />
+      <text-input class-name="w-5/12" label="CVV*" />
     </div>
     <input type="submit"
       class="p-2.5  mt-2 ml-auto text-blackBold bg-greenBold text-center text-[15px] font-semibold rounded-md"
