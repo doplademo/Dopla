@@ -6,7 +6,7 @@
             muita apteekin tuotteita
             vaivattomasti valitsemaasi osoitteeseen.</p>
         <!-- TODO add arrow to this button -->
-        <MainButton title="katso miten" upper className="my-8" />
+        <MainButton title="katso miten" upper class-name="my-8" />
         <img class="mt-8" src="~/assets/images/home/Tulee.png" alt="design image">
     </section>
 </template>

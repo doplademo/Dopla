@@ -7,7 +7,7 @@
     <p class="p-normal font-semibold mt-4">Hip hei! Farmaseutti on tarkistanut, että tilauksesi on kunnossa sekä
       laskenut kela-korvauksesi.</p>
     <p class="p-normal mt-4">Voit siirtyä viimeistelemään reseptilääketilauksesi.</p>
-    <main-button-pressable title="pay" upper class="w-1/2 mt-4" />
+    <main-button-pressable title="pay" upper class-name="w-1/2 mt-4" />
   </div>
 </template>
 

@@ -66,7 +66,7 @@ export default defineComponent({
           class="mt-2" />
       </div>
 
-      <main-button-pressable v-if="selectedHelp" class="w-full mt-4" title="Send to pharmacy" upper />
+      <main-button-pressable v-if="selectedHelp" class-name="w-full mt-4" title="Send to pharmacy" upper />
     </section>
   </main>
 </template>

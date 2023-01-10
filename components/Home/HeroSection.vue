@@ -6,7 +6,7 @@
             <p class="p-normal mb-4 text-redLightest">Doplasta tilaat reseptilääkkeet ja apteekin
                 tuotteet suoraan
                 kotiovelle.</p>
-            <MainButton title="aloita tunnistautumalla" className="bg-greenBold text-blackBold mt-4" upper />
+            <MainButton title="aloita tunnistautumalla" class-name="bg-greenBold text-blackBold mt-4" upper />
         </div>
     </section>
 </template>

@@ -38,7 +38,7 @@
 			<check-box class="my-1 mt-4" title="Terveysuutiset" subtitle="Lorem ipsum dolor sit amet"
 				:selected="news" @on-press="toggleNews()" />
 
-			<main-button to="/onboarding/user-info" class="mt-8" title="seuraava" upper />
+			<main-button to="/onboarding/user-info" class-name="mt-8" title="seuraava" upper />
 		</div>
 	</main>
 </template>

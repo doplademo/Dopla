@@ -49,3 +49,7 @@
 .p-x-small {
 	@apply text-xs leading-[12px] tracking-normal;
 }
+
+.main-button {
+	@apply p-2.5 flex items-center justify-center rounded-md bg-greenBold text-blackBold font-semibold text-center text-[15px];
+}

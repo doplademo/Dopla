@@ -24,7 +24,7 @@
             <p class="p-small ml-2">Here's how to use...</p>
           </div>
           <!-- Info button -->
-          <main-button-pressable text-class="text-xs" class="p-1 py-1.5" title="info" upper
+          <main-button-pressable text-class="text-xs" class-name="p-1 py-1.5" title="info" upper
             @click="$emit('show-info', id)" />
         </div>
         <div class="bg-mainBold rounded absolute top-0 right-2 px-2 py-1.5">

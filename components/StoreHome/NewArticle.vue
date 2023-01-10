@@ -7,7 +7,7 @@
 			title
 		}}</h4>
 		<p class="p-normal my-1">{{ description }}</p>
-		<main-button class="flex-start bg-redLightest w-auto -ml-2" text-class="text-xs" title="lue lisää" upper next
+		<main-button class-name="flex-start bg-redLightest w-auto -ml-2" text-class="text-xs" title="lue lisää" upper next
 			:icon-size="18" />
 	</div>
 </template>

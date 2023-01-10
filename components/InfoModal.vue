@@ -32,7 +32,7 @@
 
     <div class="flex justify-between w-full mt-8">
       <amout-counter :count="product.amount" @add="$emit('add')" @subtract="$emit('subtract')" />
-      <main-button-pressable class="flex-1 ml-2" title="Lisää tilaukseen" upper />
+      <main-button-pressable class-name="flex-1 ml-2" title="Lisää tilaukseen" upper />
     </div>
 
     <p class="p-x-small text-end text-blackMedium font-medium  mt-4">Apteekin farmaseutti voi laskea lopullisen hinnan

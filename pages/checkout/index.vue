@@ -109,7 +109,7 @@ export default defineComponent({
                 <check-box class="mt-8" title="I accept to terms" subtitle="Subtitle 1"
                     error="Remember to consent to this." />
 
-                <main-button-pressable class="mt-6 w-full" title="Pay" upper />
+                <main-button-pressable class-name="mt-6 w-full" title="Pay" upper />
             </div>
         </section>
     </main>

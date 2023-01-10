@@ -5,7 +5,7 @@
             edullisimpia saatavilla
             olevia reseptilääkkeitä lääkemääräyksesi perusteella sekä laskevat lääkkeistä saatavien Kela-korvausten
             määrän. </p>
-        <MainButton className="self-start" title="katso miten" upper />
+        <MainButton class-name="self-start" title="katso miten" upper />
         <img class="mt-4 w-2/3 self-center" src="~/assets/images/home/Hintatietoinen.png" alt="">
     </section>
 </template>

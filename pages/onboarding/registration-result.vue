@@ -10,7 +10,7 @@
 			<br />
 			<p class="p-normal mb-4">Reseptilääkkeiden näkymiseen menee vielä hetki. Farmaseutti on tuomassa
 				niitä palveluun nähtävillesi.</p>
-			<main-button class="w-full mt-2" title="aloita palvelun käyttö" upper />
+			<main-button class-name="w-full mt-2" title="aloita palvelun käyttö" upper />
 		</div>
 	</main>
 </template>

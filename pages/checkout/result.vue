@@ -77,7 +77,7 @@
                     <text-area class-name="w-full" :value="comment" @on-change="onComment" placeholder="Your comment"
                         :rows="6" :cols="3" />
 
-                    <main-button-pressable title="send" upper class="w-full mt-4" />
+                    <main-button-pressable title="send" upper class-name="w-full mt-4" />
                 </div>
             </form>
         </section>
