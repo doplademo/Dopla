@@ -8,24 +8,24 @@
 		<div class="flex flex-wrap w-full">
 			<div class="flex flex-col flex-shrink-0 flex-grow-0 w-6/12">
 				<h4 class="heading-four text-redLightest mb-2 mt-12">Lorem</h4>
-				<hyperlink-small class="text-white my-2">Lorem ipsum</hyperlink-small>
-				<hyperlink-small class="text-white my-2">Dolor amet</hyperlink-small>
-				<hyperlink-small class="text-white my-2">Adipiscing elit</hyperlink-small>
-				<hyperlink-small class="text-white my-2">Consectetuer</hyperlink-small>
+				<hyperlink-small class-name="text-white my-2">Lorem ipsum</hyperlink-small>
+				<hyperlink-small class-name="text-white my-2">Dolor amet</hyperlink-small>
+				<hyperlink-small class-name="text-white my-2">Adipiscing elit</hyperlink-small>
+				<hyperlink-small class-name="text-white my-2">Consectetuer</hyperlink-small>
 			</div>
 			<div class="flex flex-col flex-shrink-0 flex-grow-0 w-6/12 mt-12">
 				<h4 class="heading-four text-redLightest mb-2">Lorem</h4>
-				<hyperlink-small class="text-white my-2">Lorem ipsum</hyperlink-small>
-				<hyperlink-small class="text-white my-2">Dolor amet</hyperlink-small>
-				<hyperlink-small class="text-white my-2">Adipiscing elit</hyperlink-small>
-				<hyperlink-small class="text-white my-2">Consectetuer</hyperlink-small>
+				<hyperlink-small class-name="text-white my-2">Lorem ipsum</hyperlink-small>
+				<hyperlink-small class-name="text-white my-2">Dolor amet</hyperlink-small>
+				<hyperlink-small class-name="text-white my-2">Adipiscing elit</hyperlink-small>
+				<hyperlink-small class-name="text-white my-2">Consectetuer</hyperlink-small>
 			</div>
 			<div class="flex flex-col flex-shrink-0 flex-grow-0 w-6/12 mt-12">
 				<h4 class="heading-four text-redLightest mb-2">Lorem</h4>
-				<hyperlink-small class="text-white my-2">Lorem ipsum</hyperlink-small>
-				<hyperlink-small class="text-white my-2">Dolor amet</hyperlink-small>
-				<hyperlink-small class="text-white my-2">Adipiscing elit</hyperlink-small>
-				<hyperlink-small class="text-white my-2">Consectetuer</hyperlink-small>
+				<hyperlink-small class-name="text-white my-2">Lorem ipsum</hyperlink-small>
+				<hyperlink-small class-name="text-white my-2">Dolor amet</hyperlink-small>
+				<hyperlink-small class-name="text-white my-2">Adipiscing elit</hyperlink-small>
+				<hyperlink-small class-name="text-white my-2">Consectetuer</hyperlink-small>
 			</div>
 		</div>
 		<div class="flex flex-col items-center w-full mt-10">
@@ -36,10 +36,10 @@
 		</div>
 
 		<div class="flex justify-between w-full mt-10">
-			<hyperlink-small class="text-white">Lorem</hyperlink-small>
-			<hyperlink-small class="text-white">Lorem</hyperlink-small>
-			<hyperlink-small class="text-white">Lorem</hyperlink-small>
-			<hyperlink-small class="text-white">Lorem</hyperlink-small>
+			<hyperlink-small class-name="text-white">Lorem</hyperlink-small>
+			<hyperlink-small class-name="text-white">Lorem</hyperlink-small>
+			<hyperlink-small class-name="text-white">Lorem</hyperlink-small>
+			<hyperlink-small class-name="text-white">Lorem</hyperlink-small>
 		</div>
 
 		<p class="w-full text-center mt-8 mb-6 text-xs text-blackLightest">© Dopla 2022</p>

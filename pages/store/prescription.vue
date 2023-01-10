@@ -7,11 +7,11 @@
 				<template #body>
 					<p class="p-small text-white font-medium">
 						<span> Prescriptions updated 25.02.2022 klo 13:59 </span>
-						<p class="p-small text-blackLightest">You may request next update 25.02.2022 klo 15:59</p>
-						<br />
-						<p class="p-small">Alla näet apteekista tilattavissa olevat reseptilääkkeet. Kun
-							olet valinnut toimitettavat tuotteet, farmaseutti tarkistaa
-							tilauksen ja Kela-korvauksen määrän.</p>
+					<p class="p-small text-blackLightest">You may request next update 25.02.2022 klo 15:59</p>
+					<br />
+					<p class="p-small text-white">Alla näet apteekista tilattavissa olevat reseptilääkkeet. Kun
+						olet valinnut toimitettavat tuotteet, farmaseutti tarkistaa
+						tilauksen ja Kela-korvauksen määrän.</p>
 					</p>
 				</template>
 			</pending-prescription>
@@ -31,7 +31,10 @@
 			<p class="p-normal mt-6">Painamalla Lähetä-painiketta, tilaus siirtyy Farmaseutin
 				käsiteltäväksi. Farmaseutti tarkistaa lääkkeistä saatavan
 				Kela-korvauksen määrän.</p>
-			<main-button title="seuraava" upper class="w-full mt-6" />
+			<button type="submit" class="main-button uppercase">
+				<span class="mr-2">seuraava</span>
+				<arrow-right-icon />
+			</button>
 		</section>
 		<section class="px-4 py-6 bg-greenHover">
 			<h4 class="heading-four mb-4"> Other prescriptions </h4>
@@ -61,6 +64,7 @@ import GreetingSection from "~/components/StoreHome/GreetingSection.vue";
 import PrescriptionItem from "~/components/PrescriptionItem.vue";
 import ModalContainer from "~/components/ModalContainer.vue";
 import InfoModal from "~/components/InfoModal.vue";
+import ArrowRightIcon from "~/components/Icons/ArrowRightIcon.vue";
 export default defineComponent({
 	components: {
 		GreetingSection,
@@ -69,6 +73,7 @@ export default defineComponent({
 		PrescriptionItem,
 		ModalContainer,
 		InfoModal,
+ArrowRightIcon,
 	},
 	setup() {
 		const name = ref("Ulla");

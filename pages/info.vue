@@ -16,8 +16,8 @@
 			heading="Doplassa lääketietosi ovat turvassa. "
 			text="Doplan lääketietoja käsittelevät vain apteekin farmaseutit eikä tietoja koskaan luovuteta ulkopuolisille tahoille."
 		/>
-		<aloita-section />
 		<img src="~/assets/images/how-it-works/mboile.png" alt="" />
+		<aloita-section />
 	</main>
 </template>
 

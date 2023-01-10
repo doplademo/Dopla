@@ -5,10 +5,11 @@
 				{{ title }}
 			</p>
 			<button @click="toggle()">
-				<plus-icon :size="30" :color="Colors.redLightest" />
+				<icon-minus v-if="show" :color="Colors.redLightest" />
+				<icon-plus v-else :color="Colors.redLightest" />
 			</button>
 		</div>
-		<div v-if="show">
+		<div v-if="show" class="pl-4 mt-2">
 			<slot />
 		</div>
 		<hr class="bg-redLightest mt-4">
@@ -16,10 +17,11 @@
 </template>
 
 <script>
-import PlusIcon from './Icons/PlusIcon.vue'
+import IconMinus from './Icons/IconMinus.vue'
+import IconPlus from './Icons/IconPlus.vue'
 import { Colors } from '~/utils/Colors'
 export default {
-	components: { PlusIcon },
+	components: { IconMinus, IconPlus },
 	props: {
 		title: {
 			type: String,
