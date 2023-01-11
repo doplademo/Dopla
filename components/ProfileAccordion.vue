@@ -1,6 +1,6 @@
 <template>
     <div :class="`flex flex-col w-full py-3 border rounded-md text-start border-blackLightest overflow-hidden ${className}`">
-        <button class="flex items-center justify-between px-3" @click="toggleDetails">
+        <button class="flex items-center justify-between text-start px-3" @click="toggleDetails">
             <div>
                 <p class="p-normal font-medium">{{
                     title

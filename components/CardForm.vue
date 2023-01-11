@@ -7,18 +7,24 @@
       <text-input class-name="w-5/12" label="MM/YY*" />
       <text-input class-name="w-5/12" label="CVV*" />
     </div>
-    <input type="submit"
-      class="p-2.5  mt-2 ml-auto text-blackBold bg-greenBold text-center text-[15px] font-semibold rounded-md"
-      value="SEURAAVA" />
+    <div v-if="fromProfile" class="flex self-end mt-2">
+      <button class="button-no-bg uppercase py-1 px-1">cancel</button>
+      <input type="submit" class="main-button uppercase py-1 px-1" value="save" />
+    </div>
+    <input v-else type="submit" class="main-button" value="SAVE" />
   </form>
 </template>
 
 <script>
+import { defineComponent } from 'vue'
 import TextInput from './Input/TextInput.vue'
-export default {
+export default defineComponent({
   components: { TextInput },
+  props: {
+    fromProfile: Boolean,
+  },
 
-}
+})
 </script>
 
 <style>

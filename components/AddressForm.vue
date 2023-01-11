@@ -18,9 +18,11 @@
             <radio-field title="Pick up from a pick up point" description="1,90 E" hide-border />
         </div>
 
-        <input type="submit"
-            class="p-2.5 mt-2 ml-auto text-blackBold bg-greenBold text-center text-[15px] font-semibold rounded-md"
-            value="SEURAAVA" />
+        <div v-if="fromProfile" class="flex self-end mt-2">
+            <button class="button-no-bg uppercase py-1 px-1">cancel</button>
+            <input type="submit" class="main-button uppercase py-1 px-1" value="save" />
+        </div>
+        <input v-else type="submit" class="main-button" value="SAVE" />
     </form>
 </template>
 
@@ -38,6 +40,7 @@ export default defineComponent({
         address: String,
         zipCode: String,
         city: String,
+        fromProfile: Boolean,
     },
     emits: ['field-change'],
     setup(props, { emit }) {

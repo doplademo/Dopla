@@ -6,7 +6,7 @@
                 <p class="p-normal font-medium uppercase">{{
                     title
                 }}</p>
-                <p v-if="subtitle" class="p-normal text-blackLight">{{
+                <p v-if="subtitle && !showDetails" class="p-normal text-blackLight">{{
                     subtitle
                 }}</p>
             </div>
@@ -15,7 +15,7 @@
                 <icon-dots />
             </div>
         </button>
-        <div v-if="showDetails" class="mt-2 px-3">
+        <div v-if="showDetails" class="mt-2 pl-6 pr-3">
             <slot />
         </div>
     </div>

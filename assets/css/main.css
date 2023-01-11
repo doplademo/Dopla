@@ -53,3 +53,16 @@
 .main-button {
 	@apply p-2.5 flex items-center justify-center rounded-md bg-greenBold text-blackBold font-semibold text-center text-[15px];
 }
+.main-button-small {
+	@apply py-1 px-2 flex items-center justify-center rounded-md bg-greenBold text-blackBold font-semibold text-center text-[15px];
+}
+.border-button {
+	@apply p-2.5 flex items-center justify-center rounded-md border text-blackBold font-semibold text-center text-[15px];
+}
+.border-button-small {
+	@apply py-1 px-2 flex items-center justify-center rounded-md border text-blackBold font-semibold text-center text-[15px];
+}
+
+.button-no-bg {
+	@apply p-2.5 flex items-center justify-center text-blackBold font-semibold text-center text-[15px];
+}

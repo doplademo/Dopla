@@ -31,7 +31,7 @@
 			<p class="p-normal mt-6">Painamalla Lähetä-painiketta, tilaus siirtyy Farmaseutin
 				käsiteltäväksi. Farmaseutti tarkistaa lääkkeistä saatavan
 				Kela-korvauksen määrän.</p>
-			<button type="submit" class="main-button uppercase">
+			<button type="submit" class="main-button uppercase w-full mt-8">
 				<span class="mr-2">seuraava</span>
 				<arrow-right-icon />
 			</button>

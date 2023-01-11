@@ -43,7 +43,7 @@ export default defineComponent({
 		},
 		error: String,
 	},
-	emits: ['on-press'],
+	emits: ['toggle'],
 })
 </script>
 

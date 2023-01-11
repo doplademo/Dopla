@@ -6,18 +6,15 @@
             <p class="p-normal mb-4 text-redLightest">Doplasta tilaat reseptilääkkeet ja apteekin
                 tuotteet suoraan
                 kotiovelle.</p>
-            <nuxt-link to="/" class="main-button uppercase w-auto"><span class="mr-2">aloita
-                    tunnistautumalla</span><arrow-right-icon /></nuxt-link>
+            <nuxt-link to="/" class="main-button uppercase w-auto">get started</nuxt-link>
         </div>
     </section>
 </template>
 
 <script lang="ts">
-import ArrowRightIcon from '../Icons/ArrowRightIcon.vue';
 
 export default {
     components: {
-        ArrowRightIcon
     },
 }
 </script>
