@@ -19,6 +19,7 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
 import HeroSection from '~/components/Home/HeroSection.vue'
 import TuleeSection from '~/components/Home/TuleeSection.vue'
 import HuolehtiiSection from '~/components/Home/HuolehtiiSection.vue'
@@ -28,7 +29,7 @@ import SectionBlack from '~/components/Home/SectionBlack.vue'
 import ReviewsSection from '~/components/Home/ReviewsSection.vue'
 import AloitaSection from '~/components/Home/AloitaSection.vue'
 
-export default {
+export default defineComponent({
 	components: {
 		HeroSection,
 		TuleeSection,
@@ -39,5 +40,5 @@ export default {
 		ReviewsSection,
 		AloitaSection,
 	},
-}
+})
 </script>

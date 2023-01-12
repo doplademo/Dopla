@@ -19,7 +19,7 @@
 }
 
 .heading-three {
-	@apply text-2xl leading-6 font-normal tracking-normal;
+	@apply text-2xl leading-6 tracking-normal;
 }
 
 .heading-four {
@@ -65,4 +65,8 @@
 
 .button-no-bg {
 	@apply p-2.5 flex items-center justify-center text-blackBold font-semibold text-center text-[15px];
+}
+
+.link-small {
+	@apply text-sm leading-[14px] tracking-normal underline;
 }

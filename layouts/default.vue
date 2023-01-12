@@ -1,25 +1,31 @@
 <template>
-  <div>
-    <store-navigation />
+  <div class="relative">
+    <store-navigation :nav-type="navType" />
     <Nuxt />
     <store-footer />
+    <nav-basket />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
+import NavBasket from "~/components/Layout/NavBasket.vue";
 import StoreFooter from "~/components/Layout/StoreFooter.vue";
 import StoreNavigation from "~/components/Layout/StoreNavigation.vue";
+import { NavType } from "~/types/NavType";
 export default defineComponent({
   components: {
     StoreNavigation,
     StoreFooter,
+    NavBasket,
   },
 
   setup() {
     const showComment = ref(false);
     const rangeValue = ref(5);
     const comment = ref('');
+    const navType = ref<NavType>(NavType.STORE);
+
 
     function onSlide(value: number) {
       rangeValue.value = value;
@@ -33,12 +39,18 @@ export default defineComponent({
       comment.value = value;
     }
 
+    function setNavType(type: NavType) {
+      navType.value = type;
+    }
+
     return {
       showComment,
       rangeValue,
       comment,
+      navType,
       onSlide,
       onComment,
+      setNavType,
     }
   }
 
