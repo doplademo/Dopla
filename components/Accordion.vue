@@ -5,8 +5,8 @@
 				{{ title }}
 			</p>
 			<button @click="toggle()">
-				<icon-minus v-if="show" :color="Colors.redLightest" />
-				<icon-plus v-else :color="Colors.redLightest" />
+				<icon-minus v-if="show" :color="iconColor || Colors.redLightest" />
+				<icon-plus v-else :color="iconColor || Colors.redLightest" />
 			</button>
 		</div>
 		<div v-if="show" class="pl-4 mt-2">
@@ -27,6 +27,8 @@ export default {
 			type: String,
 			required: true,
 		},
+		iconColor: String,
+
 	},
 	data() {
 		return { Colors, show: false }

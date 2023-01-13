@@ -24,6 +24,7 @@ module.exports = {
       greenHover: "#EBF4EE",
 
       white: "#fff",
+      grayishWhite: '#F2F2F2',
 
       redBold: "#FF5757",
       redStrong: "#FD7777",

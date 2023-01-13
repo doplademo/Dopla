@@ -3,6 +3,7 @@
     <section class="px-4">
       <order-successful-card />
     </section>
+
     <popular-now />
   </main>
 </template>
@@ -17,6 +18,7 @@ export default defineComponent({
     OrderSuccessfulCard,
     PopularNow,
   },
+
 });
 </script>
   

@@ -27,7 +27,7 @@ export default {
   components: { PillsPackIcon, GuideIcon, BasketIcon },
 	props: {
 		id: {
-			type: Number,
+			type: String,
 			required: true,
 		},
 		sku: {

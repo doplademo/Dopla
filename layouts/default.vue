@@ -3,13 +3,13 @@
     <store-navigation :nav-type="navType" />
     <Nuxt />
     <store-footer />
-    <nav-basket />
+    <dopla-chat />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import NavBasket from "~/components/Layout/NavBasket.vue";
+import DoplaChat from "~/components/DoplaChat.vue";
 import StoreFooter from "~/components/Layout/StoreFooter.vue";
 import StoreNavigation from "~/components/Layout/StoreNavigation.vue";
 import { NavType } from "~/types/NavType";
@@ -17,7 +17,7 @@ export default defineComponent({
   components: {
     StoreNavigation,
     StoreFooter,
-    NavBasket,
+    DoplaChat,
   },
 
   setup() {
