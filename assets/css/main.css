@@ -11,31 +11,31 @@
 }
 
 .heading-one {
-	@apply text-[40px] leading-9 font-normal tracking-[-2%];
+	@apply text-[40px] leading-9 font-normal tracking-[-2%] lg:text-7xl lg:leading-[68px];
 }
 
 .heading-two {
-	@apply text-[34px] leading-[30px] font-normal tracking-[-3%];
+	@apply text-[34px] leading-[30px] font-normal tracking-[-3%] lg:text-[54px] lg:leading-[48px];
 }
 
 .heading-three {
-	@apply text-2xl leading-6 tracking-normal;
+	@apply text-2xl leading-6 tracking-normal lg:text-[30px] lg:leading-8;
 }
 
 .heading-four {
-	@apply text-xl leading-5 tracking-normal;
+	@apply text-xl leading-5 tracking-normal lg:text-[22px] lg:leading-[22px];
 }
 
 .heading-five {
-	@apply text-sm leading-[14px] tracking-normal;
+	@apply text-sm leading-[14px] tracking-normal lg:text-[15px] lg:leading-[15px];
 }
 
 .heading-six {
-	@apply text-xs leading-[13px] tracking-normal;
+	@apply text-xs leading-[13px] tracking-normal lg:text-[13px] lg:leading-[13px];
 }
 
 .p-large {
-	@apply text-lg leading-[18px] tracking-normal;
+	@apply text-lg leading-[18px] tracking-normal lg:text-[20px] lg:leading-[20px];
 }
 
 .p-normal {
