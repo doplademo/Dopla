@@ -9,7 +9,7 @@
         </div>
         <div class="flex justify-center mt-24 mb-16 w-full">
             <button class="main-button uppercase">
-                <arrow-left-icon />
+                <arrow-right-icon />
                 <span class="ml-1">Log out</span>
             </button>
         </div>
@@ -18,11 +18,11 @@
 
 <script>
 import { defineComponent } from 'vue';
-import ArrowLeftIcon from '~/components/Icons/ArrowLeftIcon.vue';
+import ArrowRightIcon from '~/components/Icons/ArrowRightIcon.vue';
 import ProfileOption from '~/components/ProfileOption.vue';
 
 export default defineComponent({
-    components: { ProfileOption, ArrowLeftIcon },
+    components: { ProfileOption, ArrowRightIcon },
     props: {},
 })
 </script>

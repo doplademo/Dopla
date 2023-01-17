@@ -4,16 +4,16 @@
             <p class="p-normal font-semibold mb2">{{ title }}</p>
             <p class="p-normal text-blackLight">{{ subtitle }}</p>
         </div>
-        <arrow-left-icon />
+        <arrow-right-icon />
     </nuxt-link>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import ArrowLeftIcon from './Icons/ArrowLeftIcon.vue';
+import ArrowRightIcon from './Icons/ArrowRightIcon.vue';
 
 export default defineComponent({
-    components: { ArrowLeftIcon },
+    components: { ArrowRightIcon },
     props: {
         to: {
             type: String,

@@ -128,8 +128,8 @@ export default defineComponent({
 	},
 	props: {},
 	setup() {
-		const marketing1 = ref(true)
-		const marketing2 = ref(true)
+		const marketing1 = ref(false)
+		const marketing2 = ref(false)
 
 		function toggleMarketing1() {
 			marketing1.value = !marketing1.value
