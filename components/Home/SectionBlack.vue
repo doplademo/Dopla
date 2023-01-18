@@ -1,8 +1,8 @@
 <template>
-	<section class="bg-blackBold px-4 py-14">
-		<p class="text-3xl text-center text-pinkBold leading-9 mb-4">
+	<section class="bg-blackBold px-4 py-14 lg:py-36">
+		<h2 class="heading-two text-center text-pinkBold leading-9 mb-4">
 			{{ heading }}
-		</p>
+		</h2>
 		<p class="p-large text-center text-white">{{
 			text
 		}}</p>

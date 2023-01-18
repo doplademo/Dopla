@@ -10,7 +10,7 @@
 		<icon-minus v-else-if="orderType === 'contact'" size="small" />
 		<icon-check v-else-if="orderType === 'payed'" size="small" color="white" />
 		<close-icon v-else size="small" />
-		<span :class="orderType === 'payed' ? 'text-white' : ''">{{
+		<span :class="`whitespace-nowrap text-ellipsis ${orderType === 'payed' ? 'text-white' : ''}`">{{
 			orderTypeText
 		}}</span>
 	</div>
@@ -21,10 +21,20 @@ import { computed, defineComponent, onMounted, PropType, ref, watch } from 'vue'
 import type { Task } from '../../types/pharmacist'
 import CloseIcon from '../Icons/CloseIcon.vue'
 import IconCheck from '../Icons/IconCheck.vue'
+import IconMinus from '../Icons/IconMinus.vue'
+import IconPillPack from '../Icons/IconPillPack.vue'
 import IconPrescription from '../Icons/IconPrescription.vue'
+import IconProfile from '../Icons/IconProfile.vue'
 
 export default defineComponent({
-	components: { IconPrescription, IconCheck, CloseIcon },
+	components: {
+		IconPrescription,
+		IconCheck,
+		CloseIcon,
+		IconPillPack,
+		IconProfile,
+		IconMinus,
+	},
 	props: {
 		biggerSpacing: Boolean,
 		orderType: {

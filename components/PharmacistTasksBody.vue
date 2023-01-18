@@ -2,7 +2,7 @@
 	<div class="flex-1 flex gap-4 p-4 bg-grayishWhite items-start">
 		<section class="w-[40%]">
 			<div class="w-full flex items-center justify-between">
-				<order-type order-type="listing" bigger-spacing />
+				<order-type :order-type="orderType" bigger-spacing />
 				<p class="p-small text-blackLight col-span-2 ml-2">16.06.2022 13:59</p>
 			</div>
 			<h4 class="heading-four font-semibold mt-4">Ulla Espoolainen</h4>

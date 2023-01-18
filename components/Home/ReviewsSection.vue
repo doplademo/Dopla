@@ -6,12 +6,12 @@
 			<review-card />
 		</div>
 		<paggination-dot :pages-number="dots" />
-		<div class="mt-8">
+		<div class="flex gap-6 mt-6 lg:gap-12 lg:mt-12">
 			<button>
-				<img class="w-6 h-6 mx-3" src="~/assets/images/icons/arrow-left.png" alt="move to previous review" />
+				<img class="w-6 h-6" src="~/assets/images/icons/arrow-left.png" alt="move to previous review" />
 			</button>
 			<button>
-				<img class="w-6 h-6 mx-3" src="~/assets/images/icons/arrow-right.png" alt="move to next review" />
+				<img class="w-6 h-6" src="~/assets/images/icons/arrow-right.png" alt="move to next review" />
 			</button>
 		</div>
 	</section>
