@@ -1,6 +1,6 @@
 <template>
-	<main>
-		<div class="flex flex-col mt-20 mb-8 px-4 ">
+	<main class="flex flex-col items-center">
+		<div class="flex flex-col mt-20 mb-8 px-4 max-w-[500px]">
 			<back-button caps text="Edellinen" />
 			<h4 class="heading-four my-6 font-semibold">Yhteystiedot</h4>
 			<p class="p-normal">Tarkistathan vielä, että tietosi ovat oikein. Täyttämällä kaikki kohdat

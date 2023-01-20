@@ -1,5 +1,5 @@
 <template>
-	<div class="flex flex-col mt-5 items-start">
+	<div class="flex flex-col mt-5 items-start gap-4">
 		<h6 class="heading-six my-1 flex w-5/12 justify-between text-blackLight"><span>{{ date }}</span> <span>|</span>
 			<span>{{ day }}</span>
 		</h6>

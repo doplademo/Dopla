@@ -7,6 +7,8 @@
   </div>
 </template>
 
+<!-- TODO separate into multiple layouts and make components have {layout: 'something'} -->
+
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import DoplaChat from "~/components/DoplaChat.vue";

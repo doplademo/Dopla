@@ -8,7 +8,7 @@ export default {
 		},
 		Section2: {
 			Heading: 'Tulee luoksesi',
-			SubText:
+			Description:
 				'Tilaa Dopla-palvelua käyttävästä apteekista reseptilääkkeitä ja muita apteekin tuotteita vaivattomasti valitsemaasi osoitteeseen.',
 			Button: 'katso miten',
 		},

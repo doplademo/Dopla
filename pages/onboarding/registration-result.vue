@@ -1,7 +1,7 @@
 <template>
-	<main>
-		<div class="flex flex-col items-center px-4 mt-24 mb-8">
-			<img class="w-16" src="~/assets/images/common/check-small.png" alt="success" />
+	<main class="flex flex-col items-center">
+		<div class="flex flex-col mt-20 mb-8 px-4 max-w-[500px]">
+			<img class="w-16 self-center" src="~/assets/images/common/check-small.png" alt="success" />
 			<h4 class="heading-four py-2 mt-8 w-full text-center font-semibold bg-pinkMedium">
 				Kaikki valmista
 			</h4>

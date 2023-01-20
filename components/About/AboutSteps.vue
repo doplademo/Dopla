@@ -1,9 +1,18 @@
 <template>
 	<section class="py-12 px-4">
-		<h2 class="heading-two text-center">Tähän otsikko H2</h2>
-		<div>
-			<div class="flex flex-col">
-				<img class="w-4/5 self-center mt-16 mb-2" src="~/assets/images/about/researcher.png" alt="" />
+		<div class="lg:flex">
+			<div class="flex flex-col lg:flex-1 lg:items-center lg:text-center">
+				<img
+					class="
+						w-4/5
+						self-center
+						mt-16
+						mb-2
+						lg:w-60 lg:h-60 lg:object-contain lg:object-center lg:aspect-square
+					"
+					src="~/assets/images/about/researcher.png"
+					alt=""
+				/>
 				<h4 class="heading-four font-semibold mb-4">
 					1. Lääkkeet hoitaa apteekki
 				</h4>
@@ -13,8 +22,18 @@
 					lääkevalmisteita, mikäli sellaisia on saatavilla.
 				</p>
 			</div>
-			<div class="flex flex-col">
-				<img class="w-1/2 self-center mt-16 mb-2" src="~/assets/images/about/delivery.png" alt="" />
+			<div class="flex flex-col lg:flex-1 lg:items-center lg:text-center">
+				<img
+					class="
+						w-1/2
+						self-center
+						mt-16
+						mb-2
+						lg:w-60 lg:h-60 lg:object-contain lg:object-center lg:aspect-square
+					"
+					src="~/assets/images/about/delivery.png"
+					alt=""
+				/>
 				<h4 class="heading-four font-semibold mb-4">
 					2. Lääkkeet toimittaa Posti
 				</h4>
@@ -23,8 +42,18 @@
 					toimituspaikkaan. Maksat vain Postin toimituskulut.
 				</p>
 			</div>
-			<div class="flex flex-col">
-				<img class="w-1/2 self-center mt-16 mb-2" src="~/assets/images/about/receipt-customer.png" alt="" />
+			<div class="flex flex-col lg:flex-1 lg:items-center lg:text-center">
+				<img
+					class="
+						w-1/2
+						self-center
+						mt-16
+						mb-2
+						lg:w-60 lg:h-60 lg:object-contain lg:object-center lg:aspect-square
+					"
+					src="~/assets/images/about/receipt-customer.png"
+					alt=""
+				/>
 				<h4 class="heading-four font-semibold mb-4">
 					3. Lääkkeistä muistuttaa Dopla
 				</h4>
@@ -40,8 +69,7 @@
 </template>
 
 <script>
-
 export default {
-	components: {  },
+	components: {},
 }
 </script>

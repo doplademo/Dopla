@@ -8,7 +8,7 @@ export default {
 		},
 		Section2: {
 			Heading: 'Customer benefit 1 H2',
-			SubText:
+			Description:
 				'Tilaa Dopla-palvelua käyttävästä apteekista reseptilääkkeitä ja muita apteekin tuotteita vaivattomasti valitsemaasi osoitteeseen.', // not translated in the design should be in English
 			Button: 'See How',
 		},

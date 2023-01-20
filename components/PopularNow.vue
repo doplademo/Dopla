@@ -1,9 +1,9 @@
 <template>
-	<section class="px-4">
+	<section class="px-4 lg:p-24">
 		<h4 class="heading-four my-4 font-semibold">Suosittua juuri nyt</h4>
 		<p class="p-normal">Tutustu apteekin verkkokaupan tuotteisiin.</p>
 
-		<div class="relative mt-4">
+		<div class="relative mt-4 max-w-[420px]">
 			<form
 				class="
 					flex
@@ -13,6 +13,7 @@
 					p-2
 					border border-blackLight
 					rounded-md
+					max-w-[360px]
 				"
 				@on-submit.prevent="onSearch"
 			>
@@ -74,7 +75,7 @@
 			</div>
 		</div>
 
-		<div class="flex flex-row overflow-x-scroll my-4 py-2">
+		<div class="flex flex-row overflow-x-scroll my-4 py-2 scroll-auto gap-4">
 			<store-product
 				v-for="product in dummyProducts"
 				:id="product.id"

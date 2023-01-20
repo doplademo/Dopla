@@ -1,5 +1,5 @@
 <template>
-	<div class="p-4 mt-4 bg-mainBold rounded-md">
+	<div class="p-4 bg-mainBold rounded-md">
 		<div class="flex justify-between items-center mb-4">
 			<h4 class="heading-four text-white">{{ title}}</h4>
 			<slot />
