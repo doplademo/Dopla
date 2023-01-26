@@ -1,0 +1,1 @@
+export type Screen = 'mobile' | 'desktop' | null

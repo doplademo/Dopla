@@ -26,11 +26,10 @@
 				Updated 13.08.2022 13:59
 			</p>
 		</div>
-		<!-- TODO replace true with wantsMedicalHelp -->
 		<div
 			v-if="orderType === 'listing'"
 			:class="`flex items-center justify-center p-2 gap-2.5 mt-6 rounded ${
-				true ? 'bg-yellowWarning' : 'border border-blackLight'
+				wantsMedicalHelp ? 'bg-yellowWarning' : 'border border-blackLight'
 			}`"
 		>
 			<icon-check />
@@ -135,6 +134,7 @@ export default defineComponent({
 			default: 'payed',
 		},
 		price: String,
+		wantsMedicalHelp: Boolean,
 	},
 })
 </script>

@@ -74,7 +74,7 @@ export default {
 			}
 		},
 		onSubmit() {
-			this.$router.replace('onboarding/registration-result');
+			this.$router.replace('/onboarding/registration-result');
 		},
 	},
 }

@@ -1,5 +1,5 @@
 <template>
-	<section class="p-4 pt-16 lg:flex lg:flex-col lg:items-center">
+	<section class="p-4 pt-16 lg:flex lg:flex-col lg:items-center lg:pb-14">
 		<h3 class="heading-three text-redLightest text-center mb-4">
 			Jäikö jokin vielä mietityttämään?
 		</h3>
@@ -40,18 +40,21 @@
 				:rows="5"
 				@on-change="onChange"
 			/>
-			<main-button class="" upper title="lähetä" />
+
+			<input type="submit" class="main-button uppercase" value="lähetä" />
 		</form>
 	</section>
 </template>
 
+
+
 <script lang="ts">
 import { ref, defineComponent } from 'vue'
-import MainButton from '../Button/MainButton.vue'
 import TextArea from '../Input/TextArea.vue'
 import TextInput from '../Input/TextInput.vue'
+
 export default defineComponent({
-	components: { TextInput, TextArea, MainButton },
+	components: { TextInput, TextArea },
 	setup(_) {
 		const name = ref('')
 		const email = ref('')

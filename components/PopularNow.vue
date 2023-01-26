@@ -1,5 +1,5 @@
 <template>
-	<section class="px-4 lg:p-24">
+	<section class="px-4 lg:px-0 lg:pt-8">
 		<h4 class="heading-four my-4 font-semibold">Suosittua juuri nyt</h4>
 		<p class="p-normal">Tutustu apteekin verkkokaupan tuotteisiin.</p>
 
@@ -50,32 +50,38 @@
 				<search-product
 					name="simvastatin abc pharma 20 mg, op98"
 					price="99,99 €"
+					@select-product="onSelectProduct(true)"
 				/>
 				<search-product
 					name="simvastatin abc pharma 20 mg, op98"
 					price="99,99 €"
+					@select-product="onSelectProduct(true)"
 				/>
 				<search-product
 					name="simvastatin abc pharma 20 mg, op98"
 					price="99,99 €"
+					@select-product="onSelectProduct(true)"
 				/>
 				<search-product
 					name="simvastatin abc pharma 20 mg, op98"
 					price="99,99 €"
+					@select-product="onSelectProduct(true)"
 				/>
 				<search-product
 					name="simvastatin abc pharma 20 mg, op98"
 					price="99,99 €"
+					@select-product="onSelectProduct(true)"
 				/>
 				<search-product
 					name="simvastatin abc pharma 20 mg, op98"
 					price="99,99 €"
 					is-last
+					@select-product="onSelectProduct(true)"
 				/>
 			</div>
 		</div>
 
-		<div class="flex flex-row overflow-x-scroll my-4 py-2 scroll-auto gap-4">
+		<div class="flex flex-row overflow-x-scroll my-4 py-2 scroll-auto gap-4 lg:overflow-x-auto lg:flex-wrap">
 			<store-product
 				v-for="product in dummyProducts"
 				:id="product.id"

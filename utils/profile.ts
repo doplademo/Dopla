@@ -1,0 +1,1 @@
+export type ProfileNav = 'info' | 'history' | 'reminders' | null;

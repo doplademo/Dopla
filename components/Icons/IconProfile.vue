@@ -18,7 +18,7 @@
 	</svg>
 
 	<svg
-		v-else-if="icon === 'medium'"
+		v-else-if="size === 'medium'"
 		width="24"
 		height="24"
 		viewBox="0 0 24 24"

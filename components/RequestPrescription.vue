@@ -2,10 +2,15 @@
 import { defineComponent, ref } from 'vue'
 import PrescriptionCheckout from './PrescriptionCheckout.vue'
 import RadioField from './RadioField.vue'
-import BackButton from './onboarding/BackButton.vue'
+import ArrowLeftIcon from './Icons/ArrowLeftIcon.vue'
 import { prescribedProducts } from '~/dummy/dummyproducts'
 export default defineComponent({
-	components: { PrescriptionCheckout, RadioField, BackButton },
+	components: { PrescriptionCheckout, RadioField, ArrowLeftIcon },
+	props: {
+		isDesktop: {
+			type: Boolean,
+		},
+	},
 	setup(_) {
 		const products = ref([...prescribedProducts])
 		const selectedHelp = ref<null | number>(null)
@@ -30,10 +35,22 @@ export default defineComponent({
 
 <template>
 	<div
-		class="bg-greenHover pt-4 lg:bg-white lg:border lg:border-blackLightest lg:w-full lg:max-w-[400px] lg:pt-4"
+		class="
+			bg-greenHover
+			pt-24
+			lg:bg-white
+			lg:border
+			lg:border-blackLightest
+			lg:w-full
+			lg:max-w-[400px]
+			lg:pt-4
+		"
 	>
 		<div class="ml-4 mb-4 lg:hidden">
-			<back-button text="Go back" caps />
+			<button class="flex items-center" @click="$emit('on-back')">
+				<arrow-left-icon :size="16" />
+				<p class="p-x-small uppercase font-semibold ml-2">Go back</p>
+			</button>
 		</div>
 		<section
 			class="

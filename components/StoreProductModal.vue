@@ -1,8 +1,8 @@
 <template>
 	<div
-		:class="`flex flex-col gap-4 self-center p-4 mt-20 w-full max-w-[350px] h-[527px]  bg-white rounded-md ${
+		:class="`flex flex-col gap-4 self-center p-4 mt-20 w-full max-w-[350px] h-[530px]  bg-white rounded-md ${
 			showInstructions ? 'overflow-y-scroll relative' : ''
-		}`"
+		} lg:max-w-[540px] lg:max-h-full`"
 	>
 		<div class="flex justify-between items-center">
 			<nuxt-link
@@ -28,7 +28,7 @@
 			<img
 				src="~/assets/images/common/product.png"
 				alt=""
-				class="self-center w-28 h-28 mt-2"
+				class="self-center w-28 h-28 mt-2 lg:h-40 lg:w-40"
 			/>
 			<h3 class="p-normal font-semibold">
 				A-Derma Dermalibour+ foaming gel 250 ml

@@ -23,7 +23,7 @@
 				lg:text-redLightest
 			"
 		>
-			<h4 class="heading-four font-semibold mt-4">{{ text }}</h4>
+			<h4 class="heading-four font-semibold mt-4 lg:mt-0">{{ text }}</h4>
 			<p class="p-large font-bold mt-4">{{ person }}</p>
 			<p class="p-large mt-1">{{ text2 }}</p>
 		</div>

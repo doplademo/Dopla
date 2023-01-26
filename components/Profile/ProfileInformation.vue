@@ -1,5 +1,5 @@
 <template>
-	<profile-wrapper>
+	<profile-wrapper @on-go-back="$emit('on-go-back')">
 		<section class="flex flex-col gap-4 mt-4">
 			<profile-accordion title="Ulla Espoolainen" subtitle="Louhentie 5 A 14">
 				<profile-field
@@ -24,10 +24,7 @@
 						</div>
 					</form>
 				</profile-field>
-				<profile-field
-					title="EMAIL"
-					subtitle="ulla.espoolainen@sähköposti.net"
-				>
+				<profile-field title="EMAIL" subtitle="ulla.espoolainen@sähköposti.net">
 					<form class="flex flex-col">
 						<text-input
 							value="ulla.espoolainen@sähköposti.net"
@@ -127,6 +124,7 @@ export default defineComponent({
 		ProfileWrapper,
 	},
 	props: {},
+    emits:['on-go-back'],
 	setup() {
 		const marketing1 = ref(false)
 		const marketing2 = ref(false)

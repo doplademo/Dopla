@@ -1,6 +1,8 @@
 <template>
 	<div class="relative">
-		<default-navigation />
+		<!-- <default-navigation /> -->
+		<!-- <onboarding-navigation /> -->
+		<store-navigation />
 		<Nuxt />
 		<store-footer />
 		<dopla-chat />
@@ -12,13 +14,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import DoplaChat from '~/components/DoplaChat.vue'
-import DefaultNavigation from '~/components/Layout/DefaultNavigation.vue'
 import StoreFooter from '~/components/Layout/StoreFooter.vue'
+import StoreNavigation from '~/components/Layout/StoreNavigation.vue'
 export default defineComponent({
 	components: {
 		StoreFooter,
 		DoplaChat,
-		DefaultNavigation,
+		StoreNavigation,
 	},
 })
 </script>

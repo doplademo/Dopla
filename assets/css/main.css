@@ -72,6 +72,10 @@
 	@apply p-2.5 flex items-center justify-center text-blackBold font-semibold text-center text-[15px];
 }
 
+.link {
+	@apply text-[16px] leading-[17.4px] tracking-normal underline;
+}
+
 .link-small {
 	@apply text-sm leading-[14px] tracking-normal underline;
 }

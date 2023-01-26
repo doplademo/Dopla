@@ -10,6 +10,8 @@
 			left-2
 			right-2
 			p-5
+			lg:max-h-[700px]
+			lg:left-auto lg:rounded-md lg:right-24 lg:shadow-md lg:shadow-blackLightest
 		"
 	>
 		<div class="flex justify-between items-center">
