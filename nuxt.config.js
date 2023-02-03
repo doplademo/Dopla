@@ -1,4 +1,8 @@
-export default {
+import { defineNuxtConfig } from '@nuxt/bridge'
+import { TEST_LOGIN } from './utils/api/urls'
+
+const BASE_URL = 'https://test.iisiapteekki.fi/rest'
+export default defineNuxtConfig({
 	// Global page headers: https://go.nuxtjs.dev/config-head
 	head: {
 		title: 'dopla',
@@ -17,6 +21,10 @@ export default {
 	// Global CSS: https://go.nuxtjs.dev/config-css
 	css: ['@/assets/css/main.css'],
 
+	routes: {
+		'/*': { cors: true },
+	},
+
 	// Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
 	plugins: [],
 
@@ -26,9 +34,7 @@ export default {
 	// Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
 	buildModules: [
 		// https://go.nuxtjs.dev/typescript
-		'@nuxt/typescript-build',
 		'@nuxt/postcss8',
-		'@nuxtjs/device',
 	],
 
 	device: {
@@ -40,6 +46,8 @@ export default {
 	modules: [
 		// https://go.nuxtjs.dev/axios
 		'@nuxtjs/axios',
+		'@nuxtjs/auth-next',
+		'@nuxt/device',
 	],
 
 	// target: 'static',
@@ -47,11 +55,29 @@ export default {
 	// Axios module configuration: https://go.nuxtjs.dev/config-axios
 	axios: {
 		// Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-		baseURL: '/',
+		// proxy: true,
+		baseURL: BASE_URL,
+	},
+
+	auth: {
+		strategies: {
+			local: {
+				token: {
+					property: '',
+				},
+				endpoints: {
+					login: {
+						url: TEST_LOGIN,
+						method: 'post',
+					},
+				},
+			},
+		},
 	},
 
 	// Build Configuration: https://go.nuxtjs.dev/config-build
 	build: {
+		transpile: ['defu'],
 		postcss: {
 			plugins: {
 				tailwindcss: {},
@@ -59,4 +85,4 @@ export default {
 			},
 		},
 	},
-}
+})

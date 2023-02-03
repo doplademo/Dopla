@@ -6,7 +6,7 @@
             <p class="p-large mb-4 text-redLightest">Doplasta tilaat reseptilääkkeet ja apteekin
                 tuotteet suoraan
                 kotiovelle.</p>
-            <nuxt-link to="/" class="main-button uppercase w-auto">get started</nuxt-link>
+            <button @click="$emit('on-started')" class="main-button uppercase w-auto">get started</button>
         </div>
     </section>
 </template>
@@ -17,6 +17,7 @@ import { Images } from '~/utils/Images'
 
 
 export default defineComponent({
+    emits: ['on-started'],
     data() {
         return {
             Images,

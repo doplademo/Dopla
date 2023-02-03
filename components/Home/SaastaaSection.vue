@@ -16,10 +16,10 @@
 				halutessasi apteekki uusii tilaukset voimassaolevan reseptisi
 				mukaisesti.
 			</p>
-			<nuxt-link to="/" class="main-button uppercase">
+			<button class="main-button uppercase" @click="$emit('on-click')">
 				<span class="mr-2">katso miten</span>
 				<arrow-right-icon />
-			</nuxt-link>
+			</button>
 		</div>
 		<img class="mt-8" src="~/assets/images/home/Saastaa.png" alt="" />
 	</section>
@@ -32,6 +32,7 @@ export default {
 	components: {
 		ArrowRightIcon,
 	},
+	emits: ['on-click'],
 }
 </script>
 

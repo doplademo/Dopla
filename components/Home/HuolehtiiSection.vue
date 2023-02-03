@@ -7,10 +7,10 @@
 				edullisimpia saatavilla olevia reseptilääkkeitä lääkemääräyksesi
 				perusteella sekä laskevat lääkkeistä saatavien Kela-korvausten määrän.
 			</p>
-			<nuxt-link to="/" class="main-button uppercase">
+			<button class="main-button uppercase" @click="$emit('on-click')">
 				<span class="mr-2">katso miten</span>
 				<arrow-right-icon />
-			</nuxt-link>
+			</button>
 		</div>
 		<img
 			class="mt-4 w-2/3 self-center lg:max-w-md"
@@ -21,10 +21,12 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue'
 import ArrowRightIcon from '../Icons/ArrowRightIcon.vue'
-export default {
+export default defineComponent({
 	components: { ArrowRightIcon },
-}
+	emits: ['on-click'],
+})
 </script>
 
 <style>

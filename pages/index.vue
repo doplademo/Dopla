@@ -1,9 +1,9 @@
 <template>
 	<main>
-		<HeroSection />
-		<TuleeSection />
-		<HuolehtiiSection />
-		<SaastaaSection />
+		<HeroSection @on-started="login()" />
+		<TuleeSection @on-click="getAlternatives()" />
+		<HuolehtiiSection @on-click="testEmail()" />
+		<SaastaaSection @on-click="getCurrency()" />
 		<LadySection
 			text="Olen paljon tien päällä ja siksi joskus päivittäisten asioiden hoitaminen jää viime tippaan. Dopla on tuonut suunnattomasti helpotusta arkeeni."
 			person="AIRA SAMULIN"
@@ -30,6 +30,13 @@ import SectionBlack from '~/components/Home/SectionBlack.vue'
 import ReviewsSection from '~/components/Home/ReviewsSection.vue'
 import AloitaSection from '~/components/Home/AloitaSection.vue'
 import { Images } from '~/utils/Images'
+import {
+	ALTERNATIVES_PATH,
+	BASE_URL,
+	GET_CURRENCY,
+	TEST_EMAIL_PATH,
+	TEST_LOGIN,
+} from '~/utils/api/urls'
 
 export default defineComponent({
 	components: {
@@ -43,8 +50,49 @@ export default defineComponent({
 		AloitaSection,
 	},
 
+	setup() {},
 	data() {
-		return { Images }
+		return {
+			Images,
+		}
+	},
+
+	methods: {
+		async login() {
+			console.log(this.$axios.defaults.baseURL)
+			try {
+				await this.$auth.loginWith('local')
+				console.log('logged in');
+			} catch (e) {}
+		},
+		async getAlternatives() {
+			try {
+				const response = await this.$axios.$get(ALTERNATIVES_PATH)
+				console.log(response.data)
+			} catch (e) {
+				console.log(e)
+			}
+		},
+		async getCurrency() {
+			try {
+				const response = await this.$axios.$get(GET_CURRENCY)
+				console.log(response.data)
+			} catch (e) {
+				console.log(e)
+			}
+		},
+		async testEmail() {
+			try {
+				const response = await this.$axios.$post(TEST_EMAIL_PATH, {
+					data: {
+						email: 'test@my.email',
+					},
+				})
+				console.log(response.data)
+			} catch (e) {
+				console.log(e)
+			}
+		},
 	},
 })
 </script>
