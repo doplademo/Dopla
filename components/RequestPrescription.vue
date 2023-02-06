@@ -11,6 +11,7 @@ export default defineComponent({
 			type: Boolean,
 		},
 	},
+	emits: ['request-prescription', 'on-back'],
 	setup(_) {
 		const products = ref([...prescribedProducts])
 		const selectedHelp = ref<null | number>(null)
@@ -95,14 +96,18 @@ export default defineComponent({
 					@select="setSelected(1)"
 				/>
 				<radio-field
-					title="I don't need medical assistance"
-					:selected="selectedHelp === 2"
-					@select="setSelected(2)"
 					class="mt-2"
+					title="I don't need medical assistance"
+					:selected="selectedHelp === 0"
+					@select="setSelected(0)"
 				/>
 			</div>
 
-			<button class="main-button w-full mt-4 uppercase">
+			<button
+				v-if="selectedHelp !== null"
+				class="main-button w-full mt-4 uppercase"
+				@click="$emit('request-prescription', selectedHelp)"
+			>
 				Send to pharmacy
 			</button>
 		</section>

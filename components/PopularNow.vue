@@ -81,16 +81,29 @@
 			</div>
 		</div>
 
-		<div class="flex flex-row overflow-x-scroll my-4 py-2 scroll-auto gap-4 lg:overflow-x-auto lg:flex-wrap">
+		<div
+			class="
+				flex flex-row
+				overflow-x-scroll
+				my-4
+				py-2
+				scroll-auto
+				gap-4
+				lg:overflow-x-auto lg:flex-wrap
+			"
+		>
+		<!-- TODO populate more -->
 			<store-product
-				v-for="product in dummyProducts"
+				v-for="product in storeProducts"
 				:id="product.id"
 				:key="product.id"
 				:sku="product.sku"
 				:name="product.name"
-				:price="product.price"
+				:price="product.price_info.final_price"
+				:price-sign="currencyInfo.base_currency_symbol"
 				:additions="product.additions"
 				:package-quantity="product.packageQuantity"
+				:image="product.images[0].url"
 			/>
 		</div>
 		<modal-container v-if="showProduct">
@@ -100,7 +113,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, PropType, ref } from 'vue'
 import StoreProduct from './StoreProduct.vue'
 import IconSearch from './Icons/IconSearch.vue'
 import SearchProduct from './SearchProduct.vue'
@@ -115,6 +128,16 @@ export default defineComponent({
 		SearchProduct,
 		ModalContainer,
 		StoreProductModal,
+	},
+	props: {
+		storeProducts: {
+			type: Array,
+			required: true,
+		},
+		currencyInfo: {
+			type: Object as PropType<any>,
+			required: true,
+		},
 	},
 	setup() {
 		const searchQuery = ref('')
@@ -134,6 +157,9 @@ export default defineComponent({
 			onSelectProduct,
 			dummyProducts,
 		}
+	},
+	mounted() {
+		console.log(this.storeProducts[0])
 	},
 })
 </script>

@@ -21,7 +21,10 @@
 						title="Reseptejäsi päivitetään"
 						@click="cardNumber = 1"
 					/>
-					<popular-now />
+					<popular-now
+						:store-products="products"
+						:currency-info="currencyInfo"
+					/>
 				</div>
 
 				<no-data v-if="cardNumber === 1" />
@@ -33,7 +36,8 @@
 	</main>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue'
 import NoData from '~/components/NoData.vue'
 import OrderReady from '~/components/OrderReady.vue'
 import PendingPrescription from '~/components/PendingPrescription.vue'
@@ -43,7 +47,10 @@ import GreetingSection from '~/components/StoreHome/GreetingSection.vue'
 import NewsSection from '~/components/StoreHome/NewsSection.vue'
 import StoreOrderSent from '~/components/StoreOrderSent.vue'
 import { dummyProducts } from '~/dummy/dummyReviews'
-export default {
+import { GetProductsParams } from '~/types/apiParams'
+import { GET_CURRENCY, GET_PRODUCTS } from '~/utils/api/urls'
+import { createGetURL } from '~/utils/api/urlsParams'
+export default defineComponent({
 	components: {
 		NewsSection,
 		GreetingSection,
@@ -55,6 +62,23 @@ export default {
 		StoreOrderSent,
 	},
 	layout: 'store',
+
+	async asyncData({ $axios }) {
+		const { data: currencyInfo } = await $axios.get(GET_CURRENCY)
+		const {
+			data: { items },
+		} = await $axios.get(
+			createGetURL<GetProductsParams>(GET_PRODUCTS, {
+				currencyCode: currencyInfo.base_currency_code,
+				searchCriteria: ' ',
+				storeId: 1,
+			})
+		)
+		return {
+			products: items,
+			currencyInfo,
+		}
+	},
 	data() {
 		return {
 			name: 'Ulla',
@@ -62,7 +86,7 @@ export default {
 			cardNumber: 1,
 		}
 	},
-}
+})
 </script>
 
 <style>

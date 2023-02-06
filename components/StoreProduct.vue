@@ -13,7 +13,7 @@
 	>
 		<img
 			class="self-center lg:w-28 lg:h-28"
-			src="~/assets/images/common/product.png"
+			:src="image"
 			alt="product"
 		/>
 		<h5 class="heading-five mt-3 font-medium uppercase">{{ name }}</h5>
@@ -26,7 +26,7 @@
 			<h5 class="heading-five ml-2 font-medium">{{ additions }}</h5>
 		</div>
 		<div class="flex items-center justify-between w-full p-1.5 my-0.5 rounded">
-			<p class="p-large font-medium">{{ price }}</p>
+			<p class="p-large font-medium">{{ price }} {{ priceSign }}</p>
 			<div class="px-2 py-1 bg-greenBold rounded lg:px-3 lg:py-1.5">
 				<basket-icon :size="30" />
 			</div>
@@ -64,6 +64,14 @@ export default {
 		price: {
 			type: String,
 			required: true,
+		},
+		priceSign: {
+			type: String,
+			default: '',
+		},
+		image: {
+			type: String,
+			default: '',
 		},
 	},
 }

@@ -11,6 +11,7 @@
 				<request-prescription
 					v-if="(isDesktop && selectedOrder) || showOrder"
 					@on-back="showOrder = false"
+					@request-prescription="onRequestPrescription"
 				/>
 				<no-data v-else-if="isDesktop || !showOrder" />
 			</div>
@@ -18,13 +19,14 @@
 	</main>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, ref } from 'vue'
 import GreetingSection from '~/components/StoreHome/GreetingSection.vue'
 import NoData from '~/components/NoData.vue'
 import RequestPrescription from '~/components/RequestPrescription.vue'
 import PrescriptionSelect from '~/components/PrescriptionSelect.vue'
 import useScreen from '~/utils/hooks/useScreen'
+import { CREATE_PHARMACY_ORDER } from '~/utils/api/urls'
 export default defineComponent({
 	components: {
 		GreetingSection,
@@ -45,6 +47,23 @@ export default defineComponent({
 			isDesktop,
 			selectedOrder,
 		}
+	},
+	methods: {
+		async onRequestPrescription(needsHelp: number) {
+			const res = await this.$axios.$put(CREATE_PHARMACY_ORDER, {
+				tasks: [
+					{
+						ssn: '121245-123X',
+						customer_firstname: 'Ulla',
+						customer_lastname: 'Ullberg',
+						type: 'update',
+						status: 'new',
+						requires_contacting: needsHelp,
+						customer_contacted: 0,
+					},
+				],
+			})
+		},
 	},
 })
 </script>

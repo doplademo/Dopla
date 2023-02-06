@@ -18,12 +18,10 @@ export const getRequestBundle = (token: string | null, url: string) => {
 }
 /**
  * Returns prepared POST request configuration
- * @param token
  * @param url
  * @param body
  */
 export const postRequestBundle = <B>(
-	token: string | null,
 	url: string,
 	body: B
 ): RequestBundle<B> => {
@@ -31,14 +29,12 @@ export const postRequestBundle = <B>(
 		url,
 		config: {
 			method: MethodType.POST,
-			headers: getHeaders(token),
 		},
 		body,
 	}
 }
 
 export const putRequestBundle = <B>(
-	token: string,
 	url: string,
 	body: B
 ): RequestBundle<B> => {
@@ -46,7 +42,6 @@ export const putRequestBundle = <B>(
 		url,
 		config: {
 			method: MethodType.PUT,
-			headers: getHeaders(token),
 		},
 		body,
 	}
