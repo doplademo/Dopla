@@ -6,7 +6,7 @@
     "dev": "nuxt dev",
     "dev-secure": "nuxt dev --https --ssl-cert localhost.pem --ssl-key localhost-key.pem",
     "build": "nuxt build",
-    "start": "node .output/server/index.mjs",
+    "start": "nuxt start",
     "build-static": "nuxt build && nuxt generate",
     "test-static": "nuxt build && nuxt generate && nuxt start",
     "generate": "nuxt generate",
