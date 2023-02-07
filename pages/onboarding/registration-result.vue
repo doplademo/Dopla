@@ -4,7 +4,7 @@
 			<progress-indicator width="100%" />
 		</div>
 		
-		<div class="flex flex-col mb-8 px-4 max-w-[500px] lg:py-16">
+		<div class="flex flex-col mb-8 px-4 py-16 max-w-[500px] ">
 			<img
 				class="w-20 self-center"
 				src="~/assets/images/common/check-small.png"

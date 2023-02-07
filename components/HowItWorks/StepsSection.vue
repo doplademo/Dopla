@@ -1,78 +1,56 @@
 <template>
 	<section class="bg-mainBold flex flex-col lg:pb-16">
-		<h2 class="heading-two text-center text-redLightest mt-12 lg:my-16">
+		<h2 class="heading-two text-center text-redLightest mt-12 my-16">
 			Näin tilaat reseptilääkkeitä
 		</h2>
 		<div
 			class="
-				flex flex-col
+				flex flex-col gap-16
 				p-4
 				lg:flex-row lg:justify-center lg:gap-8 lg:px-24 lg:w-full
 			"
 		>
-			<div class="flex flex-col lg:w-1/4 lg:max-w-xs">
-				<img
-					class="self-center lg:w-60 lg:h-60 lg:object-scale-down"
-					src="~/assets/images/how-it-works/automobile.png"
-					alt="automobile"
-				/>
-				<h4 class="heading-four font-semibold text-redLightest mb-4">
-					1. Aloita tunnistautumalla
-				</h4>
-				<p class="p-large text-redLightest font-normal">
-					Kirjaudu sisään ja valtuuta apteekki reseptilääkeasioiden hoitamiseen.
-					Farmaseutti päivittää reseptilääketiedot tietokannasta.
-				</p>
-			</div>
+			<HIWStep
+				title="1. Aloita tunnistautumalla"
+				description="Kirjaudu sisään ja valtuuta apteekki reseptilääkeasioiden hoitamiseen.
+					Farmaseutti päivittää reseptilääketiedot tietokannasta."
+				:image="Images.automobile"
+			/>
 
-			<div class="flex flex-col lg:w-1/4 lg:max-w-xs">
-				<img
-					class="self-center lg:w-60 lg:h-60 lg:object-scale-down"
-					src="~/assets/images/how-it-works/researcher.png"
-					alt="automobile"
-				/>
-				<h4 class="heading-four font-semibold text-redLightest mb-4">
-					2. Valitse tuotteet ja tee tilaus
-				</h4>
-				<p class="p-large text-redLightest font-normal">
-					Kirjaudu sisään ja valtuuta apteekki reseptilääkeasioiden hoitamiseen.
-					Farmaseutti päivittää reseptilääketiedot tietokannasta.
-				</p>
-			</div>
+			<HIWStep
+				title="2. Valitse tuotteet ja tee tilaus"
+				description="Kirjaudu sisään ja valtuuta apteekki reseptilääkeasioiden hoitamiseen.
+					Farmaseutti päivittää reseptilääketiedot tietokannasta."
+				:image="Images.hiwResearcher"
+			/>
 
-			<div class="flex flex-col lg:w-1/4 lg:max-w-xs">
-				<img
-					class="self-center lg:w-60 lg:h-60 lg:object-scale-down"
-					src="~/assets/images/how-it-works/automobile.png"
-					alt="automobile"
-				/>
-				<h4 class="heading-four font-semibold text-redLightest mb-4">
-					3. Odota tilauksen saapumista
-				</h4>
-				<p class="p-large text-redLightest font-normal">
-					Posti toimittaa tilauksen valitsemaasi osoitteeseen.
-				</p>
-			</div>
+			<HIWStep
+				title="3. Odota tilauksen saapumista"
+				description="Posti toimittaa tilauksen valitsemaasi osoitteeseen."
+				:image="Images.automobile"
+			/>
 
-			<div class="flex flex-col lg:w-1/4 lg:max-w-xs">
-				<img
-					class="self-center lg:w-60 lg:h-60 lg:object-scale-down"
-					src="~/assets/images/how-it-works/leisure.png"
-					alt="automobile"
-				/>
-				<h4 class="heading-four font-semibold text-redLightest mb-4">
-					4. Saa tulevat tilaukset jatkuvana palveluna
-				</h4>
-				<p class="p-large text-redLightest font-normal">
-					Dopla muistuttaa tulevista lääketilauksista tekstiviestillä ja
+			<HIWStep
+				title="4. Saa tulevat tilaukset jatkuvana palveluna"
+				description="Dopla muistuttaa tulevista lääketilauksista tekstiviestillä ja
 					halutessasi uusii tilaukset. Tilauksen sisältöä voi aina muokata Omat
-					tiedot -sivulla.
-				</p>
-			</div>
+					tiedot -sivulla."
+				:image="Images.leisure"
+			/>
 		</div>
 	</section>
 </template>
 
 <script>
-export default {}
+import { defineComponent } from 'vue'
+import HIWStep from '../HIWStep.vue'
+import { Images } from '~/utils/Images'
+export default defineComponent({
+	components: { HIWStep },
+	data() {
+		return {
+			Images,
+		}
+	},
+})
 </script>

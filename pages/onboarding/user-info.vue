@@ -3,10 +3,10 @@
 		<div class="px-4 lg:px-20 w-full">
 			<progress-indicator width="75%" />
 		</div>
-		<div class="px-4 lg:self-start lg:px-20 mt-4">
+		<div class="px-4 self-start lg:px-20 mt-4">
 			<back-button caps text="Edellinen" />
 		</div>
-		<div class="flex flex-col mt-2 mb-8 px-4 max-w-[500px] lg:pb-8">
+		<div class="flex flex-col mt-2 mb-8 px-4 w-full max-w-[500px] lg:pb-8">
 			<h4 class="heading-four my-6 font-semibold">Yhteystiedot</h4>
 			<p class="p-normal">
 				Tarkistathan vielä, että tietosi ovat oikein. Täyttämällä kaikki kohdat

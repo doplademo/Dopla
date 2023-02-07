@@ -14,6 +14,9 @@ export const Images = {
 	delivery: importImage('home', 'Saastaa.png'),
 	placeholderImage: importImage('common', 'image 5.png'),
 	piece: importImage('common', 'piece.png'),
+	automobile: importImage('how-it-works', 'automobile.png'),
+	hiwResearcher: importImage('how-it-works', 'researcher.png'),
+	leisure: importImage('how-it-works', 'leisure.png'),
 }
 
 function importImage(...path: string[]) {

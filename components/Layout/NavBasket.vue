@@ -11,7 +11,7 @@
 			right-2
 			p-5
 			lg:max-h-[700px]
-			lg:left-auto lg:rounded-md lg:right-24 lg:shadow-md lg:shadow-blackLightest
+			lg:left-auto lg:rounded-md lg:right-24 shadow-md shadow-blackLightest
 		"
 	>
 		<div class="flex justify-between items-center">
@@ -29,7 +29,7 @@
 			3 prescription drugs
 		</p>
 
-		<div class="flex flex-col gap-4 my-2">
+		<div class="flex flex-col gap-4 my-2 overflow-y-scroll flex-1">
 			<nav-basket-product
 				product-id="001"
 				product-name="simvastatin abc pharma 20 mg, op98"

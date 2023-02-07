@@ -25,8 +25,14 @@
 			</nuxt-link>
 
 			<div v-if="isMobile" class="flex items-center gap-2">
-				<nuxt-link to="/profile">
-					<profile-icon :size="20" :color="Colors.white" />
+				<nuxt-link
+					:class="`p-1 ${isProfile ? 'bg-white rounded-md' : ''}`"
+					to="/profile"
+				>
+					<profile-icon
+						:size="20"
+						:color="isProfile ? Colors.greenBold : Colors.white"
+					/>
 				</nuxt-link>
 				<button
 					:class="`p-1 rounded ${showBasket ? 'bg-white' : ''}`"
@@ -50,8 +56,24 @@
 					/>
 				</button>
 
-				<nuxt-link to="/profile" class="flex gap-2 text-white items-center uppercase text-[15px] font-semibold">
-					<profile-icon :size="26" :color="Colors.white" />
+				<nuxt-link
+					to="/profile"
+					class="
+						flex
+						gap-2
+						text-white
+						items-center
+						uppercase
+						text-[15px]
+						font-semibold
+					"
+				>
+					<div :class="`p-1 ${isProfile ? 'bg-white rounded-md' : ''}`">
+						<profile-icon
+							:size="26"
+							:color="isProfile ? Colors.greenBold : Colors.white"
+						/>
+					</div>
 					<span>Ulla</span>
 				</nuxt-link>
 			</div>
@@ -69,6 +91,8 @@ import NavBasket from './NavBasket.vue'
 
 import { Colors } from '~/utils/Colors'
 import useScreen from '~/utils/hooks/useScreen'
+
+const PROFILE_PATH = '/profile'
 export default defineComponent({
 	components: { BasketIcon, NavBasket, ProfileIcon },
 	props: {},
@@ -86,6 +110,11 @@ export default defineComponent({
 		return {
 			Colors,
 		}
+	},
+	computed: {
+		isProfile(): boolean {
+			return this.$route.path === PROFILE_PATH
+		},
 	},
 })
 </script>

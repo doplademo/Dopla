@@ -1,15 +1,5 @@
 <template>
-	<div
-		class="
-			fixed
-			flex flex-col
-			items-end
-			bottom-10
-			right-2
-			left-2
-			lg:left-auto lg:right-12
-		"
-	>
+	<div class="fixed flex flex-col items-end bottom-10 right-2 lg:right-12">
 		<div
 			v-if="showChat"
 			class="
@@ -20,9 +10,9 @@
 				bg-grayishWhite
 				rounded-md
 				overflow-hidden
+				shadow-md shadow-blackLight
 				mb-2
-				lg:border lg:border-blackLightest lg:mr-20
-                lg:max-w-[440px]
+				lg:border lg:border-blackLightest lg:mr-20 lg:max-w-[440px]
 			"
 		>
 			<div class="flex justify-between items-center bg-white p-4">
@@ -79,7 +69,7 @@
 							ml-2
 							uppercase
 							font-semibold
-                            lg:py-2 lg:px-4 lg:text-sm
+							lg:py-2 lg:px-4 lg:text-sm
 						"
 					/>
 				</form>

@@ -1,7 +1,7 @@
 <template>
 	<main class="bg-pinkLight">
 		<about-hero />
-		<h2 class="heading-two text-center text-mainStrong lg:mt-14 lg:mb-10">Tähän otsikko H2</h2>
+		<h2 class="heading-two text-center mt-14 lg:mb-10">Tähän otsikko H2</h2>
 
 		<about-steps />
 		<lady-section

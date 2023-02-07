@@ -1,8 +1,8 @@
 <template>
 	<nuxt-link
 		:to="to"
-		:class="`font-semibold px-3 py-2 uppercase rounded-md ${
-			selected ? 'text-greenBold bg-white' : 'text-white'
+		:class="`font-semibold px-3 py-1 uppercase rounded-md ${
+			selected ? 'text-greenBold bg-white' : 'hoverable text-white'
 		}`"
 		>{{ text }}</nuxt-link
 	>

@@ -49,20 +49,25 @@
 .p-x-small {
 	@apply text-xs leading-[12px] tracking-normal;
 }
+
+.hoverable {
+	@apply hover:scale-105 hover:brightness-110;
+}
+
 .main-button-shell {
-	@apply flex items-center justify-center rounded-md bg-greenBold text-blackBold;
+	@apply flex items-center justify-center rounded-md bg-greenBold text-blackBold hoverable;
 }
 .main-button-danger {
-	@apply flex items-center justify-center rounded-md bg-redBold text-blackBold;
+	@apply flex items-center justify-center rounded-md bg-redBold text-blackBold hoverable;
 }
 .main-button {
-	@apply main-button-shell p-2.5 font-semibold text-center text-[15px];
+	@apply main-button-shell p-2.5 font-semibold text-center text-[15px] hover:scale-105;
 }
 .main-button-small {
-	@apply py-1 px-2 flex items-center justify-center rounded-md bg-greenBold text-blackBold font-semibold text-center text-[15px];
+	@apply py-1 px-2 flex items-center justify-center rounded-md bg-greenBold text-blackBold font-semibold text-center text-[15px] hoverable;
 }
 .border-button {
-	@apply p-2.5 flex items-center justify-center rounded-md border text-blackBold font-semibold text-center text-[15px];
+	@apply p-2.5 flex items-center justify-center rounded-md border text-blackBold font-semibold text-center text-[15px] hover:brightness-110 ;
 }
 .border-button-small {
 	@apply py-1 px-2 flex items-center justify-center rounded-md border text-blackBold font-semibold text-center text-[15px];

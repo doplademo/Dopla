@@ -8,7 +8,7 @@
 					lg:-mt-32 lg:flex lg:justify-between lg:gap-8 lg:w-full lg:items-start
 				"
 			>
-				<div>
+				<div class="max-w-5xl pt-6 lg:pt-0">
 					<pending-prescription
 						v-if="cardNumber === 1"
 						title="Reseptejäsi päivitetään"
@@ -27,8 +27,11 @@
 					/>
 				</div>
 
-				<no-data v-if="cardNumber === 1" />
-				<store-order-sent v-else />
+				<no-data v-if="cardNumber === 1 && isDesktop" />
+				<store-order-sent
+					v-else-if="cardNumber !== 1 && isDesktop"
+					hide-remove
+				/>
 			</section>
 		</div>
 
@@ -50,6 +53,7 @@ import { dummyProducts } from '~/dummy/dummyReviews'
 import { GetProductsParams } from '~/types/apiParams'
 import { GET_CURRENCY, GET_PRODUCTS } from '~/utils/api/urls'
 import { createGetURL } from '~/utils/api/urlsParams'
+import useScreen from '~/utils/hooks/useScreen'
 export default defineComponent({
 	components: {
 		NewsSection,
@@ -62,6 +66,12 @@ export default defineComponent({
 		StoreOrderSent,
 	},
 	layout: 'store',
+	setup() {
+		const { isDesktop } = useScreen()
+		return {
+			isDesktop,
+		}
+	},
 
 	async asyncData({ $axios }) {
 		try {

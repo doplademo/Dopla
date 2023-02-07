@@ -27,9 +27,21 @@
 			</div>
 
 			<div v-else class="flex items-center gap-4">
-				<desktop-link text="How it works" to="/how-it-works" />
-				<desktop-link text="About Dopla" to="/about" />
-				<desktop-link text="faq" to="/faq" />
+				<desktop-link
+					text="How it works"
+					to="/how-it-works"
+					:selected="$route.path === HIW_PATH"
+				/>
+				<desktop-link
+					text="About Dopla"
+					to="/about"
+					:selected="$route.path === ABOUT_PATH"
+				/>
+				<desktop-link
+					text="faq"
+					to="/faq"
+					:selected="$route.path === FAQ_PATH"
+				/>
 				<nuxt-link to="/onboarding" class="main-button-small uppercase"
 					>Begin</nuxt-link
 				>
@@ -46,10 +58,13 @@ import CloseIcon from '../Icons/CloseIcon.vue'
 import HamburgerIcon from '../Icons/HamburgerIcon.vue'
 import HomeNav from './HomeNav.vue'
 import DesktopLink from './DesktopLink.vue'
-
 import useScreen from '~/utils/hooks/useScreen'
-
 import { Colors } from '~/utils/Colors'
+
+const HIW_PATH = '/how-it-works'
+const ABOUT_PATH = '/about'
+const FAQ_PATH = '/faq'
+
 export default defineComponent({
 	components: { CloseIcon, HamburgerIcon, HomeNav, DesktopLink },
 	setup() {
@@ -65,6 +80,9 @@ export default defineComponent({
 	data() {
 		return {
 			Colors,
+			HIW_PATH,
+			ABOUT_PATH,
+			FAQ_PATH,
 		}
 	},
 })

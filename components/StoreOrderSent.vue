@@ -1,12 +1,9 @@
 <template>
 	<div
 		class="
-			lg:bg-white
-			lg:border
-			lg:border-blackLightest
-			lg:w-[400px]
-			lg:pt-4
-			lg:rounded-md
+			lg:bg-white lg:border lg:border-blackLightest lg:max-w-[400px] lg:pt-4
+			rounded-md
+			flex-shrink-0
 		"
 	>
 		<div class="ml-4 mb-4 lg:hidden">
@@ -51,6 +48,7 @@
 				:id="product.id"
 				:key="product.id"
 				:name="product.name"
+				:hide-remove="hideRemove"
 				@remove="remove"
 			/>
 
@@ -66,12 +64,19 @@
 
 <script lang='ts'>
 import { defineComponent, ref } from 'vue'
+import PrescriptionCheckout from './PrescriptionCheckout.vue'
 import { prescribedProducts } from '~/dummy/dummyproducts'
 import useScreen from '~/utils/hooks/useScreen'
 import { Images } from '~/utils/Images'
 
 export default defineComponent({
-	props: {},
+  components: { PrescriptionCheckout },
+	props: {
+		hideRemove: {
+			type: Boolean,
+			default: false,
+		},
+	},
 	setup(_) {
 		const products = ref([...prescribedProducts])
 		const selectedHelp = ref<null | number>(null)
@@ -84,6 +89,7 @@ export default defineComponent({
 		const remove = (id: number) => {
 			products.value = products.value.filter((product) => product.id !== id)
 		}
+
 		return {
 			products,
 			selectedHelp,

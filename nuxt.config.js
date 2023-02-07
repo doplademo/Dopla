@@ -1,8 +1,7 @@
-import { defineNuxtConfig } from '@nuxt/bridge'
 import { TEST_LOGIN } from './utils/api/urls'
 
 const BASE_URL = 'https://test.iisiapteekki.fi/rest'
-export default defineNuxtConfig({
+export default {
 	// Global page headers: https://go.nuxtjs.dev/config-head
 	head: {
 		title: 'dopla',
@@ -34,6 +33,7 @@ export default defineNuxtConfig({
 	// Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
 	buildModules: [
 		// https://go.nuxtjs.dev/typescript
+		'@nuxt/typescript-build',
 		'@nuxt/postcss8',
 	],
 
@@ -47,7 +47,6 @@ export default defineNuxtConfig({
 		// https://go.nuxtjs.dev/axios
 		'@nuxtjs/axios',
 		'@nuxtjs/auth-next',
-		'@nuxt/device',
 	],
 
 	// target: 'static',
@@ -90,4 +89,4 @@ export default defineNuxtConfig({
 			},
 		},
 	},
-})
+}

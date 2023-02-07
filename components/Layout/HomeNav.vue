@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col p-4 flex-1 justify-between">
+    <div class="flex flex-col p-4 flex-1 justify-between h-full">
         <ul class="flex flex-col gap-6 mt-6">
             <li class="px-2 border-b border-white pb-5">
                 <nuxt-link to="/how-it-works" @click.native="$emit('on-redirect')">
@@ -30,7 +30,7 @@
             </li>
         </ul>
 
-        <div class="flex flex-col items-center w-full">
+        <div class="flex flex-col items-center w-full mb-24">
             <nuxt-link to="/onboarding" class="main-button uppercase mb-6">Log in</nuxt-link>
             <p class="p-x-small text-blackLightest">© Dopla 2022</p>
         </div>

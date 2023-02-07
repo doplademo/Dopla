@@ -1,7 +1,7 @@
 <template>
 	<button
 		:class="`flex items-center justify-between py-2 px-4 border  rounded cursor-pointer text-start ${
-			selected ? 'border-greenBold' : 'border-blackLight'
+			selected ? 'border-greenBold' : 'border-blackLightest'
 		}`"
 		@click="$emit('redirect')"
 	>
