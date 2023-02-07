@@ -1,6 +1,9 @@
 <template>
-	<main class="flex flex-col w-full items-center">
-		<div class="flex flex-col px-4 pb-16 pt-20 max-w-[540px]">
+	<main class="flex flex-col w-full items-center pt-20">
+		<div class="px-4 lg:px-20 w-full">
+			<progress-indicator width="35%" />
+		</div>
+		<div class="flex flex-col px-4 pb-16 mt-8 max-w-[540px]">
 			<h4 class="heading-four font-semibold mb-4">Melkein valmista!</h4>
 			<p class="p-large">
 				Tarvitsemme vielä valtuutuksen, jotta palvelu toimii jouhevasti.
@@ -88,7 +91,7 @@ export default defineComponent({
 		HyperlinkNormal,
 		CheckBox,
 		IconLock,
-IconRefresh,
+		IconRefresh,
 	},
 
 	setup() {

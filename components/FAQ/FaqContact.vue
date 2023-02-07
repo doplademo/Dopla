@@ -1,9 +1,9 @@
 <template>
-	<section class="p-4 pt-16 lg:flex lg:flex-col lg:items-center lg:pb-14">
-		<h3 class="heading-three text-redLightest text-center mb-4">
+	<section class="p-4 pt-16 lg:flex lg:flex-col lg:items-center lg:pb-14 lg:pt-32">
+		<h3 class="heading-two text-redLightest text-center mb-4">
 			Jäikö jokin vielä mietityttämään?
 		</h3>
-		<p class="p-large text-white text-center max-w-[500px]">
+		<p class="p-large text-white text-center max-w-[500px] lg:mt-4">
 			Ota meihin yhteyttä, niin apteekin farmaseutti palaa asiaan mahdollisimman
 			pian.
 		</p>

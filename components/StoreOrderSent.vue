@@ -4,9 +4,9 @@
 			lg:bg-white
 			lg:border
 			lg:border-blackLightest
-			lg:w-full
-			lg:max-w-[400px]
+			lg:w-[400px]
 			lg:pt-4
+			lg:rounded-md
 		"
 	>
 		<div class="ml-4 mb-4 lg:hidden">
@@ -67,6 +67,7 @@
 <script lang='ts'>
 import { defineComponent, ref } from 'vue'
 import { prescribedProducts } from '~/dummy/dummyproducts'
+import useScreen from '~/utils/hooks/useScreen'
 import { Images } from '~/utils/Images'
 
 export default defineComponent({
@@ -74,6 +75,7 @@ export default defineComponent({
 	setup(_) {
 		const products = ref([...prescribedProducts])
 		const selectedHelp = ref<null | number>(null)
+		const { isDesktop } = useScreen()
 
 		const setSelected = (value: number) => {
 			selectedHelp.value = value
@@ -82,12 +84,12 @@ export default defineComponent({
 		const remove = (id: number) => {
 			products.value = products.value.filter((product) => product.id !== id)
 		}
-
 		return {
 			products,
 			selectedHelp,
 			setSelected,
 			remove,
+			isDesktop,
 		}
 	},
 

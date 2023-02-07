@@ -5,10 +5,12 @@
 			w-[190px]
 			items-start
 			bg-white
+			shadow-md
 			border border-blackLightest
 			rounded-md
 			px-2
-			lg:w-[280px] lg:py-6 lg:gap-2
+			lg:w-[280px] lg:py-6 lg:gap-2 lg:pb-4
+
 		"
 	>
 		<img

@@ -6,8 +6,9 @@
 				self-center
 				mt-16
 				mb-2
-				max-w-[16em] max-h-[13em]
+				max-w-[16em] h-52
 				object-contain object-center
+				lg:mt-4
 			"
 			:src="image"
 			alt=""

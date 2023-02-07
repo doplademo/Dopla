@@ -2,7 +2,6 @@
 	<section class="px-4 lg:px-0 lg:pt-8">
 		<h4 class="heading-four my-4 font-semibold">Suosittua juuri nyt</h4>
 		<p class="p-normal">Tutustu apteekin verkkokaupan tuotteisiin.</p>
-
 		<div class="relative mt-4 max-w-[420px]">
 			<form
 				class="
@@ -99,11 +98,11 @@
 				:key="product.id"
 				:sku="product.sku"
 				:name="product.name"
-				:price="product.price_info.final_price"
-				:price-sign="currencyInfo.base_currency_symbol"
+				:price="product.price_info?.final_price"
+				:price-sign="currencyInfo?.base_currency_symbol"
 				:additions="product.additions"
 				:package-quantity="product.packageQuantity"
-				:image="product.images[0].url"
+				:image="product.images?.[0].url"
 			/>
 		</div>
 		<modal-container v-if="showProduct">
@@ -119,7 +118,6 @@ import IconSearch from './Icons/IconSearch.vue'
 import SearchProduct from './SearchProduct.vue'
 import ModalContainer from './ModalContainer.vue'
 import StoreProductModal from './StoreProductModal.vue'
-
 import { dummyProducts } from '~/dummy/dummyReviews'
 export default defineComponent({
 	components: {

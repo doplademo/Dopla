@@ -1,8 +1,12 @@
 <template>
-	<main class="flex flex-col items-center">
-		<div class="flex flex-col mt-20 mb-8 px-4 max-w-[500px]">
+	<main class="flex flex-col items-center mt-20">
+		<div class="px-4 lg:px-20 w-full">
+			<progress-indicator width="100%" />
+		</div>
+		
+		<div class="flex flex-col mb-8 px-4 max-w-[500px] lg:py-16">
 			<img
-				class="w-16 self-center"
+				class="w-20 self-center"
 				src="~/assets/images/common/check-small.png"
 				alt="success"
 			/>

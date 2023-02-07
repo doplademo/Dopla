@@ -64,19 +64,28 @@ export default defineComponent({
 	layout: 'store',
 
 	async asyncData({ $axios }) {
-		const { data: currencyInfo } = await $axios.get(GET_CURRENCY)
-		const {
-			data: { items },
-		} = await $axios.get(
-			createGetURL<GetProductsParams>(GET_PRODUCTS, {
-				currencyCode: currencyInfo.base_currency_code,
-				searchCriteria: ' ',
-				storeId: 1,
-			})
-		)
-		return {
-			products: items,
-			currencyInfo,
+		try {
+			const { data: currencyInfo } = await $axios.get(GET_CURRENCY)
+			const {
+				data: { items },
+			} = await $axios.get(
+				createGetURL<GetProductsParams>(GET_PRODUCTS, {
+					currencyCode: currencyInfo.base_currency_code,
+					searchCriteria: ' ',
+					storeId: 1,
+				})
+			)
+
+			return {
+				products: items,
+				currencyInfo,
+			}
+		} catch (e) {
+			console.log(e)
+			return {
+				products: dummyProducts,
+				currencyInfo: null,
+			}
 		}
 	},
 	data() {

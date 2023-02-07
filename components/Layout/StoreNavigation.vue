@@ -39,7 +39,7 @@
 				</button>
 			</div>
 
-			<div v-else class="flex items-center gap-4">
+			<div v-else class="flex items-center gap-6">
 				<button
 					:class="`p-1 rounded ${showBasket ? 'bg-white' : ''}`"
 					@click.prevent="showBasket = !showBasket"

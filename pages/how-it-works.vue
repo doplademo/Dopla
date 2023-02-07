@@ -2,6 +2,10 @@
 	<main class="flex flex-col">
 		<section-one />
 		<StepsSection />
+		<section-black
+			heading="Doplassa lääketietosi ovat turvassa. "
+			text="Doplan lääketietoja käsittelevät vain apteekin farmaseutit eikä tietoja koskaan luovuteta ulkopuolisille tahoille."
+		/>
 		<LadySection
 			text="Treenit vievät suurimman osan ajastani ja haluankin maksimoida vapaa-ajan perheen ja ystävien seurassa. Dopla vapauttaa arjestani aikaa, jonka muuten käyttäisin asioiden hoitamiseen"
 			person="Leo-Pekka Tähti"
@@ -9,10 +13,6 @@
 			:image="Images.ladyOrangeBg"
 		>
 		</LadySection>
-		<section-black
-			heading="Doplassa lääketietosi ovat turvassa. "
-			text="Doplan lääketietoja käsittelevät vain apteekin farmaseutit eikä tietoja koskaan luovuteta ulkopuolisille tahoille."
-		/>
 		<img
 			:src="Images.mobilePhone"
 			alt=""

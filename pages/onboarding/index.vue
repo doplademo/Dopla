@@ -1,6 +1,9 @@
 <template>
-	<main class="flex flex-col w-full items-center">
-		<div class="flex flex-col px-4 pb-16 pt-20 max-w-[540px]">
+	<main class="flex flex-col w-full items-center pt-20">
+		<div class="px-4 lg:px-20 w-full">
+			<progress-indicator width="15%" />
+		</div>
+		<div class="flex flex-col px-4 pb-16 max-w-[540px] mt-8">
 			<h1 class="heading-three font-medium mb-4">Onboarding step 1!</h1>
 			<!-- Instructions -->
 			<div class="flex flex-col mt-6">
@@ -31,15 +34,15 @@
 					</template>
 				</onboarding-instruction>
 			</div>
-			<nuxt-link to="/tos" class="link-normal text-greenBold mt-4">
+			<nuxt-link to="/tos" class="link-normal text-greenBold mt-4 lg:mt-6">
 				Read T&C
 			</nuxt-link>
-			<nuxt-link to="/tos" class="link-normal text-greenBold mt-4">
+			<nuxt-link to="/tos" class="link-normal text-greenBold mt-4 lg:mt-6">
 				Read privacy policy
 			</nuxt-link>
 
 			<check-box
-				class="my-4"
+				class="my-4 lg:mt-6"
 				title="I’ll agree to T&C"
 				:selected="authorization"
 				@toggle="authorization = !authorization"
@@ -67,6 +70,7 @@ import IconLock from '~/components/Icons/IconLock.vue'
 import IconProfile from '~/components/Icons/IconProfile.vue'
 import CheckBox from '~/components/Input/CheckBox.vue'
 import OnboardingInstruction from '~/components/onboarding/OnboardingInstruction.vue'
+import ProgressIndicator from '~/components/ProgressIndicator.vue'
 
 export default defineComponent({
 	components: {
@@ -76,6 +80,7 @@ export default defineComponent({
 		IconProfile,
 		BasketIcon,
 		IconLock,
+		ProgressIndicator,
 	},
 
 	setup() {

@@ -1,6 +1,6 @@
 <template>
-	<section class="py-12 px-4">
-		<div class="flex flex-col lg:flex-row lg:gap-6">
+	<section class="pb-12 px-4">
+		<div class="flex flex-col lg:flex-row lg:gap-6 lg:px-24 lg:pb-6">
 			<about-step
 				title="1. Lääkkeet hoitaa apteekki"
 				description="Apteekin farmaseutti käsittelee ja tarkistaa tilauksesi, pitää huoltaajantasaisista reseptilääketiedoistasi ja ehdottaa halvempia lääkevalmisteita, mikäli sellaisia on saatavilla."

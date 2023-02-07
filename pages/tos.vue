@@ -1,6 +1,6 @@
 <template>
 	<div class="lg:flex lg:flex-col lg:items-center">
-		<main class="flex flex-col gap-4 pt-24 pb-8 px-4 lg:max-w-7xl lg:gap-8">
+		<main class="flex flex-col gap-4 pt-24 pb-8 px-4 lg:gap-8 lg:max-w-3xl">
 			<h2 class="heading-two">Tietosuojaseloste</h2>
 			<p class="p-normal">
 				Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit
@@ -10,10 +10,13 @@
 				iaculis arcu eros, eget tempus orci facilisis id.
 			</p>
 
-			<img src="~/assets/images/common/image 5.png" />
-			<p class="p-x-small text-blackLight italic self-end -mt-3">
-				image description h6
-			</p>
+			<div class="flex flex-col lg:self-center lg:w-[100vw] lg:max-w-5xl">
+				<img src="~/assets/images/common/image 5.png" class="w-full" />
+				<p class="p-x-small text-blackLight italic self-end mt-2">
+					image description h6
+				</p>
+			</div>
+
 			<p class="p-normal">
 				Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit
 				magna interdum eu. Curabitur pellentesque nibh nibh, at maximus ante
@@ -84,9 +87,8 @@
 				Quisque sagittis orci ut diam condimentum, vel euismod erat placerat. In
 				iaculis arcu eros, eget tempus orci facilisis id.
 			</p>
-
 		</main>
-        <cta-section bg-class="bg-redLightest w-full" />
+		<cta-section bg-class="bg-redLightest w-full" />
 	</div>
 </template>
 

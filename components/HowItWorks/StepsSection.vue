@@ -1,6 +1,6 @@
 <template>
-	<section class="bg-mainBold flex flex-col">
-		<h2 class="heading-two text-center text-redLightest mt-12">
+	<section class="bg-mainBold flex flex-col lg:pb-16">
+		<h2 class="heading-two text-center text-redLightest mt-12 lg:my-16">
 			Näin tilaat reseptilääkkeitä
 		</h2>
 		<div
