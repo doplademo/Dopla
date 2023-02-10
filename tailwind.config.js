@@ -10,6 +10,7 @@ module.exports = {
 	theme: {
 		fontFamily: {
 			montserrat: ['Montserrat', 'sans-serif'],
+			grotta: ['Grotta', 'sans-serif'],
 		},
 		colors: {
 			mainBold: '#00484A',

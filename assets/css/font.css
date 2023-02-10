@@ -1,0 +1,12 @@
+@font-face {
+	font-family: 'Heebo';
+	src: url('../fonts/Grotta-Medium.otf') format('truetype');
+	font-weight: medium;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Heebo';
+	src: url('../fonts/Grotta-Regular.otf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}

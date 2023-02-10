@@ -1,4 +1,6 @@
-import { TEST_LOGIN } from './utils/api/urls'
+import fs from 'fs'
+import path from 'path'
+import { GET_USER_PATH, LOGIN_PATH } from './utils/api/urls'
 
 const BASE_URL = 'https://test.iisiapteekki.fi/rest'
 export default {
@@ -18,7 +20,7 @@ export default {
 	},
 
 	// Global CSS: https://go.nuxtjs.dev/config-css
-	css: ['@/assets/css/main.css'],
+	css: ['@assets/css/font.css', '@/assets/css/main.css'],
 
 	routes: {
 		'/*': { cors: true },
@@ -58,6 +60,13 @@ export default {
 		baseURL: BASE_URL,
 	},
 
+	server: {
+		https: {
+			key: fs.readFileSync(path.resolve(__dirname, 'localhost-key.pem')),
+			cert: fs.readFileSync(path.resolve(__dirname, 'localhost.pem')),
+		},
+	},
+
 	auth: {
 		strategies: {
 			local: {
@@ -66,8 +75,12 @@ export default {
 				},
 				endpoints: {
 					login: {
-						url: TEST_LOGIN,
+						url: LOGIN_PATH,
 						method: 'post',
+					},
+					user: {
+						url: GET_USER_PATH,
+						method: 'get',
 					},
 				},
 			},

@@ -26,7 +26,7 @@ import NoData from '~/components/NoData.vue'
 import RequestPrescription from '~/components/RequestPrescription.vue'
 import PrescriptionSelect from '~/components/PrescriptionSelect.vue'
 import useScreen from '~/utils/hooks/useScreen'
-import { CREATE_PHARMACY_ORDER } from '~/utils/api/urls'
+import { CREATE_PHARMACY_ORDER, REQUEST_PRESCRIPTION } from '~/utils/api/urls'
 export default defineComponent({
 	components: {
 		GreetingSection,
@@ -50,18 +50,26 @@ export default defineComponent({
 	},
 	methods: {
 		async onRequestPrescription(needsHelp: number) {
-			const res = await this.$axios.$put(CREATE_PHARMACY_ORDER, {
-				tasks: [
+			console.log(this.$auth.user)
+			const res = await this.$axios.$put(REQUEST_PRESCRIPTION, {
+				ssn: '210281-9981',
+				quote_id: 99,
+				additional_information: 'I just renewed my prescription',
+				delivery_requests: [
 					{
-						ssn: '121245-123X',
-						customer_firstname: 'Ulla',
-						customer_lastname: 'Ullberg',
-						type: 'update',
-						status: 'new',
-						requires_contacting: needsHelp,
-						customer_contacted: 0,
+						sku: '434811',
+						name: 'BURANA 800 mg tabl, kalvopääll 30 fol',
+						quantity: 1,
+					},
+					{
+						product_id: '520379',
+						name: 'VIAGRA 100 mg tabl, kalvopääll 12 fol',
+						quantity: 2,
 					},
 				],
+				contact_phone: '0401234567',
+				contact_proposals_date: '25.10.2022',
+				contact_proposals_hours: 'kello 14-16 tai kello 18 jälkeen',
 			})
 		},
 	},

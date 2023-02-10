@@ -11,11 +11,11 @@
 }
 
 .heading-one {
-	@apply text-[40px] leading-9 font-normal tracking-[-2%] lg:text-7xl lg:leading-[68px];
+	@apply font-grotta text-[40px] leading-9 font-normal tracking-[-2%] lg:text-7xl lg:leading-[68px];
 }
 
 .heading-two {
-	@apply text-[34px] leading-[30px] font-normal tracking-[-3%] lg:text-[54px] lg:leading-[48px];
+	@apply font-grotta text-[34px] leading-[30px] font-normal tracking-[-3%] lg:text-[54px] lg:leading-[48px];
 }
 
 .heading-three {

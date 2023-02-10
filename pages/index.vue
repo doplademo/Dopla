@@ -30,13 +30,7 @@ import SectionBlack from '~/components/Home/SectionBlack.vue'
 import ReviewsSection from '~/components/Home/ReviewsSection.vue'
 import AloitaSection from '~/components/Home/AloitaSection.vue'
 import { Images } from '~/utils/Images'
-import {
-	ALTERNATIVES_PATH,
-	BASE_URL,
-	GET_CURRENCY,
-	TEST_EMAIL_PATH,
-	TEST_LOGIN,
-} from '~/utils/api/urls'
+import { GET_CURRENCY, TEST_EMAIL_PATH } from '~/utils/api/urls'
 
 export default defineComponent({
 	components: {
@@ -59,15 +53,19 @@ export default defineComponent({
 
 	methods: {
 		async login() {
-			console.log(this.$axios.defaults.baseURL)
 			try {
-				await this.$auth.loginWith('local')
-				console.log('logged in');
+				await this.$auth.loginWith('local', {
+					data: {
+						username: 'test@origodesign.com',
+						password: 'Batman2023!',
+					},
+				})
+				console.log('logged in')
 			} catch (e) {}
 		},
 		async getAlternatives() {
 			try {
-				const response = await this.$axios.$get(ALTERNATIVES_PATH)
+				const response = await this.$axios.$get('/V1/smartship/agents?postcode=00120', {})
 				console.log(response.data)
 			} catch (e) {
 				console.log(e)
@@ -86,6 +84,7 @@ export default defineComponent({
 				const response = await this.$axios.$post(TEST_EMAIL_PATH, {
 					data: {
 						email: 'test@my.email',
+						fieldName: 'customerEmail',
 					},
 				})
 				console.log(response.data)
