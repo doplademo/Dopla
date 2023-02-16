@@ -1,5 +1,5 @@
-import fs from 'fs'
-import path from 'path'
+// import fs from 'fs'
+// import path from 'path'
 import { GET_USER_PATH, LOGIN_PATH } from './utils/api/urls'
 
 const BASE_URL = 'https://test.iisiapteekki.fi/rest'
@@ -60,12 +60,12 @@ export default {
 		baseURL: BASE_URL,
 	},
 
-	server: {
-		https: {
-			key: fs.readFileSync(path.resolve(__dirname, 'localhost-key.pem')),
-			cert: fs.readFileSync(path.resolve(__dirname, 'localhost.pem')),
-		},
-	},
+	// server: {
+	// 	https: {
+	// 		key: fs.readFileSync(path.resolve(__dirname, 'localhost-key.pem')),
+	// 		cert: fs.readFileSync(path.resolve(__dirname, 'localhost.pem')),
+	// 	},
+	// },
 
 	auth: {
 		strategies: {
