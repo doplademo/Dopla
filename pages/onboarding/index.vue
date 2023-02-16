@@ -54,10 +54,13 @@
 				turvallisesti.
 			</p>
 
-			<nuxt-link to="/onboarding/agreements" class="main-button uppercase mt-4">
+			<a
+				href="http://test.iisiapteekki.fi/sso/saml2/login"
+				class="main-button uppercase mt-4"
+			>
 				<span class="mr-2">Advance</span>
 				<arrow-right-icon />
-			</nuxt-link>
+			</a>
 		</div>
 	</main>
 </template>
