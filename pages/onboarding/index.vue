@@ -55,7 +55,7 @@
 			</p>
 
 			<a
-				href="http://test.iisiapteekki.fi/sso/saml2/login"
+				href="http://test.iisiapteekki.fi/sso/saml2/login?domain=dopla"
 				class="main-button uppercase mt-4"
 			>
 				<span class="mr-2">Advance</span>
