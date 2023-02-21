@@ -1,8 +1,11 @@
 <template>
 	<div :class="'flex flex-col ' + className">
-		<label v-if="label" class="text-xs font-semibold mb-1 lg:text-[13px]" :for="id">{{
-			label
-		}}</label>
+		<label
+			v-if="label"
+			class="text-xs font-semibold mb-1 lg:text-[13px]"
+			:for="id"
+			>{{ label }}</label
+		>
 		<input
 			:id="id"
 			:class="`text-blackBold px-2 py-1 border rounded-sm lg:text-[17px] lg:py-2.5 lg:px-2 lg:rounded-md ${
@@ -25,7 +28,7 @@ export default defineComponent({
 	props: {
 		type: {
 			type: String,
-			required: true,
+			default: 'text',
 		},
 		value: {
 			type: String,
@@ -37,7 +40,7 @@ export default defineComponent({
 		},
 		field: {
 			type: String,
-			required: true,
+			default: '',
 		},
 		className: {
 			type: String,

@@ -94,6 +94,10 @@ export default defineComponent({
 		IconRefresh,
 	},
 
+	mounted() {
+		console.log(this.$auth.user);
+	},
+
 	setup() {
 		const authorization = ref(false)
 		const marketing = ref(false)

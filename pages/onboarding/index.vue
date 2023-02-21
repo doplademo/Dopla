@@ -55,7 +55,7 @@
 			</p>
 
 			<a
-				href="http://test.iisiapteekki.fi/sso/saml2/login?domain=dopla"
+				:href="`http://test.iisiapteekki.fi/sso/saml2/login?domain=${domain}`"
 				class="main-button uppercase mt-4"
 			>
 				<span class="mr-2">Advance</span>
@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import ArrowRightIcon from '~/components/Icons/ArrowRightIcon.vue'
 import BasketIcon from '~/components/Icons/BasketIcon.vue'
 import IconLock from '~/components/Icons/IconLock.vue'
@@ -74,6 +74,7 @@ import IconProfile from '~/components/Icons/IconProfile.vue'
 import CheckBox from '~/components/Input/CheckBox.vue'
 import OnboardingInstruction from '~/components/onboarding/OnboardingInstruction.vue'
 import ProgressIndicator from '~/components/ProgressIndicator.vue'
+import { redirectUser } from '~/utils/onboarding'
 
 export default defineComponent({
 	components: {
@@ -86,15 +87,22 @@ export default defineComponent({
 		ProgressIndicator,
 	},
 
-	setup() {
-		const authorization = ref(false)
-		const marketing = ref(false)
-		const news = ref(false)
+	async asyncData({ route, $auth, redirect }) {
+		const token = route.query.token
+		if (!token) {
+			return
+		}
+		// login user with token retrieved from idp
+		await $auth.setUserToken(token)
+		await $auth.fetchUser()
 
+		redirectUser($auth.user, redirect)
+	},
+
+	data() {
 		return {
-			authorization,
-			marketing,
-			news,
+			authorization: false,
+			domain: process.env.NODE_ENV === 'production' ? 'dopla' : 'localhost',
 		}
 	},
 })

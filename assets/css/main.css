@@ -51,20 +51,20 @@
 }
 
 .hoverable {
-	@apply hover:scale-105 hover:brightness-110;
+	@apply  hover:brightness-110;
 }
 
 .main-button-shell {
-	@apply flex items-center justify-center rounded-md bg-greenBold text-blackBold hoverable;
+	@apply flex items-center justify-center rounded-md bg-greenBold text-blackBold;
 }
 .main-button-danger {
-	@apply flex items-center justify-center rounded-md bg-redBold text-blackBold hoverable;
+	@apply flex items-center justify-center rounded-md bg-redBold text-blackBold hover:bg-redStrong;
 }
 .main-button {
-	@apply main-button-shell p-2.5 font-semibold text-center text-[15px] hover:scale-105;
+	@apply main-button-shell p-2.5 font-semibold text-center text-[15px] hover:bg-greenStrong;
 }
 .main-button-small {
-	@apply py-1 px-2 flex items-center justify-center rounded-md bg-greenBold text-blackBold font-semibold text-center text-[15px] hoverable;
+	@apply py-1 px-2 flex items-center justify-center rounded-md bg-greenBold text-blackBold font-semibold text-center text-[15px];
 }
 .border-button {
 	@apply p-2.5 flex items-center justify-center rounded-md border text-blackBold font-semibold text-center text-[15px] hover:brightness-110 ;
