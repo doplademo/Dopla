@@ -30,7 +30,7 @@ import SectionBlack from '~/components/Home/SectionBlack.vue'
 import ReviewsSection from '~/components/Home/ReviewsSection.vue'
 import AloitaSection from '~/components/Home/AloitaSection.vue'
 import { Images } from '~/utils/Images'
-import { GET_CURRENCY, TEST_EMAIL_PATH } from '~/utils/api/urls'
+import { GET_CURRENCY, GET_PHARMACIST_TASKS, TEST_EMAIL_PATH } from '~/utils/api/urls'
 
 export default defineComponent({
 	components: {
@@ -65,10 +65,14 @@ export default defineComponent({
 		},
 		async getAlternatives() {
 			try {
-				const response = await this.$axios.$get('/V1/smartship/agents?postcode=00120', {})
-				console.log(response.data)
-			} catch (e) {
-				console.log(e)
+				const res = await this.$axios.$get(GET_PHARMACIST_TASKS)
+				console.log(res?.data);
+				return { tasks: res.data }
+			} catch (error) {
+				console.log(error)
+				return {
+					tasks: [],
+				}
 			}
 		},
 		async getCurrency() {
