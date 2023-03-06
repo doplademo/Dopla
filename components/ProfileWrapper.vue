@@ -6,7 +6,7 @@
 		</button>
 
 		<section class="mt-4">
-			<h4 class="heading-four font-semibold">Hi Ulla!</h4>
+			<h4 class="heading-four font-semibold">Hi {{$auth.user?.firstname}}!</h4>
 			<p class="p-normal mt-2">Lorem ipsum dolor sit amet!</p>
 		</section>
 

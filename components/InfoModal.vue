@@ -1,18 +1,7 @@
 <template>
 	<div
 		v-if="product"
-		class="
-			flex flex-col
-			bg-white
-			rounded-md
-			overflow-y-scroll
-			mt-12
-			mx-2
-			p-4
-			w-full
-			max-w-[530px]
-			self-center
-		"
+		class="flex flex-col bg-white rounded-md overflow-y-scroll mt-12 mx-2 p-4 w-full max-w-[530px] self-center"
 	>
 		<!-- Header -->
 		<div class="flex justify-between w-full">
@@ -22,31 +11,19 @@
 			</button>
 		</div>
 		<h4
-			class="
-				heading-four
-				font-semibold
-				bg-redLightest
-				rounded-md
-				p-1
-				mt-5
-				lg:p-4
-			"
+			class="heading-four font-semibold bg-redLightest rounded-md p-1 mt-5 lg:p-4"
 		>
-			{{ product.name }}
+			{{ product.medicine_name }}
 		</h4>
 
 		<p class="p-small text-blackLight mt-4 mb-1">Product details</p>
 		<div class="border border-redLightest rounded-md px-2.5 py-1.5">
-			<p
-				v-for="detail in product.details"
-				:key="detail"
-				class="p-small text-blackMedium my-1"
-			>
-				{{ detail }}
+			<p class="p-small text-blackMedium my-1">
+				{{ product.prescription_dosage_instruction }}
 			</p>
 		</div>
 
-		<div class="mt-5">
+		<div v-if="true" class="mt-5">
 			<p class="p-normal inline-block font-semibold">
 				Medicine exchange program
 			</p>
@@ -56,13 +33,14 @@
 		</div>
 
 		<dropdown-picker
-			:selected-option="product.selectedOption"
-			:options="product.options"
+			v-if="true"
+			:selected-substitute="selectedSubstitute"
+			:substitutes="substitutes"
 			@on-select-option="onChangeOption"
 		/>
 		<div class="mt-2">
 			<p class="p-small inline-block text-blackLight">
-				Tuotteella on hintatakuu
+				The product has a price guarantee
 			</p>
 			<button
 				class="inline-block bg-redLightest font-semibold text-xs px-2 mr-2"
@@ -72,11 +50,7 @@
 		</div>
 
 		<div class="flex justify-between w-full mt-8">
-			<amout-counter
-				:count="product.amount"
-				@add="$emit('add')"
-				@subtract="$emit('subtract')"
-			/>
+			<amout-counter :count="amount" @add="add" @subtract="subtract" />
 			<main-button-pressable
 				class-name="flex-1 ml-2"
 				title="Lisää tilaukseen"
@@ -98,7 +72,13 @@ import CloseIcon from './Icons/CloseIcon.vue'
 import DropdownPicker from './DropdownPicker.vue'
 import AmoutCounter from './AmoutCounter.vue'
 import MainButtonPressable from './Button/MainButtonPressable.vue'
-import { PrescriptionType } from '~/dummy/dummyproducts'
+import {
+	KeyValueSubstitute,
+	PrescribedProduct,
+	PrescribedProductAddition,
+	Substitute,
+} from '~/types/user'
+import { ALTERNATIVES_PATH } from '~/utils/api/urls'
 
 export default defineComponent({
 	components: {
@@ -109,19 +89,62 @@ export default defineComponent({
 	},
 	props: {
 		product: {
-			type: Object as PropType<PrescriptionType | null>,
-			default: null,
+			type: Object as PropType<PrescribedProduct | null>,
+			required: true,
+		},
+		productAdditions: {
+			type: Map as PropType<Map<any, PrescribedProductAddition>>,
+			required: true,
 		},
 	},
-	emits: ['on-option-select', 'add', 'subtract', 'close'],
-	setup(_, { emit }) {
-		const onChangeOption = (id: number) => {
-			emit('on-option-select', id)
+
+	emits: ['on-substitute-select', 'add', 'subtract', 'close'],
+	data() {
+		return {
+			substitutes: new Map() as Map<string, Substitute>,
+			selectedSubstitute: null as Substitute | null,
+			amount: this.productAdditions.get(this.product!.id)?.amount || 1,
+		}
+	},
+	async mounted() {
+		const substitutes = (await this.$axios.$get(
+			ALTERNATIVES_PATH + this.product!.prescription_oid
+		)) as KeyValueSubstitute
+
+		Object.keys(substitutes).forEach((key) => {
+			const substitute = substitutes[key]
+			this.substitutes.set(substitute.sku, substitute)
+		})
+
+		const selectedSubstituteId = this.productAdditions.get(
+			this.product!.id
+		)?.substituteId
+
+		if (selectedSubstituteId) {
+			this.selectedSubstitute = this.substitutes.get(selectedSubstituteId)!
+		} else {
+			this.selectedSubstitute = substitutes.doctor_prescribed
 		}
 
-		return {
-			onChangeOption,
-		}
+		this.selectedSubstitute = substitutes.doctor_prescribed
+		this.amount = this.productAdditions.get(this.product!.id)?.amount || 1
+	},
+
+	methods: {
+		onChangeOption(sku: string) {
+			this.selectedSubstitute = this.substitutes.get(sku)!
+			this.$emit('on-substitute-select', sku)
+		},
+		add() {
+			this.amount++
+			this.$emit('add', this.amount)
+		},
+		subtract() {
+			if (this.amount > 1) {
+				this.amount--
+				this.$emit('subtract', this.amount)
+			}
+		},
 	},
 })
 </script>

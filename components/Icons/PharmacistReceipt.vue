@@ -1,14 +1,6 @@
 <template>
 	<div
-		class="
-			flex flex-col
-			bg-white
-			p-4
-			h-full
-			overflow-y-scroll
-			rounded-lg
-			border border-blackLightest
-		"
+		class="flex flex-col bg-white p-4 h-full overflow-y-scroll rounded-lg border border-blackLightest"
 	>
 		<div class="flex justify-between items-center">
 			<p
@@ -20,7 +12,7 @@
 						: ''
 				}`"
 			>
-				Order #1234567890
+				Order #{{ task?.id }}
 			</p>
 			<p class="p-small font-medium text-blackLight">
 				Updated 13.08.2022 13:59
@@ -37,74 +29,39 @@
 		</div>
 
 		<div class="flex justify-between mt-4">
-			<p class="p-normal uppercase font-medium">Prescription drugs</p>
-			<p class="p-normal uppercase font-medium">2 pieces</p>
+			<p class="p-normal uppercase font-medium">Drugs</p>
+			<p v-if="taskProducts?.length" class="p-normal uppercase font-medium">
+				{{ taskProducts.length }} pieces
+			</p>
 		</div>
 
 		<div
-			class="
-				flex flex-col
-				gap-4
-				border border-blackLight
-				rounded
-				px-2
-				py-4
-				mt-2
-				bg-grayishWhite
-			"
+			class="flex flex-col gap-4 border border-blackLight rounded px-2 py-4 mt-2 bg-grayishWhite"
 		>
 			<product-overview
-				medicine-name="Simvastatin ABC Pharma 20 mg, op98"
+				v-for="(product, index) in taskProducts"
+				:key="product.name"
+				:medicine-name="product.name"
 				medicine-id="001"
-				instructions="Half a tablet in the morning to treat allergic rashes"
-				:price="price"
-			/>
-			<product-overview
-				hide-border
-				medicine-name="Simvastatin ABC Pharma 20 mg, op98"
-				medicine-id="001"
-				instructions="Half a tablet in the morning to treat allergic rashes"
-				:price="price"
+				:instructions="product.prescription_dosage_instruction"
+				:hide-border="index === taskProducts.length - 1"
 			/>
 		</div>
 
-		<div class="flex justify-between mt-4">
+		<!-- <div class="flex justify-between mt-4">
 			<p class="p-normal uppercase font-medium">
 				Other medicine (webshop products)
 			</p>
-			<p class="p-normal uppercase font-medium">2 pieces</p>
-		</div>
+			<p v-if="taskProducts?.length" class="p-normal uppercase font-medium">
+				{{ taskProducts.length }} pieces
+			</p>
+		</div> -->
 
-		<div
-			class="
-				flex flex-col
-				gap-4
-				border border-blackLight
-				rounded
-				px-2
-				py-4
-				mt-2
-				bg-grayishWhite
-			"
-		>
-			<product-overview
-				medicine-name="Simvastatin ABC Pharma 20 mg, op98"
-				medicine-id="001"
-				instructions="Half a tablet in the morning to treat allergic rashes"
-				:price="price"
-			/>
-			<product-overview
-				hide-border
-				medicine-name="Simvastatin ABC Pharma 20 mg, op98"
-				medicine-id="001"
-				instructions="Half a tablet in the morning to treat allergic rashes"
-				:price="price"
-			/>
-		</div>
+		<p class="p-normal font-medium self-end mt-4">
+			{{ taskProducts.length }} Products
+		</p>
 
-		<p class="p-normal font-medium self-end mt-4">3 Products {{ price }}</p>
-
-		<div v-if="orderType === 'listing'" class="self-end flex gap-2 my-2">
+		<div v-if="orderType === 'prescription'" class="self-end flex gap-2 my-2">
 			<button class="p-2.5 font-semibold text-center text-[15px] uppercase">
 				Hold
 			</button>
@@ -123,18 +80,25 @@
 import { defineComponent, PropType } from 'vue'
 import ProductOverview from '../ProductOverview.vue'
 import IconCheck from './IconCheck.vue'
-import { Task } from '~/types/pharmacist'
+import { TaskData, TaskProduct, TaskType } from '~/types/pharmacist'
 
 export default defineComponent({
 	components: { ProductOverview, IconCheck },
 	props: {
 		isDue: Boolean,
-		orderType: {
-			type: String as PropType<Task>,
-			default: 'payed',
-		},
-		price: String,
 		wantsMedicalHelp: Boolean,
+		orderType: {
+			type: String as PropType<TaskType>,
+			required: true,
+		},
+		taskProducts: {
+			type: Array as PropType<TaskProduct[]>,
+			required: true,
+		},
+		task: {
+			type: Object as PropType<TaskData | null>,
+			required: true,
+		},
 	},
 })
 </script>

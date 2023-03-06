@@ -3,16 +3,14 @@
 		<greeting-section :name="name" />
 		<div class="lg:self-center lg:w-full lg:max-w-screen-xl">
 			<section
-				class="
-					px-4
-					lg:-mt-32 lg:flex lg:justify-between lg:gap-8 lg:w-full lg:items-start
-				"
+				class="px-4 lg:-mt-32 lg:flex lg:justify-between lg:gap-8 lg:w-full lg:items-start"
 			>
 				<div class="max-w-5xl pt-6 lg:pt-0">
 					<pending-prescription
 						v-if="cardNumber === 1"
 						title="Reseptejäsi päivitetään"
-						@click="cardNumber = 2"
+						:prescription-update-at="attributes.prescription_updated"
+						@update-prescription="updatePrescriptions"
 					/>
 
 					<order-ready v-else-if="cardNumber === 2" @click="cardNumber = 3" />
@@ -51,9 +49,15 @@ import NewsSection from '~/components/StoreHome/NewsSection.vue'
 import StoreOrderSent from '~/components/StoreOrderSent.vue'
 import { dummyProducts } from '~/dummy/dummyReviews'
 import { GetProductsParams } from '~/types/apiParams'
-import { GET_CURRENCY, GET_PRODUCTS } from '~/utils/api/urls'
+import { User } from '~/types/user'
+import {
+	GET_CURRENCY,
+	GET_PRODUCTS,
+	UPDATE_PRESCRIPTION,
+} from '~/utils/api/urls'
 import { createGetURL } from '~/utils/api/urlsParams'
 import useScreen from '~/utils/hooks/useScreen'
+import { getAttributes } from '~/utils/user'
 export default defineComponent({
 	components: {
 		NewsSection,
@@ -93,17 +97,56 @@ export default defineComponent({
 		} catch (e) {
 			console.log(e)
 			return {
-				products: dummyProducts,
 				currencyInfo: null,
 			}
 		}
 	},
 	data() {
+		const user = this.$auth.user as User
+		const attributes = getAttributes(user)
 		return {
 			name: 'Ulla',
 			dummyProducts,
+			user,
+			products: [] as any, // TODO type
+			currencyInfo: null as any, // TODO type
+			attributes,
 			cardNumber: 1,
 		}
+	},
+	watch: {
+		'$auth.user': {
+			handler() {
+				const user = this.$auth.user as User
+				const attributes = getAttributes(user)
+				this.attributes = attributes
+				this.user = user
+				console.log('user changed', user, attributes);
+			},
+			deep: true,
+		},
+	},
+	methods: {
+		async updatePrescriptions() {
+			try {
+				await this.$axios.$put(UPDATE_PRESCRIPTION, {
+					tasks: [
+						{
+							ssn: this.attributes.hetu,
+							customer_firstname: this.user.firstname,
+							customer_lastname: this.user.lastname,
+							type: 'update',
+							status: 'new',
+							requires_contacting: 1,
+							customer_contacted: 0,
+						},
+					],
+				})
+				await this.$auth.fetchUser()
+			} catch (e) {
+				console.log(e)
+			}
+		},
 	},
 })
 </script>

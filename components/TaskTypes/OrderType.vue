@@ -4,32 +4,24 @@
 			biggerSpacing ? 'p-2 gap-2' : 'p-1 gap-1'
 		} ${orderTypeBg}`"
 	>
-		<icon-prescription v-if="orderType === 'listing'" size="small" />
-		<icon-pill-pack v-else-if="orderType === 'handling'" size="small" />
-		<icon-profile v-else-if="orderType === 'waiting'" size="small" />
-		<icon-minus v-else-if="orderType === 'contact'" size="small" />
-		<icon-check v-else-if="orderType === 'payed'" size="small" color="white" />
+		<icon-pill-pack v-if="orderType === 'prescription'" size="small" />
+		<icon-profile v-else-if="orderType === 'update'" size="small" />
+		<icon-minus v-else-if="needsContacting" size="small" />
 		<close-icon v-else size="small" />
-		<span :class="`whitespace-nowrap text-ellipsis ${orderType === 'payed' ? 'text-white' : ''}`">{{
-			orderTypeText
-		}}</span>
+		<span :class="`whitespace-nowrap text-ellipsis`">{{ orderTypeText }}</span>
 	</div>
 </template>
 
 <script lang='ts'>
 import { computed, defineComponent, onMounted, PropType, ref, watch } from 'vue'
-import type { Task } from '../../types/pharmacist'
+import type { TaskType } from '../../types/pharmacist'
 import CloseIcon from '../Icons/CloseIcon.vue'
-import IconCheck from '../Icons/IconCheck.vue'
 import IconMinus from '../Icons/IconMinus.vue'
 import IconPillPack from '../Icons/IconPillPack.vue'
-import IconPrescription from '../Icons/IconPrescription.vue'
 import IconProfile from '../Icons/IconProfile.vue'
 
 export default defineComponent({
 	components: {
-		IconPrescription,
-		IconCheck,
 		CloseIcon,
 		IconPillPack,
 		IconProfile,
@@ -37,8 +29,9 @@ export default defineComponent({
 	},
 	props: {
 		biggerSpacing: Boolean,
+		needsContacting: Boolean,
 		orderType: {
-			type: String as PropType<Task>,
+			type: String as PropType<TaskType>,
 			required: true,
 		},
 	},
@@ -52,31 +45,27 @@ export default defineComponent({
 
 		function setOrderProperties() {
 			switch (orderType.value) {
-				case 'contact':
-					orderTypeText.value = 'Waiting for customer contact'
-					orderTypeBg.value = 'bg-yellowWarning'
-					break
-				case 'handling':
+				case 'update':
 					orderTypeText.value = 'Prescription handling'
 					orderTypeBg.value = 'bg-redLightest'
-
 					break
-				case 'listing':
+				case 'prescription':
 					orderTypeText.value = 'Prescription listing'
 					orderTypeBg.value = 'bg-oceanBold'
 					break
-				case 'waiting':
+				case 'pending':
 					orderTypeText.value = 'Waiting for customer'
 					orderTypeBg.value = 'bg-grayishWhite'
 					break
-				case 'payed':
-					orderTypeText.value = 'Paid order'
-					orderTypeBg.value = 'bg-mainBold'
-					break
-				case 'canceled':
+				case 'cancel':
 					orderTypeText.value = 'Cancelled order'
 					orderTypeBg.value = 'bg-redBold'
 					break
+			}
+
+			if (props.needsContacting) {
+				orderTypeText.value = 'Contact customer'
+				orderTypeBg.value = 'bg-grayishWhite'
 			}
 		}
 

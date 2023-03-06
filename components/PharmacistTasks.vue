@@ -21,95 +21,39 @@
 
 		<div class="flex flex-col gap-4 mt-4 flex-1 overflow-y-scroll">
 			<pharmacist-task
-				name="John Doe"
-				task-type="payed"
+				v-for="task in tasks"
+				:key="task.id"
+				:name="`${task.customer_firstname} ${task.customer_lastname}`"
+				:task-type="task.type"
 				:minutes-passed="10"
-				:selected="selected === 1"
-				@on-select="
-					() => {
-						selected = 1
-						$emit('on-order', 'payed')
-					}
-				"
-			/>
-			<pharmacist-task
-				name="John Doe"
-				task-type="canceled"
-				:minutes-passed="12"
-				:selected="selected === 2"
-				@on-select="
-					() => {
-						selected = 2
-						$emit('on-order', 'canceled')
-					}
-				"
-			/>
-			<pharmacist-task
-				name="John Doe"
-				task-type="handling"
-				:minutes-passed="16"
-				:selected="selected === 3"
-				@on-select="
-					() => {
-						selected = 3
-						$emit('on-order', 'handling')
-					}
-				"
-			/>
-			<pharmacist-task
-				name="John Doe"
-				task-type="listing"
-				:minutes-passed="11"
-				:selected="selected === 4"
-				@on-select="
-					() => {
-						selected = 4
-						$emit('on-order', 'listing')
-					}
-				"
-			/>
-			<pharmacist-task
-				name="John Doe"
-				task-type="waiting"
-				:minutes-passed="5"
-				:selected="selected === 5"
-				@on-select="
-					() => {
-						selected = 5
-						$emit('on-order', 'waiting')
-					}
-				"
-			/>
-			<pharmacist-task
-				name="John Doe"
-				task-type="contact"
-				:minutes-passed="5"
-				:selected="selected === 6"
-				@on-select="
-					() => {
-						selected = 6
-						$emit('on-order', 'contact')
-					}
-				"
+				:selected="task.id === selectedTaskId"
+				:needs-contacting="task.requires_contacting === '1'"
+				@on-select="$emit('on-select-task', task.id)"
 			/>
 		</div>
 	</aside>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { PropType, defineComponent } from 'vue'
 import PharmacistTask from './PharmacistTask.vue'
 import SwitchButton from './SwitchButton.vue'
+import { TaskData } from '~/types/pharmacist'
 
 export default defineComponent({
 	components: { SwitchButton, PharmacistTask },
-	props: {},
-	emits: ['on-order'],
-	setup() {
-		const selected = ref(-1)
-		const waitingOrders = ref(false)
+	props: {
+		tasks: { type: Array as PropType<TaskData[]>, default: () => [] },
+		selectedTaskId: { type: String, default: '0' },
+	},
 
-		return { selected, waitingOrders }
+	emits: ['on-order', 'on-select-task'],
+
+	data() {
+		return {
+			selected: -1,
+			waitingOrders: false,
+		}
 	},
 })
 </script>

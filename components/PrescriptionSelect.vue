@@ -32,13 +32,14 @@
 		</section>
 		<section class="px-4 pb-12">
 			<prescription-item
-				v-for="prescription in prescriptions"
-				:id="prescription.id"
-				:key="prescription.id"
-				:name="prescription.name"
-				:selected="prescription.selected"
-				@toggle="onSelect"
-				@show-info="onShowInfo"
+				v-for="product in prescribedProducts"
+				:id="product.id"
+				:key="product.id"
+				:name="product.medicine_name"
+				:instructions="product.prescription_dosage_instruction"
+				:selected="selectedProductIds.includes(product.id)"
+				@toggle="$emit('toggle', product.id)"
+				@show-info="showProduct(product)"
 			/>
 			<p class="p-normal mt-6">
 				Painamalla Lähetä-painiketta, tilaus siirtyy Farmaseutin käsiteltäväksi.
@@ -61,37 +62,29 @@
 				lapped.
 			</p>
 		</section>
-		<section class="px-4 pb-12 bg-greenHover">
-			<prescription-item
-				v-for="prescription in prescriptionsOther"
-				:id="prescription.id"
-				:key="prescription.id"
-				:name="prescription.name"
-				:selected="prescription.selected"
-				@toggle="onSelectOther"
-			/>
-		</section>
+
 		<modal-container v-if="showModal">
 			<info-modal
-				:product="infoProduct"
-				@on-option-select="onChangeOption"
-				@add="add"
-				@subtract="subtract"
-				@close="closeModal"
+				:product="selectedProduct"
+				:product-additions="productAdditions"
+				@on-substitute-select="onSubstitute"
+				@add="addAmount"
+				@subtract="subtractAmount"
+				@close="showModal = false"
 			/>
 		</modal-container>
 	</div>
 </template>
 
-<script>
-import { defineComponent, ref } from 'vue'
-import { prescribedProducts } from '~/dummy/dummyproducts'
+<script lang="ts">
+import { defineComponent, PropType } from 'vue'
 import MainButton from '~/components/Button/MainButton.vue'
 import PendingPrescription from '~/components/PendingPrescription.vue'
 import PrescriptionItem from '~/components/PrescriptionItem.vue'
 import ModalContainer from '~/components/ModalContainer.vue'
 import InfoModal from '~/components/InfoModal.vue'
 import ArrowRightIcon from '~/components/Icons/ArrowRightIcon.vue'
+import { PrescribedProduct, PrescribedProductAddition } from '~/types/user'
 export default defineComponent({
 	components: {
 		PendingPrescription,
@@ -101,70 +94,59 @@ export default defineComponent({
 		InfoModal,
 		ArrowRightIcon,
 	},
-	emits: ['on-select-any', 'on-show'],
-	setup(_, { emit }) {
-		const name = ref('Ulla')
-		const prescriptions = ref([...prescribedProducts])
-		const prescriptionsOther = ref([...prescribedProducts])
-		const infoProduct = ref(prescribedProducts[0])
-		const showModal = ref(false)
-		const showOrder = ref(false)
-		const orderTab = ref(false)
+	props: {
+		prescribedProducts: {
+			type: Array as PropType<PrescribedProduct[]>,
+			default: () => [],
+		},
+		selectedProductIds: {
+			type: Array as PropType<string[]>,
+			required: true,
+		},
+		productAdditions: {
+			type: Map as PropType<Map<any, PrescribedProductAddition>>,
+			required: true,
+		},
+	},
+	emits: ['toggle', 'on-show'],
 
-		const updateProduct = (value, field, index) => {
-			prescriptions.value[index][field] = value
-		}
-
-		const onSelect = (id) => {
-			const index = prescriptions.value.findIndex((item) => item.id === id)
-			prescriptions.value[index].selected = !prescriptions.value[index].selected
-			showOrder.value = true
-			emit('on-select-any')
-		}
-		const onSelectOther = (id) => {
-			const index = prescriptions.value.findIndex((item) => item.id === id)
-			prescriptions.value[index].selected = !prescriptions.value[index].selected
-		}
-
-		const onChangeOption = (id) => {
-			infoProduct.value.selectedOption = id
-		}
-
-		const add = () => {
-			infoProduct.value.amount++
-		}
-		const subtract = () => {
-			infoProduct.value.amount--
-		}
-
-		const onShowInfo = (id) => {
-			infoProduct.value = prescribedProducts.find(
-				(product) => product.id === id
-			)
-			showModal.value = true
-		}
-
-		const closeModal = () => {
-			showModal.value = false
-		}
-
+	data() {
 		return {
-			name,
-			prescriptions,
-			prescriptionsOther,
-			infoProduct,
-			showModal,
-			showOrder,
-			orderTab,
-			updateProduct,
-			add,
-			subtract,
-			onSelect,
-			onSelectOther,
-			onShowInfo,
-			onChangeOption,
-			closeModal,
+			showModal: false,
+			showOrder: false,
+			selectedProduct: null as PrescribedProduct | null,
 		}
+	},
+
+	methods: {
+		showProduct(product: PrescribedProduct) {
+			this.selectedProduct = product
+			this.showModal = true
+		},
+		addAmount(amount: number) {
+			const additionChange = this.productAdditions.get(this.selectedProduct?.id)
+			if (additionChange) {
+				additionChange.amount = amount
+			}
+		},
+		subtractAmount(amount: number) {
+			const additionChange = this.productAdditions.get(this.selectedProduct?.id)
+			if (additionChange) {
+				additionChange.amount = amount
+			}
+		},
+		onChangeOption(productId: string, substituteId: string) {
+			const additionChange = this.productAdditions.get(productId)
+			if (additionChange) {
+				additionChange.substituteId = substituteId
+			}
+		},
+		onSubstitute(sku: string) {
+			const additionChange = this.productAdditions.get(this.selectedProduct?.id)
+			if (additionChange) {
+				additionChange.substituteId = sku
+			}
+		},
 	},
 })
 </script>

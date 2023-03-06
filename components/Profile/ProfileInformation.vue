@@ -2,18 +2,11 @@
 	<profile-wrapper @on-go-back="$emit('on-go-back')">
 		<section class="flex flex-col gap-4 mt-4">
 			<profile-accordion title="Ulla Espoolainen" subtitle="Louhentie 5 A 14">
-				<profile-field
-					title="STREET ADDRESS"
-					subtitle="Louhentie 5 A 14 02130, Espoo"
-				>
+				<profile-field title="STREET ADDRESS" :subtitle="wholeAddress">
 				</profile-field>
-				<profile-field title="PHONE NUMBER" subtitle="050 123 4567">
+				<profile-field title="PHONE NUMBER" :subtitle="phone">
 					<form class="flex flex-col">
-						<text-input
-							value="050 123 4567"
-							field="phone"
-							label="Phone number"
-						/>
+						<text-input :value="phone" field="phone" label="Phone number" />
 						<div class="flex self-end mt-2">
 							<button class="button-no-bg uppercase py-1 px-1">cancel</button>
 							<input
@@ -24,13 +17,9 @@
 						</div>
 					</form>
 				</profile-field>
-				<profile-field title="EMAIL" subtitle="ulla.espoolainen@sähköposti.net">
+				<profile-field title="EMAIL" :subtitle="email">
 					<form class="flex flex-col">
-						<text-input
-							value="ulla.espoolainen@sähköposti.net"
-							field="phone"
-							label="Email"
-						/>
+						<text-input :value="email" field="email" label="Email" />
 						<div class="flex self-end mt-2">
 							<button class="button-no-bg uppercase py-1 px-1">cancel</button>
 							<input
@@ -45,13 +34,13 @@
 				<div class="flex flex-col my-8 gap-4 px-4">
 					<check-box
 						:selected="marketing1"
-						@toggle="toggleMarketing1"
+						@toggle="marketing1 = !marketing1"
 						title="Marketing 1"
 						subtitle="Lorem ipsum dolor sita met tosi pitkällä rivillä niin nähdään miten käyttäytyy"
 					/>
 					<check-box
 						:selected="marketing2"
-						@toggle="toggleMarketing2"
+						@toggle="marketing2 = !marketing2"
 						title="Marketing 2"
 						subtitle="Lorem ipsum dolor sita met tosi pitkällä rivillä niin nähdään miten käyttäytyy"
 					/>
@@ -101,7 +90,7 @@
 	</profile-wrapper>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, ref } from 'vue'
 import AddField from '~/components/AddField.vue'
 import AddressForm from '~/components/AddressForm.vue'
@@ -111,6 +100,8 @@ import TextInput from '~/components/Input/TextInput.vue'
 import ProfileAccordion from '~/components/ProfileAccordion.vue'
 import ProfileField from '~/components/ProfileField.vue'
 import ProfileWrapper from '~/components/ProfileWrapper.vue'
+import { User } from '~/types/user'
+import { getAttributes } from '~/utils/user'
 
 export default defineComponent({
 	components: {
@@ -124,25 +115,32 @@ export default defineComponent({
 		ProfileWrapper,
 	},
 	props: {},
-    emits:['on-go-back'],
-	setup() {
-		const marketing1 = ref(false)
-		const marketing2 = ref(false)
+	emits: ['on-go-back'],
 
-		function toggleMarketing1() {
-			marketing1.value = !marketing1.value
-		}
-
-		function toggleMarketing2() {
-			marketing2.value = !marketing2.value
-		}
+	data() {
+		const user = this.$auth.user as User
+		const attributes = getAttributes(user)
 
 		return {
-			marketing1,
-			marketing2,
-			toggleMarketing1,
-			toggleMarketing2,
+			email: user?.email,
+			phone: user?.addresses?.[0]?.telephone,
+			marketing1: attributes.newsletter1_subscribed !== '0',
+			marketing2: attributes.newsletter2_subscribed !== '0',
 		}
+	},
+
+	computed: {
+		wholeAddress() {
+			const user = this.$auth.user as User
+			const city = user.addresses[0].city
+			const street = user.addresses[0].street[0]
+			const postcode = user.addresses[0].postcode
+			return `${street} ${postcode}, ${city}`
+		},
+	},
+
+	mounted() {
+		console.log(this.$auth.user)
 	},
 })
 </script>

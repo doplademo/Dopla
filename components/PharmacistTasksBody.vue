@@ -1,24 +1,32 @@
 <template>
 	<div class="flex-1 flex gap-4 p-4 bg-grayishWhite items-start">
-		<section class="w-[40%]">
+		<section v-if="task" class="w-[40%]">
 			<div class="w-full flex items-center justify-between">
-				<order-type :order-type="orderType" bigger-spacing />
+				<order-type
+					:order-type="task.type"
+					:needs-contacting="
+						task.requires_contacting === '1' && task.customer_contact === '0'
+					"
+					bigger-spacing
+				/>
 				<p class="p-small text-blackLight col-span-2 ml-2">16.06.2022 13:59</p>
 			</div>
-			<h4 class="heading-four font-semibold mt-4">Ulla Espoolainen</h4>
+			<h4 class="heading-four font-semibold mt-4">
+				{{ `${task.customer_firstname} ${task.customer_lastname}` }}
+			</h4>
 
 			<div class="flex gap-4 mt-4 items-center">
-				<p class="p-large p-medium">050 1234 123</p>
-				<copy-button copy="050 1234 123" />
+				<p class="p-large p-medium">{{ task.telephone }}</p>
+				<copy-button :copy="task.telephone" />
 			</div>
 			<div class="flex flex-col gap-2">
 				<text-input
-					:value="ssn"
+					:value="task.ssn"
 					label="social security number"
 					class-name="mt-4"
 				/>
 
-				<copy-button :copy="ssn" />
+				<copy-button :copy="task.ssn" />
 			</div>
 		</section>
 
@@ -30,28 +38,12 @@
 			</div>
 
 			<div
-				class="
-					flex
-					justify-between
-					items-center
-					mt-4
-					pb-3
-					border-b border-redLightest
-				"
+				class="flex justify-between items-center mt-4 pb-3 border-b border-redLightest"
 			>
 				<p class="heading-five font-medium">Prescriptions (4)</p>
 				<div class="flex items-center gap-2">
 					<button
-						class="
-							flex
-							gap-2
-							items-center
-							px-2
-							py-1
-							uppercase
-							rounded
-							bg-redLightest
-						"
+						class="flex gap-2 items-center px-2 py-1 uppercase rounded bg-redLightest"
 					>
 						<icon-refresh />
 						<span class="text-sm font-semibold">Update</span>
@@ -62,15 +54,16 @@
 
 			<!-- sdklaskjdh -->
 
-			<pharmacist-prescriptions
-				v-if="orderType === 'waiting' || orderType === 'contact'"
-			/>
-			<pharmacist-no-prescription v-else-if="orderType === 'handling'" />
+			<!-- <pharmacist-prescriptions
+				v-if="false"
+			/> -->
 			<pharmacist-receipt
-				v-else
-				:orderType="orderType"
-				:price="orderType !== 'listing' ? '99.99 €' : ''"
+				v-if="taskProducts?.length"
+				:order-type="orderType"
+				:task-products="taskProducts"
+				:task="task"
 			/>
+			<pharmacist-no-prescription v-else />
 		</section>
 	</div>
 </template>
@@ -86,7 +79,7 @@ import TextInput from './Input/TextInput.vue'
 import PharmacistPrescriptions from './PharmacistPrescriptions.vue'
 import PharmacistNoPrescription from './PharmacistView/PharmacistNoPrescription.vue'
 import OrderType from './TaskTypes/OrderType.vue'
-import { Task } from '~/types/pharmacist'
+import { TaskData, TaskProduct, TaskType } from '~/types/pharmacist'
 
 export default defineComponent({
 	components: {
@@ -102,7 +95,15 @@ export default defineComponent({
 	},
 	props: {
 		orderType: {
-			type: String as PropType<Task>,
+			type: String as PropType<TaskType>,
+			required: true,
+		},
+		task: {
+			type: Object as PropType<TaskData | null>,
+			required: true,
+		},
+		taskProducts: {
+			type: Array as PropType<TaskProduct[]>,
 			required: true,
 		},
 	},
@@ -115,6 +116,7 @@ export default defineComponent({
 			isOk,
 		}
 	},
+	computed: {},
 })
 </script>
 

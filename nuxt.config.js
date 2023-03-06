@@ -61,12 +61,14 @@ export default {
 		baseURL: BASE_URL,
 	},
 
-	// server: {
-	// 	https: {
-	// 		key: fs.readFileSync(path.resolve(__dirname, 'localhost-key.pem')),
-	// 		cert: fs.readFileSync(path.resolve(__dirname, 'localhost.pem')),
-	// 	},
-	// },
+	server: {
+		// https: {
+		// 	key: fs.readFileSync(path.resolve(__dirname, 'localhost-key.pem')),
+		// 	cert: fs.readFileSync(path.resolve(__dirname, 'localhost.pem')),
+		// },
+		host: '0.0.0.0',
+		port: 8000,
+	},
 
 	auth: {
 		strategies: {

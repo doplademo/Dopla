@@ -5,11 +5,23 @@
 			:current-step="2"
 			steps-text-indicator="Prescription listing"
 		/>
-		<pharmacist-task-nav />
+		<pharmacist-task-nav
+			:set-filter="filterTasks"
+			:selected-task="selectedFilter"
+		/>
 		<main class="w-full flex gap-4 h-[770px] mt-4">
-			<pharmacist-tasks @on-order="setOrderType" />
+			<pharmacist-tasks
+				:tasks="tasks"
+				:selected-task-id="selectedTaskId"
+				@on-select-task="selectTask"
+				@on-order="setOrderType"
+			/>
 
-			<pharmacist-tasks-body :order-type="orderType" />
+			<pharmacist-tasks-body
+				:task="selectedTask"
+				:order-type="orderType"
+				:task-products="taskProducts"
+			/>
 		</main>
 
 		<div class="flex gap-4 justify-end pr-48 mt-6">
@@ -37,8 +49,9 @@ import PharmacistTaskNav from '~/components/PharmacistTaskNav.vue'
 import PharmacistTasks from '~/components/PharmacistTasks.vue'
 import PharmacistTasksBody from '~/components/PharmacistTasksBody.vue'
 import StepIndicator from '~/components/StepIndicator.vue'
-import { Task } from '~/types/pharmacist'
-import { GET_PHARMACIST_TASKS } from '~/utils/api/urls'
+import { Task, TaskProduct, TaskType } from '~/types/pharmacist'
+import { GET_PHARMACIST_TASKS, GET_TASK_PRODUCTS } from '~/utils/api/urls'
+import { loadPharmacist } from '~/utils/pharmacist'
 
 export default defineComponent({
 	components: {
@@ -49,7 +62,9 @@ export default defineComponent({
 		ArrowRightIcon,
 		StepIndicator,
 	},
-	props: {},
+
+	layout: 'onboarding',
+
 	setup() {
 		const orderType = ref<Task>('handling')
 
@@ -63,15 +78,25 @@ export default defineComponent({
 			setOrderType,
 		}
 	},
+	async asyncData({ $axios, $auth, route, redirect }) {
+		const token = route.query.token
+		if (token) {
+			await loadPharmacist(token as string, $auth, redirect)
+			return
+		}
 
-	async asyncData({ $axios, $auth }) {
-		// if (!$auth) {
-		// 	console.log("NOT LOGGED IN, CAN'T GET TASKS")
-		// 	return {}
-		// }
 		try {
 			const res = await $axios.$get(GET_PHARMACIST_TASKS)
-			return { tasks: res.data }
+			const bam = await $axios.$get(GET_TASK_PRODUCTS + 1)
+
+			console.log(bam)
+			const firstTask = res[0]
+			return {
+				tasks: res,
+				selectedFilter: 'all' as TaskType,
+				selectedTaskId: firstTask.id,
+				selectedTask: firstTask,
+			}
 		} catch (error) {
 			console.log(error)
 			return {
@@ -79,19 +104,45 @@ export default defineComponent({
 			}
 		}
 	},
-	async mounted() {
-		// console.log(this.tasks)
-		try {
-			console.log('BEFORE GETTING TASKS')
-			const res = await this.$axios.$get(GET_PHARMACIST_TASKS)
-			console.log('DATA', res.data)
-			return { tasks: res.data }
-		} catch (error) {
-			console.log(error)
-			return {
-				tasks: [],
-			}
+
+	data() {
+		return {
+			tasks: [],
+			selectedFilter: 'all' as TaskType,
+			selectedTaskId: '0',
+			selectedTask: null,
+			taskProducts: [] as TaskProduct[],
 		}
+	},
+
+	watch: {
+		tasks(newTasks) {
+			console.log(newTasks)
+		},
+		selectedTaskId(newId) {
+			this.selectedTask = this.tasks.find((task: any) => task.id === newId)!
+			this.setTaskProducts(newId)
+		},
+	},
+
+	mounted() {
+		this.setTaskProducts(this.selectedTaskId)
+	},
+
+	methods: {
+		async filterTasks(filter: TaskType) {
+			const filterParam = filter === 'all' ? '' : `?filter=${filter}`
+			const res = await this.$axios.$get(GET_PHARMACIST_TASKS + filterParam)
+			this.selectedFilter = filter
+			this.tasks = res
+		},
+		async setTaskProducts(id: string) {
+			const products = await this.$axios.$get(GET_TASK_PRODUCTS + id)
+			this.taskProducts = products.slice(1)
+		},
+		selectTask(id: string) {
+			this.selectedTaskId = id
+		},
 	},
 })
 </script>

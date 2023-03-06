@@ -1,19 +1,6 @@
 <template>
 	<div
-		class="
-			flex flex-col
-			nav-container
-			height-transition
-			rounded-md
-			bg-mainBold
-			fixed
-			top-1
-			left-1
-			right-1
-			h-[60px]
-			z-10
-			lg:justify-center
-		"
+		class="flex flex-col nav-container height-transition rounded-md bg-mainBold fixed top-1 left-1 right-1 h-[60px] z-10 lg:justify-center"
 	>
 		<nav class="flex items-center justify-between px-3 py-4 lg:py-0 lg:px-10">
 			<nuxt-link to="/store">
@@ -58,15 +45,7 @@
 
 				<nuxt-link
 					to="/profile"
-					class="
-						flex
-						gap-2
-						text-white
-						items-center
-						uppercase
-						text-[15px]
-						font-semibold
-					"
+					class="flex gap-2 text-white items-center uppercase text-[15px] font-semibold"
 				>
 					<div :class="`p-1 ${isProfile ? 'bg-white rounded-md' : ''}`">
 						<profile-icon
@@ -74,7 +53,7 @@
 							:color="isProfile ? Colors.greenBold : Colors.white"
 						/>
 					</div>
-					<span>Ulla</span>
+					<span>{{ $auth.user?.firstname }}</span>
 				</nuxt-link>
 			</div>
 		</nav>

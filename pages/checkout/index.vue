@@ -1,58 +1,3 @@
-<script>
-import { defineComponent, ref } from 'vue'
-import { dummyProducts } from '~/dummy/dummyReviews'
-import { dummyAddress, emptyAddress } from '~/dummy/dummyAddress'
-import BasketProduct from '~/components/BasketProduct.vue'
-import ExpandibleRadioField from '~/components/ExpandibleRadioField.vue'
-import AddressForm from '~/components/AddressForm.vue'
-import AddField from '~/components/AddField.vue'
-import CardForm from '~/components/CardForm.vue'
-import RadioField from '~/components/RadioField.vue'
-import BankTransferOptions from '~/components/BankTransferOptions.vue'
-import CheckBox from '~/components/Input/CheckBox.vue'
-
-import { Images } from '~/utils/Images'
-import CheckoutHero from '~/components/CheckoutHero.vue'
-export default defineComponent({
-	components: {
-		BasketProduct,
-		ExpandibleRadioField,
-		AddressForm,
-		AddField,
-		CardForm,
-		RadioField,
-		BankTransferOptions,
-		CheckBox,
-		CheckoutHero,
-	},
-	setup() {
-		const products = ref(dummyProducts)
-		const address = ref(dummyAddress)
-		const empty = ref(emptyAddress)
-		function changeField(value, field) {
-			address.value[field] = value
-		}
-		function changeEmpty(value, field) {
-			empty.value[field] = value
-		}
-
-		return {
-			products,
-			address,
-			empty,
-			changeField,
-			changeEmpty,
-		}
-	},
-
-	data() {
-		return {
-			Images,
-		}
-	},
-})
-</script>
-  
 <template>
 	<main class="flex flex-col lg:pb-24">
 		<checkout-hero title="Hi, Ulla!">
@@ -63,41 +8,13 @@ export default defineComponent({
 
 		<div class="lg:self-center lg:w-full lg:max-w-screen-xl">
 			<div
-				class="
-					px-4
-					lg:-mt-16
-					lg:flex
-					lg:flex-row-reverse
-					lg:justify-between
-					lg:gap-32
-					lg:w-full
-					lg:items-start
-				"
+				class="px-4 lg:-mt-16 lg:flex lg:flex-row-reverse lg:justify-between lg:gap-32 lg:w-full lg:items-start"
 			>
 				<section
-					class="
-						pt-20
-						pb-4
-						px-3
-						bg-greenHover
-						lg:bg-white
-						lg:w-full
-						lg:max-w-[400px]
-						lg:rounded-md
-						lg:border
-						lg:border-blackLightest
-						lg:py-4
-					"
+					class="pt-20 pb-4 px-3 bg-greenHover lg:bg-white lg:w-full lg:max-w-[400px] lg:rounded-md lg:border lg:border-blackLightest lg:py-4"
 				>
 					<p
-						class="
-							p-normal
-							uppercase
-							w-full
-							text-center text-blackMedium
-							font-semibold
-							lg:hidden
-						"
+						class="p-normal uppercase w-full text-center text-blackMedium font-semibold lg:hidden"
 					>
 						Basket
 					</p>
@@ -155,7 +72,11 @@ export default defineComponent({
 						/></expandible-radio-field>
 						<!-- Dummy address without data -->
 						<add-field class="mt-4" title="Add new delivery method">
-							<address-form :addressInfo="empty" @field-change="changeField" />
+							<address-form
+								:address-info="newDeliveryAddress"
+								:locations="postiAddresses"
+								@field-change="onNewDeliveryAddressChange"
+							/>
 						</add-field>
 						<!-- Payment info -->
 						<h4 class="heading-four font-semibold mt-8">Payment</h4>
@@ -179,7 +100,10 @@ export default defineComponent({
 							:title="address.name"
 							:description="address.address"
 						>
-							<address-form :addressInfo="address" @field-change="changeField"
+							<address-form
+								:addressInfo="address"
+								:locations="postiAddresses"
+								@field-change="changeField"
 						/></expandible-radio-field>
 
 						<expandible-radio-field
@@ -211,3 +135,113 @@ export default defineComponent({
 		</div>
 	</main>
 </template>
+
+<script lang="ts">
+import { defineComponent, ref } from 'vue'
+import { dummyProducts } from '~/dummy/dummyReviews'
+import { dummyAddress, emptyAddress } from '~/dummy/dummyAddress'
+import BasketProduct from '~/components/BasketProduct.vue'
+import ExpandibleRadioField from '~/components/ExpandibleRadioField.vue'
+import AddressForm from '~/components/AddressForm.vue'
+import AddField from '~/components/AddField.vue'
+import CardForm from '~/components/CardForm.vue'
+import RadioField from '~/components/RadioField.vue'
+import BankTransferOptions from '~/components/BankTransferOptions.vue'
+import CheckBox from '~/components/Input/CheckBox.vue'
+
+import { Images } from '~/utils/Images'
+import CheckoutHero from '~/components/CheckoutHero.vue'
+import { DeliveryAddress, PostiAddress } from '~/types/user'
+import { getPickupPointsPath } from '~/utils/api/urls'
+export default defineComponent({
+	components: {
+		BasketProduct,
+		ExpandibleRadioField,
+		AddressForm,
+		AddField,
+		CardForm,
+		RadioField,
+		BankTransferOptions,
+		CheckBox,
+		CheckoutHero,
+	},
+	setup() {
+		const products = ref(dummyProducts)
+		const address = ref(dummyAddress)
+		const empty = ref(emptyAddress)
+		function changeField(value, field) {
+			address.value[field] = value
+		}
+		function changeEmpty(value, field) {
+			empty.value[field] = value
+		}
+
+		return {
+			products,
+			address,
+			empty,
+			changeField,
+			changeEmpty,
+		}
+	},
+
+	data() {
+		const newDeliveryAddress: DeliveryAddress = {
+			city: '',
+			recipientName: '',
+			deliveryMethodName: '',
+			streetAddress: '',
+			zipCode: '',
+			deliveryMethod: 'none',
+			pickupPointId: '',
+			pickupPoint: {
+				name: '',
+				id: '',
+			},
+		}
+		return {
+			Images,
+			newDeliveryAddress,
+			deliveryTimeout: null as NodeJS.Timeout | null,
+			postiAddresses: [] as PostiAddress[],
+			newPickupPoints: [] as PostiAddress[],
+		}
+	},
+	watch: {
+		'newDeliveryAddress.zipCode': {
+			handler: function (value) {
+				if (value.length === 5) {
+					this.searchZipCode()
+				}
+			},
+		},
+		'newDeliveryAddress.deliveryMethod': {
+			handler: function (value) {
+				if (value === 'pickup') {
+					this.searchZipCode()
+				}
+			},
+		},
+	},
+	methods: {
+		onNewDeliveryAddressChange(field: string, value: string) {
+			console.log(field, value)
+			this.newDeliveryAddress[field] = value
+		},
+		searchZipCode() {
+			const code = this.newDeliveryAddress.zipCode
+			const isPickup = this.newDeliveryAddress.deliveryMethod === 'pickup'
+			if (code.length === 5 && isPickup) {
+				clearTimeout(this.deliveryTimeout!)
+				this.deliveryTimeout = setTimeout(async () => {
+					const res = await this.$axios.get(
+						getPickupPointsPath(this.newDeliveryAddress.zipCode)
+					)
+					const pickupPoints = JSON.parse(res.data) as PostiAddress[]
+					this.postiAddresses = pickupPoints
+				}, 500)
+			}
+		},
+	},
+})
+</script>

@@ -4,42 +4,35 @@
 			:class="`flex items-center border rounded relative ${
 				showOptions ? 'border-greenBold' : 'border-blackLightest'
 			}`"
-			@click="toggleOptions"
+			@click="showOptions = !showOptions"
 		>
 			<dropdown-info
-				:name="currentOption.name"
-				:description="currentOption.description"
+				v-if="selectedSubstitute"
+				:name="selectedSubstitute.name"
+				:description="selectedSubstitute.price"
 			/>
 			<div id="arrow" :class="`mx-2 ${showOptions ? 'rotate-180' : ''}`">
 				<arrow-down size="small" />
 			</div>
 
 			<div
-				v-if="showOptions"
-				class="
-					mt-2
-					border
-					rounded
-					border-blackLightest
-					absolute
-					top-full
-					w-full
-				"
+				v-if="showOptions && selectedSubstitute"
+				class="mt-2 border rounded border-blackLightest absolute top-full w-full"
 			>
 				<div
-					v-for="option in options"
-					:key="option.id"
+					v-for="[sku, substitute] in substitutes"
+					:key="sku"
 					:class="`flex items-center ${
-						option.id === selectedOption ? 'bg-greenHover' : 'bg-white'
+						sku === selectedSubstitute.sku ? 'bg-greenHover' : 'bg-white'
 					}`"
-					@click="onSelect(option.id)"
+					@click="onSelect(sku)"
 				>
 					<dropdown-info
-						:key="option.id"
-						:name="option.name"
-						:description="option.description"
+						:key="sku"
+						:name="substitute.name"
+						:description="substitute.price"
 					/>
-					<div v-if="selectedOption === option.id" class="mx-2">
+					<div v-if="selectedSubstitute.sku === sku" class="mx-2">
 						<check-icon size="small" />
 					</div>
 				</div>
@@ -49,47 +42,33 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, ref } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import ArrowDown from './Icons/ArrowDown.vue'
 import DropdownInfo from './DropdownInfo.vue'
 import CheckIcon from './Icons/CheckIcon.vue'
-import type { OptionsType } from '~/dummy/dummyproducts'
+import { Substitute } from '~/types/user'
 export default defineComponent({
 	components: { ArrowDown, DropdownInfo, CheckIcon },
 	props: {
-		selectedOption: {
-			type: Number,
+		selectedSubstitute: {
+			type: Object as PropType<Substitute | null>,
 			required: true,
 		},
-		options: {
-			type: Array as PropType<OptionsType[]>,
+		substitutes: {
+			type: Map as PropType<Map<string, Substitute>>,
 			required: true,
 		},
 	},
 	emits: ['on-select-option'],
-	setup(props, { emit }) {
-		const showOptions = ref(false)
-		const currentOption = computed(
-			() =>
-				props.options.find(
-					(option: OptionsType) => option.id === props.selectedOption
-				)!
-		)
-
-		const toggleOptions = () => {
-			showOptions.value = !showOptions.value
-		}
-
-		const onSelect = (id: number) => {
-			emit('on-select-option', id)
-		}
-
+	data() {
 		return {
-			showOptions,
-			currentOption,
-			toggleOptions,
-			onSelect,
+			showOptions: false,
 		}
+	},
+	methods: {
+		onSelect(sku: string) {
+			this.$emit('on-select-option', sku)
+		},
 	},
 })
 </script>

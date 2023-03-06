@@ -1,47 +1,52 @@
 <template>
 	<form class="flex flex-col gap-2" @submit.prevent="onSubmit">
 		<text-input
+			id="recipientName"
 			label="Name of recipient*"
-			:value="recipient"
-			field="recipient"
-			id="recipient"
-			@change="onChangeText"
+			:value="addressInfo.recipientName"
+			field="recipientName"
 			type="text"
+			placeholder="Name of recipient"
+			@change="onChangeText"
 		/>
 		<text-input
+			id="deliveryMethodName"
 			label="Name your delivery method"
-			:value="deliveryMethod"
-			field="deliveryMethod"
-			id="deliveryMethod"
-			@change="onChangeText"
+			:value="addressInfo.deliveryMethodName"
+			field="deliveryMethodName"
 			type="text"
+			placeholder="Delivery method name"
+			@change="onChangeText"
 		/>
 		<text-input
-			label="Street address*"
-			:value="address"
-			field="address"
-			id="address"
-			@change="onChangeText"
+			id="streetAddress"
 			type="text"
+			label="Street address*"
+			:value="addressInfo.streetAddress"
+			field="streetAddress"
+			placeholder="Street address"
+			@change="onChangeText"
 		/>
 		<div class="flex justify-between gap-2">
 			<text-input
+				id="zipCode"
+				type="text"
 				class-name="w-5/12"
 				label="Zip code*"
-				:value="zipCode"
+				:value="addressInfo.zipCode"
 				field="zipCode"
-				id="zipCode"
+				placeholder="Zip code"
 				@change="onChangeText"
-				type="text"
 			/>
 			<text-input
+				id="city"
 				class-name="w-5/12"
 				label="City*"
-				:value="city"
+				:value="addressInfo.city"
 				field="city"
-				id="city"
-				@change="onChangeText"
 				type="text"
+				placeholder="City"
+				@change="onChangeText"
 			/>
 		</div>
 
@@ -50,15 +55,24 @@
 				title="Home delivery"
 				description="2,90 - 4,90 E"
 				hide-border
-				:selected="selected === 1"
-				@select="selected = 1"
+				:selected="addressInfo.deliveryMethod === 'home'"
+				@select="$emit('field-change', 'deliveryMethod', 'home')"
 			/>
 			<radio-field
 				title="Pick up from a pick up point"
 				description="1,90 E"
 				hide-border
-				:selected="selected === 2"
-				@select="selected = 2"
+				:selected="addressInfo.deliveryMethod === 'pickup'"
+				@select="$emit('field-change', 'deliveryMethod', 'pickup')"
+			/>
+			<select-input
+				v-if="addressInfo.deliveryMethod === 'pickup'"
+				:placeholder="
+					enteredZipCode ? 'Select pick up point' : 'Enter zip code first'
+				"
+				:get-value="getSelectValue"
+				:get-label="getSelectLabel"
+				:options="locations"
 			/>
 		</div>
 
@@ -75,32 +89,37 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from 'vue'
-import type { AddressType } from '../dummy/dummyAddress'
+import { defineComponent, PropType } from 'vue'
 import TextInput from './Input/TextInput.vue'
 import RadioField from './RadioField.vue'
+import SelectInput from './Input/SelectInput.vue'
+import { DeliveryAddress, PostiAddress } from '~/types/user'
 export default defineComponent({
-	components: { TextInput, RadioField },
+	components: { TextInput, RadioField, SelectInput },
 	props: {
-		addressInfo: Object as PropType<AddressType>,
-		recipient: String,
-		deliveryMethod: String,
-		address: String,
-		zipCode: String,
-		city: String,
+		addressInfo: { type: Object as PropType<DeliveryAddress>, required: true },
+		locations: { type: Array as PropType<PostiAddress[]>, required: true },
 		fromProfile: Boolean,
 	},
-	emits: ['field-change'],
-	setup(props, { emit }) {
-		const selected = ref(-1)
-
-		function onSubmit() {}
-
-		function onChangeText(text: string, field: string) {
-			emit('field-change', text, field)
-		}
-
-		return { onSubmit, onChangeText, selected }
+	emits: ['field-change', 'submit'],
+	computed: {
+		enteredZipCode() {
+			return this.addressInfo.zipCode.length === 5
+		},
+	},
+	methods: {
+		onChangeText(value: string, field: string) {
+			this.$emit('field-change', field, value)
+		},
+		onSubmit() {
+			this.$emit('submit')
+		},
+		getSelectValue(address: PostiAddress) {
+			return address.id
+		},
+		getSelectLabel(address: PostiAddress) {
+			return `${address.name}, ${address.address} ${address.postcode}, ${address.city}`
+		},
 	},
 })
 </script>

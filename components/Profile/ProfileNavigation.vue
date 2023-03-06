@@ -29,7 +29,7 @@
 				lg:text-center lg:p-4
 			"
 		>
-			Ulla Espoolainen
+			{{$auth.user?.firstname}} {{ $auth.user?.lastname }}
 		</h4>
 		<div class="flex flex-col gap-4">
 			<profile-option

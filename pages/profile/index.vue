@@ -3,9 +3,7 @@
 		<div v-if="isDesktop" class="w-full bg-redLightest h-96" />
 		<div class="lg:self-center lg:w-full lg:max-w-screen-xl lg:-mt-64">
 			<div
-				class="
-					lg:px-4 lg:flex lg:justify-between lg:gap-8 lg:w-full lg:items-start
-				"
+				class="lg:px-4 lg:flex lg:justify-between lg:gap-8 lg:w-full lg:items-start"
 			>
 				<profile-navigation
 					v-if="isDesktop || !nav"
@@ -65,6 +63,10 @@ export default defineComponent({
 			onRedirect,
 			onGoBack,
 		}
+	},
+
+	asyncData({ $auth }) {
+		console.log($auth.user)
 	},
 })
 </script>

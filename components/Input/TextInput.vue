@@ -8,23 +8,22 @@
 		>
 		<input
 			:id="id"
-			:class="`text-blackBold px-2 py-1 border rounded-sm lg:text-[17px] lg:py-2.5 lg:px-2 lg:rounded-md ${
+			:class="`text-blackBold px-2 py-1 border rounded-sm lg:text-[17px] lg:py-2.5 lg:px-2 lg:rounded-md focus:outline-1 focus:outline-greenBold ${
 				error ? 'border-redBold' : 'border-blackLightest'
 			}`"
 			:placeholder="placeholder"
 			:value="value"
 			:type="type"
-			@change="textChange($event)"
+			@input="textChange"
 		/>
 		<p v-if="error" class="text-redBold text-xs mt-1">{{ error }}</p>
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-	components: {},
 	props: {
 		type: {
 			type: String,
@@ -59,10 +58,10 @@ export default defineComponent({
 			default: '',
 		},
 	},
-	emits: 'on-change',
+	emits: ['change'],
 	methods: {
-		textChange(event) {
-			this.$emit('on-change', event.target.value, this.$props.field)
+		textChange(event: any) {
+			this.$emit('change', event.target.value, this.$props.field)
 		},
 	},
 })

@@ -10,8 +10,8 @@
 			<div class="mb-2">
 				<p class="p-large flex-1 font-medium">{{ medicineName }}</p>
 			</div>
-			<div class="bg-oceanLight flex items-center rounded p-1">
-				<guide-icon :size="isDesktop ? 30 : 20" />
+			<div v-if="instructions" class="bg-oceanLight flex items-center rounded p-1">
+				<guide-icon :size="25" />
 				<p v-if="instructions" class="p-small ml-2">{{ instructions }}</p>
 			</div>
 		</div>
@@ -20,7 +20,7 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import GuideIcon from './Icons/GuideIcon.vue'
 import useScreen from '~/utils/hooks/useScreen'
 
@@ -31,7 +31,7 @@ export default defineComponent({
 		medicineId: String,
 		price: String,
 		hideBorder: Boolean,
-		instructions: { type: String, default: '' },
+		instructions: { type: String as PropType<string | null>, default: null },
 	},
 	setup() {
 		const { isDesktop } = useScreen()

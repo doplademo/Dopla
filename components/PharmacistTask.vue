@@ -15,7 +15,7 @@
 		@click="$emit('on-select')"
 	>
 		<p class="p-x-small text-blackLight font-medium">001</p>
-		<order-type :order-type="taskType" />
+		<order-type :order-type="taskType" :needs-contacting="needsContacting" />
 		<div class="justify-self-end flex items-center">
 			<icon-check v-if="isOk" />
 			<icon-clock v-else />
@@ -39,7 +39,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue'
-import type { Task } from '../types/pharmacist'
+import type { TaskType } from '../types/pharmacist'
 import IconCheck from './Icons/IconCheck.vue'
 import IconClock from './Icons/IconClock.vue'
 import OrderType from './TaskTypes/OrderType.vue'
@@ -54,9 +54,10 @@ export default defineComponent({
 	},
 	props: {
 		minutesPassed: { type: Number, required: true },
-		taskType: { type: String as PropType<Task>, default: 'waiting' },
+		taskType: { type: String as PropType<TaskType>, default: 'update' },
 		name: String,
 		selected: Boolean,
+		needsContacting: Boolean,
 	},
 	emits: ['on-select'],
 	setup(props) {
