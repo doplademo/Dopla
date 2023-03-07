@@ -87,6 +87,7 @@ export type StoreProduct = {}
 
 export type DeliveryAddress = {
 	city: string
+	id?: number
 	recipientName: string
 	deliveryMethodName: string
 	streetAddress: string
@@ -106,3 +107,5 @@ export type PostiAddress = {
 	name: string
 	postcode: string
 }
+
+export type ValueOf<T> = T[keyof T]

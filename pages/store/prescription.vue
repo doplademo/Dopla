@@ -51,6 +51,8 @@ export default defineComponent({
 		PrescriptionSelect,
 	},
 	layout: 'store',
+	middleware: ['loggedIn', 'basket'],
+
 	setup() {
 		const { isDesktop } = useScreen()
 

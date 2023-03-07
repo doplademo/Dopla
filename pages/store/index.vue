@@ -70,6 +70,8 @@ export default defineComponent({
 		StoreOrderSent,
 	},
 	layout: 'store',
+	middleware: ['basket'],
+
 	setup() {
 		const { isDesktop } = useScreen()
 		return {
@@ -121,7 +123,7 @@ export default defineComponent({
 				const attributes = getAttributes(user)
 				this.attributes = attributes
 				this.user = user
-				console.log('user changed', user, attributes);
+				console.log('user changed', user, attributes)
 			},
 			deep: true,
 		},

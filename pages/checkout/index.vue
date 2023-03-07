@@ -8,7 +8,7 @@
 
 		<div class="lg:self-center lg:w-full lg:max-w-screen-xl">
 			<div
-				class="px-4 lg:-mt-16 lg:flex lg:flex-row-reverse lg:justify-between lg:gap-32 lg:w-full lg:items-start"
+				class="lg:px-4 lg:-mt-16 lg:flex lg:flex-row-reverse lg:justify-between lg:gap-32 lg:w-full lg:items-start"
 			>
 				<section
 					class="pt-20 pb-4 px-3 bg-greenHover lg:bg-white lg:w-full lg:max-w-[400px] lg:rounded-md lg:border lg:border-blackLightest lg:py-4"
@@ -62,15 +62,22 @@
 					</h3>
 					<!-- Address -->
 					<h4 class="heading-four font-semibold">Delivery address</h4>
-					<!-- Dummy address with data -->
+					<!-- User address -->
 					<div class="mt-4">
 						<expandible-radio-field
-							:title="address.name"
-							:description="address.address"
+							v-for="(address, index) in deliveryAddresses"
+							:key="address.id"
+							:title="address.deliveryMethodName"
+							:description="address.streetAddress"
 						>
-							<address-form :addressInfo="address" @field-change="changeField"
-						/></expandible-radio-field>
-						<!-- Dummy address without data -->
+							<address-form
+								:address-info="address"
+								:locations="postiAddresses"
+								:index="index"
+								@field-change="onChangeExistingAddress"
+							/>
+						</expandible-radio-field>
+						<!-- New user data -->
 						<add-field class="mt-4" title="Add new delivery method">
 							<address-form
 								:address-info="newDeliveryAddress"
@@ -96,15 +103,12 @@
 
 						<p class="p-normal text-blackMedium mt-6">Other methods</p>
 
-						<expandible-radio-field
+						<!-- <expandible-radio-field
 							:title="address.name"
 							:description="address.address"
 						>
-							<address-form
-								:addressInfo="address"
-								:locations="postiAddresses"
-								@field-change="changeField"
-						/></expandible-radio-field>
+							<address-form :addressInfo="address" :locations="postiAddresses"
+						/></expandible-radio-field> -->
 
 						<expandible-radio-field
 							class="mt-4"
@@ -139,7 +143,6 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { dummyProducts } from '~/dummy/dummyReviews'
-import { dummyAddress, emptyAddress } from '~/dummy/dummyAddress'
 import BasketProduct from '~/components/BasketProduct.vue'
 import ExpandibleRadioField from '~/components/ExpandibleRadioField.vue'
 import AddressForm from '~/components/AddressForm.vue'
@@ -151,8 +154,9 @@ import CheckBox from '~/components/Input/CheckBox.vue'
 
 import { Images } from '~/utils/Images'
 import CheckoutHero from '~/components/CheckoutHero.vue'
-import { DeliveryAddress, PostiAddress } from '~/types/user'
+import { DeliveryAddress, PostiAddress, User, ValueOf } from '~/types/user'
 import { getPickupPointsPath } from '~/utils/api/urls'
+import { transformUserAddresses } from '~/utils/user'
 export default defineComponent({
 	components: {
 		BasketProduct,
@@ -165,23 +169,21 @@ export default defineComponent({
 		CheckBox,
 		CheckoutHero,
 	},
+	layout: 'store',
+	middleware: ['basket'],
 	setup() {
 		const products = ref(dummyProducts)
-		const address = ref(dummyAddress)
-		const empty = ref(emptyAddress)
-		function changeField(value, field) {
-			address.value[field] = value
-		}
-		function changeEmpty(value, field) {
-			empty.value[field] = value
-		}
 
 		return {
 			products,
-			address,
-			empty,
-			changeField,
-			changeEmpty,
+		}
+	},
+
+	asyncData({ $auth, store }) {
+		const user = $auth.user as User
+		const deliveryAddresses = transformUserAddresses(user?.addresses)
+		return {
+			deliveryAddresses,
 		}
 	},
 
@@ -201,10 +203,12 @@ export default defineComponent({
 		}
 		return {
 			Images,
+			deliveryAddresses: [] as DeliveryAddress[],
 			newDeliveryAddress,
 			deliveryTimeout: null as NodeJS.Timeout | null,
 			postiAddresses: [] as PostiAddress[],
 			newPickupPoints: [] as PostiAddress[],
+			selectedAddressId: '',
 		}
 	},
 	watch: {
@@ -223,10 +227,23 @@ export default defineComponent({
 			},
 		},
 	},
+	mounted() {
+		console.log(this.deliveryAddresses)
+	},
 	methods: {
-		onNewDeliveryAddressChange(field: string, value: string) {
+		onNewDeliveryAddressChange(
+			field: keyof DeliveryAddress,
+			value: ValueOf<DeliveryAddress>
+		) {
 			console.log(field, value)
 			this.newDeliveryAddress[field] = value
+		},
+		onChangeExistingAddress(
+			field: keyof DeliveryAddress,
+			value: ValueOf<DeliveryAddress>,
+			index: number
+		) {
+			this.deliveryAddresses?.[index]?.[field] = value
 		},
 		searchZipCode() {
 			const code = this.newDeliveryAddress.zipCode
@@ -241,6 +258,9 @@ export default defineComponent({
 					this.postiAddresses = pickupPoints
 				}, 500)
 			}
+		},
+		onSelectAddress(addressId: string) {
+			this.selectedAddressId = addressId
 		},
 	},
 })

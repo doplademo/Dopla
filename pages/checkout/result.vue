@@ -29,15 +29,7 @@
 		</checkout-hero>
 
 		<p
-			class="
-				p-normal
-				font-semibold
-				text-blackLight
-				uppercase
-				w-full
-				text-center
-				lg:hidden
-			"
+			class="p-normal font-semibold text-blackLight uppercase w-full text-center lg:hidden"
 		>
 			Confirmation
 		</p>
@@ -48,33 +40,18 @@
 
 		<div class="lg:self-center lg:w-full lg:max-w-screen-xl">
 			<div
-				class="
-					px-4
-					lg:-mt-16
-					lg:flex
-					lg:flex-row-reverse
-					lg:justify-between
-					lg:gap-32
-					lg:w-full
-					lg:items-start
-				"
+				class="px-4 lg:-mt-16 lg:flex lg:flex-row-reverse lg:justify-between lg:gap-32 lg:w-full lg:items-start"
 			>
-            <!-- TODO make the spikes -->
+				<!-- TODO make the spikes -->
 				<section class="mt-4 px-4 py-6">
-					<div class="bg-white p-4 pb-32 lg:border lg:border-blackLightest lg:pb-16">
+					<div
+						class="bg-white p-4 pb-32 lg:border lg:border-blackLightest lg:pb-16"
+					>
 						<h4 class="heading-four">Ison Omenan apteekki</h4>
 						<p class="p-small my-6">Tilausnumero: 123456789</p>
 						<!-- Order info header -->
 						<div
-							class="
-								flex
-								justify-between
-								w-full
-								uppercase
-								text-blackLight
-								pb-2
-								border-b border-blackBold
-							"
+							class="flex justify-between w-full uppercase text-blackLight pb-2 border-b border-blackBold"
 						>
 							<p class="p-small">Määrä</p>
 							<p class="p-small">hinta</p>
@@ -190,7 +167,7 @@ export default defineComponent({
 		TextArea,
 		MainButtonPressable,
 	},
-
+	layout: 'store',
 	setup() {
 		const showComment = ref(false)
 		const rangeValue = ref(5)

@@ -87,6 +87,7 @@ export default defineComponent({
 		ProgressIndicator,
 	},
 
+	layout: 'onboarding',
 	async asyncData({ route, $auth, redirect }) {
 		const token = route.query.token
 		if (!token) {

@@ -56,14 +56,14 @@
 				description="2,90 - 4,90 E"
 				hide-border
 				:selected="addressInfo.deliveryMethod === 'home'"
-				@select="$emit('field-change', 'deliveryMethod', 'home')"
+				@select="$emit('field-change', 'deliveryMethod', 'home', index)"
 			/>
 			<radio-field
 				title="Pick up from a pick up point"
 				description="1,90 E"
 				hide-border
 				:selected="addressInfo.deliveryMethod === 'pickup'"
-				@select="$emit('field-change', 'deliveryMethod', 'pickup')"
+				@select="$emit('field-change', 'deliveryMethod', 'pickup', index)"
 			/>
 			<select-input
 				v-if="addressInfo.deliveryMethod === 'pickup'"
@@ -98,6 +98,7 @@ export default defineComponent({
 	components: { TextInput, RadioField, SelectInput },
 	props: {
 		addressInfo: { type: Object as PropType<DeliveryAddress>, required: true },
+		index: { type: Number, default: 0 },
 		locations: { type: Array as PropType<PostiAddress[]>, required: true },
 		fromProfile: Boolean,
 	},
@@ -109,7 +110,7 @@ export default defineComponent({
 	},
 	methods: {
 		onChangeText(value: string, field: string) {
-			this.$emit('field-change', field, value)
+			this.$emit('field-change', field, value, this.index)
 		},
 		onSubmit() {
 			this.$emit('submit')

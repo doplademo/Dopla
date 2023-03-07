@@ -22,25 +22,37 @@
 					/>
 				</nuxt-link>
 				<button
-					:class="`p-1 rounded ${showBasket ? 'bg-white' : ''}`"
+					:class="`p-1 rounded relative ${showBasket ? 'bg-white' : ''}`"
 					@click.prevent="showBasket = !showBasket"
 				>
 					<basket-icon
-						:size="20"
+						:size="24"
 						:color="showBasket ? Colors.greenBold : Colors.white"
 					/>
+					<p
+						v-if="shouldShowCount"
+						class="p-normal absolute py-[3px] px-1.5 bg-greenBold text-white font-semibold rounded -top-1 -right-1"
+					>
+						{{ basket.items_count }}
+					</p>
 				</button>
 			</div>
 
 			<div v-else class="flex items-center gap-6">
 				<button
-					:class="`p-1 rounded ${showBasket ? 'bg-white' : ''}`"
+					:class="`p-1 rounded relative ${showBasket ? 'bg-white' : ''}`"
 					@click.prevent="showBasket = !showBasket"
 				>
 					<basket-icon
 						:size="26"
 						:color="showBasket ? Colors.greenBold : Colors.white"
 					/>
+					<p
+						v-if="shouldShowCount"
+						class="p-normal absolute py-[3px] px-1.5 bg-greenBold text-white font-semibold rounded -top-1 -right-1"
+					>
+						{{ basket.items_count }}
+					</p>
 				</button>
 
 				<nuxt-link
@@ -58,7 +70,11 @@
 			</div>
 		</nav>
 
-		<nav-basket v-if="showBasket" />
+		<nav-basket
+			v-if="showBasket"
+			:basket="basket"
+			@close-basket="showBasket = false"
+		/>
 	</div>
 </template>
 
@@ -70,6 +86,7 @@ import NavBasket from './NavBasket.vue'
 
 import { Colors } from '~/utils/Colors'
 import useScreen from '~/utils/hooks/useScreen'
+import { Basket } from '~/types/baskte'
 
 const PROFILE_PATH = '/profile'
 export default defineComponent({
@@ -94,6 +111,16 @@ export default defineComponent({
 		isProfile(): boolean {
 			return this.$route.path === PROFILE_PATH
 		},
+		basket() {
+			return this.$store.state.basket.basket as Basket
+		},
+		shouldShowCount() {
+			return this.basket?.items_count
+		},
+	},
+	mounted() {
+		console.log('mounted')
+		console.log(this.basket)
 	},
 })
 </script>

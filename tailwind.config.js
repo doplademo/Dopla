@@ -1,12 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	content: [
-		"./components/**/*.{js,vue,ts}",
-		"./layouts/**/*.vue",
-		"./pages/**/*.vue",
-		"./plugins/**/*.{js,ts}",
-		"./nuxt.config.js",
-	  ],
+		'./components/**/*.{js,vue,ts}',
+		'./layouts/**/*.vue',
+		'./pages/**/*.vue',
+		'./plugins/**/*.{js,ts}',
+		'./nuxt.config.js',
+	],
 	theme: {
 		fontFamily: {
 			montserrat: ['Montserrat', 'sans-serif'],
@@ -33,7 +33,7 @@ module.exports = {
 			white: '#fff',
 			grayishWhite: '#F2F2F2',
 
-			yellowWarning: "#FFDA57",
+			yellowWarning: '#FFDA57',
 
 			redBold: '#FF5757',
 			redStrong: '#FD7777',
@@ -62,5 +62,5 @@ module.exports = {
 		},
 		extend: {},
 	},
-	plugins: [],
+	plugins: [require('tailwind-scrollbar-hide')],
 }
