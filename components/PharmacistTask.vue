@@ -43,7 +43,6 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue'
-import moment from 'moment'
 import type { TaskData, TaskType } from '../types/pharmacist'
 import IconCheck from './Icons/IconCheck.vue'
 import IconClock from './Icons/IconClock.vue'
@@ -76,10 +75,10 @@ export default defineComponent({
 	},
 	computed: {
 		timePassed() {
-			return moment().local().diff(this.task.created_at, 'minutes')
+			return this.$moment().local().diff(this.task.created_at, 'minutes')
 		},
 		taskCreatedAt() {
-			return moment(this.task.created_at).local().format('DD.MM.YYYY HH:mm')
+			return this.$moment(this.task.created_at).local().format('DD.MM.YYYY HH:mm')
 		},
 		isOk() {
 			return this.timePassed < MINUTES_FOR_LATE

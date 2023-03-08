@@ -35,6 +35,7 @@ export default {
 		// https://go.nuxtjs.dev/typescript
 		'@nuxt/typescript-build',
 		'@nuxt/postcss8',
+		'@nuxtjs/moment',
 	],
 
 	device: {
