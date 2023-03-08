@@ -2,6 +2,9 @@
   "name": "dopla",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "dev": "nuxt dev",
     "dev-secure": "nuxt dev --https --ssl-cert localhost.pem --ssl-key localhost-key.pem",
@@ -41,7 +44,6 @@
     "eslint-plugin-vue": "^9.5.1",
     "postcss": "^8.4.21",
     "prettier": "^2.7.1",
-    "tailwindcss": "^3.2.4",
-    "tailwind-scrollbar-hide": "^1.1.7"
+    "tailwindcss": "^3.2.4"
   }
 }
