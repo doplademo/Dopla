@@ -1,5 +1,3 @@
-import fs from 'fs'
-import path from 'path'
 import { ADMIN_LOGIN_PATH, GET_USER_PATH } from './utils/api/urls'
 
 const BASE_URL = 'https://test.iisiapteekki.fi/rest'
