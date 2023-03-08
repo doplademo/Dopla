@@ -3,7 +3,7 @@
 		<div class="flex justify-between items-center mb-4">
 			<h4 class="heading-four text-white">{{ title }}</h4>
 			<button
-				v-if="!isUpdateAvailable"
+				v-if="canUpdate"
 				class="main-button uppercase"
 				@click="$emit('update-prescription')"
 			>
@@ -61,6 +61,10 @@ export default defineComponent({
 		prescriptionUpdateAt: {
 			type: String,
 			default: '',
+		},
+		canUpdate: {
+			type: Boolean,
+			default: false,
 		},
 	},
 

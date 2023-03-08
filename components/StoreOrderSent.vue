@@ -1,10 +1,6 @@
 <template>
 	<div
-		class="
-			lg:bg-white lg:border lg:border-blackLightest lg:max-w-[400px] lg:pt-4
-			rounded-md
-			flex-shrink-0
-		"
+		class="lg:bg-white lg:border lg:border-blackLightest lg:max-w-[400px] lg:pt-4 rounded-md flex-shrink-0"
 	>
 		<div class="ml-4 mb-4 lg:hidden">
 			<button class="flex items-center" @click="$emit('on-back')">
@@ -13,16 +9,7 @@
 			</button>
 		</div>
 		<section
-			class="
-				flex flex-col
-				bg-white
-				rounded-md
-				border border-blackLight
-				shadow-md shadow-blackLight
-				p-4
-				mx-3
-				lg:border-none lg:shadow-none
-			"
+			class="flex flex-col bg-white rounded-md border border-blackLight shadow-md shadow-blackLight p-4 mx-3 lg:border-none lg:shadow-none"
 		>
 			<img :src="Images.piece" alt="success" class="self-center mb-4" />
 			<h4 class="heading-four font-semibold bg-redLightest rounded p-4 mb-4">
@@ -44,16 +31,17 @@
 			<h4 class="heading-four font-semibold my-4">Tilauksesi</h4>
 
 			<prescription-checkout
-				v-for="product in products"
+				v-for="product in selectedProducts"
 				:id="product.id"
 				:key="product.id"
-				:name="product.name"
-				:hide-remove="hideRemove"
-				@remove="remove"
+				:name="product.medicine_name"
+				:instructions="product.prescription_dosage_instruction"
+				hide-remove
+				@remove="$emit('remove-product', product.id)"
 			/>
 
 			<p class="p-normal font-medium mt-4">
-				{{ products.length }} product{{ products.length === 1 ? '' : 's' }}
+				{{ selectedProducts.length }} product{{ selectedProducts.length === 1 ? '' : 's' }}
 			</p>
 			<p class="p-normal text-blackLight mt-2">
 				Farmaseutti laskee tilauksen lopullisen hinnan.
@@ -63,18 +51,23 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, ref } from 'vue'
+import { defineComponent, PropType, ref } from 'vue'
 import PrescriptionCheckout from './PrescriptionCheckout.vue'
 import { prescribedProducts } from '~/dummy/dummyproducts'
 import useScreen from '~/utils/hooks/useScreen'
 import { Images } from '~/utils/Images'
+import { PrescribedProduct } from '~/types/user'
 
 export default defineComponent({
-  components: { PrescriptionCheckout },
+	components: { PrescriptionCheckout },
 	props: {
 		hideRemove: {
 			type: Boolean,
 			default: false,
+		},
+		selectedProducts: {
+			type: Array as PropType<PrescribedProduct[]>,
+			required: true,
 		},
 	},
 	setup(_) {

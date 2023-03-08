@@ -27,24 +27,30 @@
 		</p>
 		<p
 			:class="`heading-four col-start-3 font-semibold p-2.5 rounded-md ${
-				!isOk ? (isExact ? 'bg-yellowWarning' : 'bg-redBold') : ''
+				timePassedStatus !== 'on-time'
+					? timePassedStatus === 'warning'
+						? 'bg-yellowWarning'
+						: 'bg-redBold'
+					: ''
 			}`"
 		>
-			{{ minutesPassed }} min
+			{{ timePassed > 15 ? '15+' : timePassed }} min
 		</p>
 
-		<p class="p-small text-blackLightest col-span-2 ml-2">16.06.2022 13:59</p>
+		<p class="p-small text-blackLightest col-span-2 ml-2">{{ taskCreatedAt }}</p>
 	</button>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue'
-import type { TaskType } from '../types/pharmacist'
+import moment from 'moment'
+import type { TaskData, TaskType } from '../types/pharmacist'
 import IconCheck from './Icons/IconCheck.vue'
 import IconClock from './Icons/IconClock.vue'
 import OrderType from './TaskTypes/OrderType.vue'
 
 const MINUTES_FOR_LATE = 11
+const MAX_MINUTES = 15
 
 export default defineComponent({
 	components: {
@@ -55,19 +61,39 @@ export default defineComponent({
 	props: {
 		minutesPassed: { type: Number, required: true },
 		taskType: { type: String as PropType<TaskType>, default: 'update' },
+		task: { type: Object as PropType<TaskData>, required: true },
 		name: String,
 		selected: Boolean,
 		needsContacting: Boolean,
 	},
 	emits: ['on-select'],
 	setup(props) {
-		const isOk = computed(() => props.minutesPassed < MINUTES_FOR_LATE)
 		const isExact = computed(() => props.minutesPassed === MINUTES_FOR_LATE)
 
 		return {
-			isOk,
 			isExact,
 		}
+	},
+	computed: {
+		timePassed() {
+			return moment().local().diff(this.task.created_at, 'minutes')
+		},
+		taskCreatedAt() {
+			return moment(this.task.created_at).local().format('DD.MM.YYYY HH:mm')
+		},
+		isOk() {
+			return this.timePassed < MINUTES_FOR_LATE
+		},
+		timePassedStatus() {
+			if (this.timePassed < MINUTES_FOR_LATE) {
+				return 'on-time'
+			}
+			if (this.timePassed < MAX_MINUTES) {
+				return 'warning'
+			}
+
+			return 'late'
+		},
 	},
 })
 </script>

@@ -2,7 +2,6 @@ import fs from 'fs'
 import path from 'path'
 import { ADMIN_LOGIN_PATH, GET_USER_PATH } from './utils/api/urls'
 
-
 const BASE_URL = 'https://test.iisiapteekki.fi/rest'
 export default {
 	// Global page headers: https://go.nuxtjs.dev/config-head

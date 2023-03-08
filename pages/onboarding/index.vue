@@ -55,7 +55,8 @@
 			</p>
 
 			<a
-				:href="`http://test.iisiapteekki.fi/sso/saml2/login?domain=${domain}`"
+				:href="redirectLink"
+				@click.native="onRedirect"
 				class="main-button uppercase mt-4"
 			>
 				<span class="mr-2">Advance</span>
@@ -89,22 +90,38 @@ export default defineComponent({
 
 	layout: 'onboarding',
 	async asyncData({ route, $auth, redirect }) {
+		const to = route.query.to
+		const redirectTo = route.query.redirect
 		const token = route.query.token
 		if (!token) {
-			return
+			return {
+				redirectTo: to,
+			}
 		}
 		// login user with token retrieved from idp
 		await $auth.setUserToken(token)
 		await $auth.fetchUser()
 
-		redirectUser($auth.user, redirect)
+		redirectUser($auth.user, redirect, redirectTo)
 	},
 
 	data() {
 		return {
 			authorization: false,
 			domain: process.env.NODE_ENV === 'production' ? 'dopla' : 'localhost',
+			redirectTo: '',
 		}
+	},
+	computed: {
+		redirectLink() {
+			const redirectBase = `http://test.iisiapteekki.fi/sso/saml2/login?domain=${this.domain}`
+			let redirectLink = redirectBase
+			if (this.redirectTo) {
+				redirectLink = `${redirectBase}&redirect=${this.redirectTo}`
+			}
+
+			return redirectLink
+		},
 	},
 })
 </script>

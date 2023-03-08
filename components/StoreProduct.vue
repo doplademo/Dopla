@@ -42,7 +42,7 @@ export default defineComponent({
 
 	props: {
 		id: {
-			type: String,
+			type: Number,
 			required: true,
 		},
 		sku: {
@@ -63,7 +63,7 @@ export default defineComponent({
 		},
 		price: {
 			type: String,
-			required: true,
+			default: '',
 		},
 		priceSign: {
 			type: String,

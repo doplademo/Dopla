@@ -23,6 +23,7 @@
 			<pharmacist-task
 				v-for="task in tasks"
 				:key="task.id"
+				:task="task"
 				:name="`${task.customer_firstname} ${task.customer_lastname}`"
 				:task-type="task.type"
 				:minutes-passed="10"

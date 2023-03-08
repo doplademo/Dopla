@@ -30,26 +30,29 @@
 						</p>
 
 						<basket-product
-							v-for="product in products"
-							:id="product.id"
-							:key="product.id"
+							v-for="product in basket.items"
+							:id="product.item_id"
+							:key="product.item_id"
 							:name="product.name"
-							:price="product.price"
-							:discount="product.discount"
-							:final-price="product.finalPrice"
+							:price="product.priceString"
+							discount="0.00 €"
+							:final-price="product.priceString"
 						/>
 
 						<div class="flex justify-between text-blackMedium mt-4">
 							<p class="p-normal">Total reimbursement</p>
-							<p class="p-normal font-medium">-167.65 €</p>
+							<p class="p-normal font-medium">-0 €</p>
 						</div>
 						<div class="flex justify-between text-blackBold mt-1">
 							<p class="p-normal">Amount due</p>
-							<p class="p-normal font-medium">200.99 €</p>
+							<p class="p-normal font-medium">
+								{{ basket.grand_total_string }}
+							</p>
 						</div>
 
 						<button
 							class="main-button uppercase w-full mt-6 -lg:hidden lg:flex"
+							@click="onPay"
 						>
 							Pay
 						</button>
@@ -69,6 +72,9 @@
 							:key="address.id"
 							:title="address.deliveryMethodName"
 							:description="address.streetAddress"
+							class-name="mb-4"
+							:selected="selectedDeliveryMethod === index"
+							@select="selectedDeliveryMethod = index"
 						>
 							<address-form
 								:address-info="address"
@@ -77,21 +83,22 @@
 								@field-change="onChangeExistingAddress"
 							/>
 						</expandible-radio-field>
-						<!-- New user data -->
+						<!-- New user address -->
 						<add-field class="mt-4" title="Add new delivery method">
 							<address-form
 								:address-info="newDeliveryAddress"
 								:locations="postiAddresses"
+								@submit="onNewDeliveryAddressSubmit"
 								@field-change="onNewDeliveryAddressChange"
 							/>
 						</add-field>
 						<!-- Payment info -->
-						<h4 class="heading-four font-semibold mt-8">Payment</h4>
+						<!-- <h4 class="heading-four font-semibold mt-8">Payment</h4>
 
-						<p class="p-normal text-blackMedium mt-6">Payment cards</p>
+						<p class="p-normal text-blackMedium mt-6">Payment cards</p> -->
 
 						<!-- Add payment card -->
-						<radio-field
+						<!-- <radio-field
 							class="mt-4"
 							title="Visa-kortti"
 							description="123* **** **** **56"
@@ -99,7 +106,7 @@
 						/>
 						<add-field class="mt-2" title="Add new payment card">
 							<card-form />
-						</add-field>
+						</add-field> -->
 
 						<p class="p-normal text-blackMedium mt-6">Other methods</p>
 
@@ -112,25 +119,27 @@
 
 						<expandible-radio-field
 							class="mt-4"
-							title="Pay by bank transfer"
+							title="Pay when you receive the package"
 							selected
 							container-class="bg-greenHover"
 						>
 							<bank-transfer-options />
 						</expandible-radio-field>
-						<expandible-radio-field class="mt-2" title="Apple Pay">
+						<!-- <expandible-radio-field class="mt-2" title="Apple Pay">
 						</expandible-radio-field>
 						<expandible-radio-field class="mt-2" title="Google Pay">
-						</expandible-radio-field>
+						</expandible-radio-field> -->
 
 						<check-box
 							class="mt-8"
 							title="I accept to terms"
 							subtitle="Subtitle 1"
-							error="Remember to consent to this."
 						/>
 
-						<button class="main-button uppercase w-full mt-6 lg:hidden">
+						<button
+							class="main-button uppercase w-full mt-6 lg:hidden"
+							@click="onPay"
+						>
 							Pay
 						</button>
 					</div>
@@ -157,6 +166,7 @@ import CheckoutHero from '~/components/CheckoutHero.vue'
 import { DeliveryAddress, PostiAddress, User, ValueOf } from '~/types/user'
 import { getPickupPointsPath } from '~/utils/api/urls'
 import { transformUserAddresses } from '~/utils/user'
+import { Basket } from '~/types/baskte'
 export default defineComponent({
 	components: {
 		BasketProduct,
@@ -209,7 +219,14 @@ export default defineComponent({
 			postiAddresses: [] as PostiAddress[],
 			newPickupPoints: [] as PostiAddress[],
 			selectedAddressId: '',
+			selectedDeliveryMethod: -1,
 		}
+	},
+
+	computed: {
+		basket() {
+			return this.$store.state.basket.basket as Basket
+		},
 	},
 	watch: {
 		'newDeliveryAddress.zipCode': {
@@ -261,6 +278,29 @@ export default defineComponent({
 		},
 		onSelectAddress(addressId: string) {
 			this.selectedAddressId = addressId
+		},
+		onPay() {
+			this.$router.push('/checkout/result')
+		},
+		onNewDeliveryAddressSubmit() {
+			const newDeliveryAddress = this.newDeliveryAddress
+			const id = Math.floor(Math.random() * 100000) + 1
+			newDeliveryAddress.id = id
+			this.deliveryAddresses.push(newDeliveryAddress)
+
+			this.newDeliveryAddress = {
+				city: '',
+				recipientName: '',
+				deliveryMethodName: '',
+				streetAddress: '',
+				zipCode: '',
+				deliveryMethod: 'none',
+				pickupPointId: '',
+				pickupPoint: {
+					name: '',
+					id: '',
+				},
+			}
 		},
 	},
 })

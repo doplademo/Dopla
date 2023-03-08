@@ -44,6 +44,8 @@ export default defineComponent({
 		ProfileInstructions,
 	},
 	layout: 'store',
+	middleware: ['loggedIn', 'basket'],
+
 	props: {},
 	setup() {
 		const { isDesktop } = useScreen()
@@ -67,6 +69,11 @@ export default defineComponent({
 
 	asyncData({ $auth }) {
 		console.log($auth.user)
+	},
+	head() {
+		return {
+			title: 'Profile',
+		}
 	},
 })
 </script>

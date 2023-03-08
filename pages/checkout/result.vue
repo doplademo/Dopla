@@ -60,33 +60,31 @@
 						<!-- Order body -->
 						<div class="py-2 border-b border-blackBold">
 							<receipt-product
-								product-name="Oftan scopolamin 2,50 mg/l"
-								product-type="Silmätipat, liuos"
+								v-for="product in basket.items"
+								:key="product.item_id"
+								:product-name="product.name"
+								:product-type="product.product_type"
 								amount="1 X 10 ml"
-								price="99.99 €"
-							/>
-							<receipt-product
-								product-name="bisoprolol qwe pharma 5 mg, op98"
-								product-type="Tabletti"
-								amount="1 X 98 kpl"
-								price="199.99 €"
+								:price="product.priceString"
 							/>
 						</div>
 						<!-- Additional Calculation -->
 						<div class="py-3 border-b border-blackBold">
 							<div class="flex justify-between my-1">
 								<p class="p-normal text-blackLight">Reimbursements total</p>
-								<p class="p-normal font-medium">-99.99 €</p>
+								<p class="p-normal font-medium">-0.00 €</p>
 							</div>
 							<div class="flex justify-between my-1">
 								<p class="p-normal text-blackLight">Delivery</p>
-								<p class="p-normal font-medium">2.99 €</p>
+								<p class="p-normal font-medium">0.00 €</p>
 							</div>
 						</div>
 
 						<div class="flex justify-between mt-2">
 							<p class="p-normal font-medium">Amount due</p>
-							<p class="p-normal font-medium">99.99 €</p>
+							<p class="p-normal font-medium">
+								{{ basket.grand_total_string }}
+							</p>
 						</div>
 					</div>
 				</section>
@@ -158,6 +156,7 @@ import HyperlinkNormal from '~/components/Hyperlink/HyperlinkNormal.vue'
 import TextArea from '~/components/Input/TextArea.vue'
 import RateSlider from '~/components/RateSlider.vue'
 import ReceiptProduct from '~/components/ReceiptProduct.vue'
+import { Basket } from '~/types/baskte'
 import { Images } from '~/utils/Images'
 export default defineComponent({
 	components: {
@@ -197,6 +196,11 @@ export default defineComponent({
 		return {
 			Images,
 		}
+	},
+	computed: {
+		basket() {
+			return this.$store.state.basket.basket as Basket
+		},
 	},
 })
 </script>

@@ -7,15 +7,16 @@
 			>
 				<div class="max-w-5xl pt-6 lg:pt-0">
 					<pending-prescription
-						v-if="cardNumber === 1"
+						v-if="!createdTask"
 						title="Reseptejäsi päivitetään"
 						:prescription-update-at="attributes.prescription_updated"
+						:can-update="!updatedTask"
 						@update-prescription="updatePrescriptions"
 					/>
 
-					<order-ready v-else-if="cardNumber === 2" @click="cardNumber = 3" />
+					<!-- <order-ready v-else-if="cardNumber === 2" />-->
 					<prescription-updated
-						v-else-if="cardNumber === 3"
+						v-else
 						title="Reseptejäsi päivitetään"
 						@click="cardNumber = 1"
 					/>
@@ -25,11 +26,12 @@
 					/>
 				</div>
 
-				<no-data v-if="cardNumber === 1 && isDesktop" />
 				<store-order-sent
-					v-else-if="cardNumber !== 1 && isDesktop"
+					v-if="selectedProducts.length && isDesktop"
+					:selected-products="selectedProducts"
 					hide-remove
 				/>
+				<no-data v-else-if="isDesktop" />
 			</section>
 		</div>
 
@@ -40,7 +42,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import NoData from '~/components/NoData.vue'
-import OrderReady from '~/components/OrderReady.vue'
 import PendingPrescription from '~/components/PendingPrescription.vue'
 import PopularNow from '~/components/PopularNow.vue'
 import PrescriptionUpdated from '~/components/PrescriptionUpdated.vue'
@@ -63,7 +64,6 @@ export default defineComponent({
 		NewsSection,
 		GreetingSection,
 		PendingPrescription,
-		OrderReady,
 		PopularNow,
 		NoData,
 		PrescriptionUpdated,
@@ -80,6 +80,7 @@ export default defineComponent({
 	},
 
 	async asyncData({ $axios }) {
+		const data = {} as any
 		try {
 			const { data: currencyInfo } = await $axios.get(GET_CURRENCY)
 			const {
@@ -91,17 +92,14 @@ export default defineComponent({
 					storeId: 1,
 				})
 			)
-
-			return {
-				products: items,
-				currencyInfo,
-			}
+			data.products = items
+			data.currencyInfo = currencyInfo
 		} catch (e) {
 			console.log(e)
-			return {
-				currencyInfo: null,
-			}
+			data.currencyInfo = null
 		}
+
+		return data
 	},
 	data() {
 		const user = this.$auth.user as User
@@ -116,6 +114,17 @@ export default defineComponent({
 			cardNumber: 1,
 		}
 	},
+	computed: {
+		selectedProducts() {
+			return this.$store.state.appState.selectedProducts
+		},
+		createdTask() {
+			return this.$store.state.appState.createdTask
+		},
+		updatedTask() {
+			return this.$store.state.appState.updatedTask
+		},
+	},
 	watch: {
 		'$auth.user': {
 			handler() {
@@ -123,11 +132,11 @@ export default defineComponent({
 				const attributes = getAttributes(user)
 				this.attributes = attributes
 				this.user = user
-				console.log('user changed', user, attributes)
 			},
 			deep: true,
 		},
 	},
+
 	methods: {
 		async updatePrescriptions() {
 			try {
@@ -144,6 +153,7 @@ export default defineComponent({
 						},
 					],
 				})
+				this.$store.commit('appState/setUpdatedTask', true)
 				await this.$auth.fetchUser()
 			} catch (e) {
 				console.log(e)

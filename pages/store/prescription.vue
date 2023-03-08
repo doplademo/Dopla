@@ -66,7 +66,6 @@ export default defineComponent({
 		}
 		try {
 			const prescribedProducts = await $axios.$get(GET_USER_PRESCRIPTIONS)
-			console.log(prescribedProducts)
 			return {
 				prescribedProducts,
 			}
@@ -116,7 +115,6 @@ export default defineComponent({
 			try {
 				const user = this.$auth.user as User
 				const attributes = getAttributes(user)
-				console.log(user, attributes)
 				const needsMedicalAssistance = this.needsMedicalAssistance
 				this.$axios.$put(REQUEST_PRESCRIPTION, {
 					ssn: attributes.hetu,
@@ -144,6 +142,10 @@ export default defineComponent({
 							? NEED_MEDICAL_ASSISTANCE
 							: DONT_NEED_MEDICAL_ASSISTANCE,
 				})
+				console.log('setting store');
+				this.$store.commit('appState/setCreatedTask', true);
+				this.$store.commit('appState/setSelectedProducts', this.selectedProducts);
+				this.$router.push('/store');
 			} catch (e) {
 				console.log(e)
 			}
