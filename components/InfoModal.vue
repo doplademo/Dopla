@@ -51,11 +51,12 @@
 
 		<div class="flex justify-between w-full mt-8">
 			<amout-counter :count="amount" @add="add" @subtract="subtract" />
-			<main-button-pressable
-				class-name="flex-1 ml-2"
-				title="Lisää tilaukseen"
-				upper
-			/>
+			<button
+				class="main-button uppercase w-full ml-2"
+				@click="$emit('add-prescription')"
+			>
+				Lisää tilaukseen
+			</button>
 		</div>
 
 		<p class="p-x-small text-end text-blackMedium font-medium mt-4">
@@ -98,7 +99,13 @@ export default defineComponent({
 		},
 	},
 
-	emits: ['on-substitute-select', 'add', 'subtract', 'close'],
+	emits: [
+		'on-substitute-select',
+		'add',
+		'subtract',
+		'close',
+		'add-prescription',
+	],
 	data() {
 		return {
 			substitutes: new Map() as Map<string, Substitute>,

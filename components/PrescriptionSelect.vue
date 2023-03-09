@@ -70,6 +70,12 @@
 				@on-substitute-select="onSubstitute"
 				@add="addAmount"
 				@subtract="subtractAmount"
+				@add-prescription="
+					(_) => {
+						$emit('add-prescription', selectedProduct?.id)
+						showModal = false
+					}
+				"
 				@close="showModal = false"
 			/>
 		</modal-container>
@@ -108,7 +114,7 @@ export default defineComponent({
 			required: true,
 		},
 	},
-	emits: ['toggle', 'on-show'],
+	emits: ['toggle', 'on-show', 'add-prescription'],
 
 	data() {
 		return {

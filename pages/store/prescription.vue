@@ -9,6 +9,7 @@
 					:selected-product-ids="selectedProductIds"
 					:product-additions="productAdditions"
 					@toggle="toggleProduct"
+					@add-prescription="onAddFromInfoModal"
 					@on-show="showOrder = true"
 				/>
 				<request-prescription
@@ -66,7 +67,9 @@ export default defineComponent({
 			return {}
 		}
 		try {
-			const prescribedProducts = await $axios.$get(GET_USER_PRESCRIPTIONS) as PrescribedProduct[]
+			const prescribedProducts = (await $axios.$get(
+				GET_USER_PRESCRIPTIONS
+			)) as PrescribedProduct[]
 			return {
 				prescribedProducts,
 			}
@@ -121,21 +124,23 @@ export default defineComponent({
 					ssn: attributes.hetu,
 					additional_information: 'I just renewed my prescription',
 					quote_id: user.group_id,
-					delivery_requests: this.selectedProducts.map((product: PrescribedProduct) => {
-						const request = {
-							name: product.medicine_name,
-							qty: this.productAdditions.get(product.id)!.amount,
-						} as ProductRequest
+					delivery_requests: this.selectedProducts.map(
+						(product: PrescribedProduct) => {
+							const request = {
+								name: product.medicine_name,
+								qty: this.productAdditions.get(product.id)!.amount,
+							} as ProductRequest
 
-						const sku = this.productAdditions.get(product.id)!.substituteId
-						if (sku) {
-							request.sku = sku
-						} else {
-							request.product_id = product.id
+							const sku = this.productAdditions.get(product.id)!.substituteId
+							if (sku) {
+								request.sku = sku
+							} else {
+								request.product_id = product.id
+							}
+
+							return request
 						}
-
-						return request
-					}),
+					),
 					contact_phone: user.addresses[0].telephone,
 					contact_proposals_date: new Date().toISOString(),
 					contact_proposals_hours:
@@ -143,16 +148,25 @@ export default defineComponent({
 							? NEED_MEDICAL_ASSISTANCE
 							: DONT_NEED_MEDICAL_ASSISTANCE,
 				})
-				console.log('setting store');
-				this.$store.commit('appState/setCreatedTask', true);
-				this.$store.commit('appState/setSelectedProducts', this.selectedProducts);
-				this.$router.push('/store');
+				console.log('setting store')
+				this.$store.commit('appState/setCreatedTask', true)
+				this.$store.commit(
+					'appState/setSelectedProducts',
+					this.selectedProducts
+				)
+				this.$router.push('/store')
 			} catch (e) {
 				console.log(e)
 			}
 		},
 		onMedicalContact(value: string) {
 			this.needsMedicalAssistance = value
+		},
+		onAddFromInfoModal(id: string) {
+			console.log('id', id);
+			if (!this.selectedProductIds.includes(id)) {
+				this.selectedProductIds.push(id)
+			}
 		},
 	},
 })
