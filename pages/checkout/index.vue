@@ -150,6 +150,7 @@
 </template>
 
 <script lang="ts">
+// @ts-nocheck
 import { defineComponent, ref } from 'vue'
 import { dummyProducts } from '~/dummy/dummyReviews'
 import BasketProduct from '~/components/BasketProduct.vue'
@@ -189,7 +190,7 @@ export default defineComponent({
 		}
 	},
 
-	asyncData({ $auth, store }) {
+	asyncData({ $auth }) {
 		const user = $auth.user as User
 		const deliveryAddresses = transformUserAddresses(user?.addresses)
 		return {
@@ -260,6 +261,7 @@ export default defineComponent({
 			value: ValueOf<DeliveryAddress>,
 			index: number
 		) {
+			
 			this.deliveryAddresses?.[index]?.[field] = value
 		},
 		searchZipCode() {

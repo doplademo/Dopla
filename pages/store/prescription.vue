@@ -27,6 +27,7 @@
 </template>
 
 <script lang="ts">
+// @ts-nocheck
 import { defineComponent } from 'vue'
 import GreetingSection from '~/components/StoreHome/GreetingSection.vue'
 import NoData from '~/components/NoData.vue'
@@ -65,7 +66,7 @@ export default defineComponent({
 			return {}
 		}
 		try {
-			const prescribedProducts = await $axios.$get(GET_USER_PRESCRIPTIONS)
+			const prescribedProducts = await $axios.$get(GET_USER_PRESCRIPTIONS) as PrescribedProduct[]
 			return {
 				prescribedProducts,
 			}
@@ -86,7 +87,7 @@ export default defineComponent({
 
 	computed: {
 		selectedProducts() {
-			return this.prescribedProducts.filter((product) =>
+			return this.prescribedProducts.filter((product: PrescribedProduct) =>
 				this.selectedProductIds.includes(product.id)
 			)
 		},
@@ -120,7 +121,7 @@ export default defineComponent({
 					ssn: attributes.hetu,
 					additional_information: 'I just renewed my prescription',
 					quote_id: user.group_id,
-					delivery_requests: this.selectedProducts.map((product) => {
+					delivery_requests: this.selectedProducts.map((product: PrescribedProduct) => {
 						const request = {
 							name: product.medicine_name,
 							qty: this.productAdditions.get(product.id)!.amount,

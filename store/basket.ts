@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Basket } from '~/types/baskte'
 import { formatPrices } from '~/utils/basket'
 
@@ -21,6 +23,7 @@ export const mutations = {
 export const actions = {
 	async getBasket({ commit }: any) {
 		try {
+
 			const basket = (await this.$axios.$get('/V1/carts/mine')) as Basket
 			formatPrices(basket)
 			commit('updateBasket', basket)

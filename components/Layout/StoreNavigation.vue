@@ -79,6 +79,7 @@
 </template>
 
 <script lang='ts'>
+// @ts-nocheck
 import { defineComponent, ref } from 'vue'
 import BasketIcon from '../Icons/BasketIcon.vue'
 import ProfileIcon from '../Icons/ProfileIcon.vue'

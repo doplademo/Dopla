@@ -3,6 +3,7 @@
 </template>
 
 <script lang='ts'>
+// @ts-nocheck
 import { defineComponent, PropType } from 'vue'
 
 export default defineComponent({

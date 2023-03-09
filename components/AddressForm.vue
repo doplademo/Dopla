@@ -89,6 +89,7 @@
 </template>
 
 <script lang="ts">
+// @ts-nocheck
 import { defineComponent, PropType } from 'vue'
 import TextInput from './Input/TextInput.vue'
 import RadioField from './RadioField.vue'

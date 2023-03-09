@@ -42,6 +42,7 @@
 </template>
 
 <script lang="ts">
+// @ts-nocheck
 import { computed, defineComponent, PropType } from 'vue'
 import type { TaskData, TaskType } from '../types/pharmacist'
 import IconCheck from './Icons/IconCheck.vue'

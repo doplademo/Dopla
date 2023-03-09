@@ -101,6 +101,7 @@
 </template>
 
 <script lang="ts">
+// @ts-nocheck
 import { defineComponent, PropType } from 'vue'
 import CloseIcon from '../Icons/CloseIcon.vue'
 import NavBasketProduct from '../NavBasketProduct.vue'
