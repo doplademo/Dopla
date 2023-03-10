@@ -120,8 +120,6 @@ export default defineComponent({
 		},
 	},
 	mounted() {
-		console.log('mounted')
-		console.log(this.basket)
 	},
 })
 </script>

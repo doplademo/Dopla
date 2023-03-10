@@ -14,7 +14,7 @@
 			</div>
 
 			<div class="flex justify-between mt-4">
-				<p class="heading-five text-blackLightest">15 tasks</p>
+				<p class="heading-five text-blackLightest">{{ tasks.length }} tasks</p>
 				<p class="heading-five text-blackLightest">wait time circa 11 min.</p>
 			</div>
 		</div>

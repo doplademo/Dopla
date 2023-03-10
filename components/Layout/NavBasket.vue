@@ -132,7 +132,6 @@ export default defineComponent({
 		},
 	},
 	mounted() {
-		console.log('basket', this.basket)
 	},
 })
 </script>

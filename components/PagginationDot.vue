@@ -28,7 +28,6 @@ export default {
     const selectedPage = ref(0);
     const setSelectedPage = (page) => {
       selectedPage.value = page;
-      console.log(selectedPage.value);
       emit("select-page", page);
     };
 

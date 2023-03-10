@@ -129,7 +129,6 @@ export default defineComponent({
 	computed: {},
 
 	mounted() {
-		console.log(this.task)
 	},
 })
 </script>

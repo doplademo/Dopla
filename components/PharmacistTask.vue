@@ -59,7 +59,6 @@ export default defineComponent({
 		IconClock,
 	},
 	props: {
-		minutesPassed: { type: Number, required: true },
 		taskType: { type: String as PropType<TaskType>, default: 'update' },
 		task: { type: Object as PropType<TaskData>, required: true },
 		name: String,
@@ -76,11 +75,12 @@ export default defineComponent({
 	},
 	computed: {
 		timePassed() {
-			const createdAt = this.$moment(this.task.created_at).local()
-			return this.$moment().local().diff(createdAt, 'minutes')
+			const createdAt = this.$moment.parseZone(this.task.updated_at)
+			const diff = this.$moment().local().diff(createdAt, 'minutes')
+			return diff
 		},
 		taskCreatedAt() {
-			return this.$moment(this.task.created_at).local().format('DD.MM.YYYY HH:mm')
+			return this.$moment(this.task.updated_at).local().format('DD.MM.YYYY HH:mm')
 		},
 		isOk() {
 			return this.timePassed < MINUTES_FOR_LATE

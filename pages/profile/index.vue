@@ -68,7 +68,6 @@ export default defineComponent({
 	},
 
 	asyncData({ $auth }) {
-		console.log($auth.user)
 	},
 	head() {
 		return {

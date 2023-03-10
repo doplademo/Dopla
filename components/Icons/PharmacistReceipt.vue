@@ -43,7 +43,7 @@
 				v-for="(product, index) in taskProducts"
 				:key="product.name"
 				:medicine-name="product.name"
-				medicine-id="001"
+				:medicine-id="product.sku"
 				:instructions="product.prescription_dosage_instruction"
 				:hide-border="index === taskProducts.length - 1"
 			/>

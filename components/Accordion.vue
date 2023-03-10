@@ -35,7 +35,6 @@ export default {
 	},
 	methods: {
 		toggle() {
-			console.log(this.show)
 			this.show = !this.show
 		},
 	},

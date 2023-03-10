@@ -249,14 +249,12 @@ export default defineComponent({
 		},
 	},
 	mounted() {
-		console.log(this.deliveryAddresses)
 	},
 	methods: {
 		onNewDeliveryAddressChange(
 			field: keyof DeliveryAddress,
 			value: ValueOf<DeliveryAddress>
 		) {
-			console.log(field, value)
 			this.newDeliveryAddress[field] = value
 		},
 		onChangeExistingAddress(

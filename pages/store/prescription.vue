@@ -72,7 +72,6 @@ export default defineComponent({
 				prescribedProducts,
 			}
 		} catch (e) {
-			console.log(e)
 		}
 	},
 
@@ -122,26 +121,19 @@ export default defineComponent({
 					quote_id: user.group_id,
 					delivery_requests: this.selectedProducts.map(
 						(product: PrescribedProduct) => {
-							const request = {
+							const sku = this.productAdditions.get(product.id)!.substituteId
+
+							return {
 								name: product.medicine_name,
 								qty: this.productAdditions.get(product.id)!.amount,
-							} as ProductRequest
-
-							const sku = this.productAdditions.get(product.id)!.substituteId
-							if (sku) {
-								request.sku = sku
-							} else {
-								request.product_id = product.id
+								sku: sku || product.sku,
 							}
-
-							return request
 						}
 					),
 					contact_phone: user.addresses[0].telephone,
 					contact_proposals_date: new Date().toISOString(),
 					contact_proposals_hours: needsMedicalAssistance,
 				})
-				console.log('setting store')
 				this.$store.commit('appState/setCreatedTask', true)
 				this.$store.commit(
 					'appState/setSelectedProducts',
@@ -149,14 +141,12 @@ export default defineComponent({
 				)
 				this.$router.push('/store')
 			} catch (e) {
-				console.log(e)
 			}
 		},
 		onMedicalContact(value: string) {
 			this.needsMedicalAssistance = value
 		},
 		onAddFromInfoModal(id: string) {
-			console.log('id', id)
 			if (!this.selectedProductIds.includes(id)) {
 				this.selectedProductIds.push(id)
 			}

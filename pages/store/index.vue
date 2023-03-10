@@ -97,7 +97,6 @@ export default defineComponent({
 			data.products = items
 			data.currencyInfo = currencyInfo
 		} catch (e) {
-			console.log(e)
 			data.currencyInfo = null
 		}
 
@@ -140,7 +139,6 @@ export default defineComponent({
 	},
 
 	mounted() {
-		console.log(this.products[0])
 	},
 
 	methods: {
@@ -162,7 +160,6 @@ export default defineComponent({
 				this.$store.commit('appState/setUpdatedTask', true)
 				await this.$auth.fetchUser()
 			} catch (e) {
-				console.log(e)
 			}
 		},
 		addProductToCart(product: StoreProduct, qty: number) {

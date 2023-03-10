@@ -157,7 +157,6 @@ export default defineComponent({
 		}
 	},
 	mounted() {
-		console.log(this.storeProducts[0])
 	},
 })
 </script>

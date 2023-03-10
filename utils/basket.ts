@@ -16,7 +16,6 @@ export function formatPrices(basket: Basket) {
 }
 
 export function removePlaceholderItem(basket: Basket) {
-	console.log(basket?.items[0].item_id)
 	basket.items = basket?.items.filter((item) => item.item_id !== DUMMY_ITEM_ID)
 	basket.items_count = basket?.items.length
 }

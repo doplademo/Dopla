@@ -72,7 +72,6 @@ export default defineComponent({
 		const orderType = ref<Task>('handling')
 
 		function setOrderType(value: Task) {
-			console.log(value)
 			orderType.value = value
 		}
 
@@ -92,7 +91,6 @@ export default defineComponent({
 			const res = await $axios.$get(GET_PHARMACIST_TASKS)
 			const bam = await $axios.$get(GET_TASK_PRODUCTS + 1)
 
-			console.log(bam)
 			const firstTask = res[0]
 			return {
 				tasks: res,
@@ -101,7 +99,6 @@ export default defineComponent({
 				selectedTask: firstTask,
 			}
 		} catch (error) {
-			console.log(error)
 			return {
 				tasks: [],
 			}
@@ -132,9 +129,6 @@ export default defineComponent({
 	},
 
 	watch: {
-		tasks(newTasks) {
-			console.log(newTasks)
-		},
 		selectedTaskId(newId) {
 			this.selectedTask = this.tasks.find((task: any) => task.id === newId)!
 			this.setTaskProducts(newId)
@@ -150,9 +144,8 @@ export default defineComponent({
 			this.selectedFilter = filter
 		},
 		async setTaskProducts(id: string) {
-			console.log('TASK ID:', id)
 			const products = await this.$axios.$get(GET_TASK_PRODUCTS + id)
-			this.taskProducts = products.slice(1)
+			this.taskProducts = products
 		},
 		selectTask(id: string) {
 			this.selectedTaskId = id

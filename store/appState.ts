@@ -28,12 +28,9 @@ export const mutations = {
 		state.updatedTask = updatedTask
 	},
 	setRedirectTo(state: State, redirectTo: string) {
-		console.log('change', redirectTo)
 		state.redirectTo = redirectTo
-		console.log(state.redirectTo)
 	},
 	setSelectedProducts(state: State, selectedProducts: PrescribedProduct[]) {
-		console.log('change', selectedProducts);
 		state.selectedProducts = selectedProducts
 	},
 }

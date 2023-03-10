@@ -95,7 +95,6 @@ export default defineComponent({
 	},
 
 	mounted() {
-		console.log(this.$auth.user);
 	},
 
 	setup() {

@@ -30,7 +30,11 @@ import SectionBlack from '~/components/Home/SectionBlack.vue'
 import ReviewsSection from '~/components/Home/ReviewsSection.vue'
 import AloitaSection from '~/components/Home/AloitaSection.vue'
 import { Images } from '~/utils/Images'
-import { GET_CURRENCY, GET_PHARMACIST_TASKS, TEST_EMAIL_PATH } from '~/utils/api/urls'
+import {
+	GET_CURRENCY,
+	GET_PHARMACIST_TASKS,
+	TEST_EMAIL_PATH,
+} from '~/utils/api/urls'
 
 export default defineComponent({
 	components: {
@@ -60,16 +64,13 @@ export default defineComponent({
 						password: 'Batman2023!',
 					},
 				})
-				console.log('logged in')
 			} catch (e) {}
 		},
 		async getAlternatives() {
 			try {
 				const res = await this.$axios.$get(GET_PHARMACIST_TASKS)
-				console.log(res?.data);
 				return { tasks: res.data }
 			} catch (error) {
-				console.log(error)
 				return {
 					tasks: [],
 				}
@@ -78,10 +79,7 @@ export default defineComponent({
 		async getCurrency() {
 			try {
 				const response = await this.$axios.$get(GET_CURRENCY)
-				console.log(response.data)
-			} catch (e) {
-				console.log(e)
-			}
+			} catch (e) {}
 		},
 		async testEmail() {
 			try {
@@ -91,10 +89,7 @@ export default defineComponent({
 						fieldName: 'customerEmail',
 					},
 				})
-				console.log(response.data)
-			} catch (e) {
-				console.log(e)
-			}
+			} catch (e) {}
 		},
 	},
 })

@@ -47,6 +47,7 @@ export type User = {
 
 export type PrescribedProduct = {
 	id: string
+	sku: string,
 	prescription_oid: string
 	medicine_name: string
 	previous_delivery_amount: string
