@@ -8,10 +8,11 @@
 		<pharmacist-task-nav
 			:set-filter="filterTasks"
 			:selected-task="selectedFilter"
+			:tasks="tasks"
 		/>
 		<main class="w-full flex gap-4 h-[770px] mt-4">
 			<pharmacist-tasks
-				:tasks="tasks"
+				:tasks="filteredTasks"
 				:selected-task-id="selectedTaskId"
 				@on-select-task="selectTask"
 				@on-order="setOrderType"
@@ -19,8 +20,10 @@
 
 			<pharmacist-tasks-body
 				:task="selectedTask"
-				:order-type="orderType"
+				:order-type="selectedTask?.type"
 				:task-products="taskProducts"
+				:last-updated="lastUpdated"
+				@update-tasks="updateTasks"
 			/>
 		</main>
 
@@ -49,7 +52,7 @@ import PharmacistTaskNav from '~/components/PharmacistTaskNav.vue'
 import PharmacistTasks from '~/components/PharmacistTasks.vue'
 import PharmacistTasksBody from '~/components/PharmacistTasksBody.vue'
 import StepIndicator from '~/components/StepIndicator.vue'
-import { Task, TaskProduct, TaskType } from '~/types/pharmacist'
+import { Task, TaskData, TaskProduct, TaskType } from '~/types/pharmacist'
 import { GET_PHARMACIST_TASKS, GET_TASK_PRODUCTS } from '~/utils/api/urls'
 import { loadPharmacist } from '~/utils/pharmacist'
 
@@ -107,12 +110,25 @@ export default defineComponent({
 
 	data() {
 		return {
-			tasks: [],
+			tasks: [] as TaskData[],
 			selectedFilter: 'all' as TaskType,
 			selectedTaskId: '0',
-			selectedTask: null,
+			selectedTask: null as TaskData | null,
+			selectedTaskType: '' as TaskType | '',
 			taskProducts: [] as TaskProduct[],
+			lastUpdated: new Date(),
 		}
+	},
+
+	computed: {
+		filteredTasks(): TaskData[] {
+			if (this.selectedFilter === 'all') {
+				return this.tasks
+			}
+			return this.tasks.filter(
+				(task: TaskData) => task.type === this.selectedFilter
+			)
+		},
 	},
 
 	watch: {
@@ -130,18 +146,28 @@ export default defineComponent({
 	},
 
 	methods: {
-		async filterTasks(filter: TaskType) {
-			const filterParam = filter === 'all' ? '' : `?filter=${filter}`
-			const res = await this.$axios.$get(GET_PHARMACIST_TASKS + filterParam)
+		filterTasks(filter: TaskType) {
 			this.selectedFilter = filter
-			this.tasks = res
 		},
 		async setTaskProducts(id: string) {
+			console.log('TASK ID:', id)
 			const products = await this.$axios.$get(GET_TASK_PRODUCTS + id)
 			this.taskProducts = products.slice(1)
 		},
 		selectTask(id: string) {
 			this.selectedTaskId = id
+		},
+		async updateTasks() {
+			try {
+				const tasks = await this.$axios.$get(GET_PHARMACIST_TASKS)
+
+				this.tasks = tasks
+				this.lastUpdated = new Date()
+			} catch (error) {
+				return {
+					tasks: [],
+				}
+			}
 		},
 	},
 })

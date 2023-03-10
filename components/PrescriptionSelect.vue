@@ -38,7 +38,7 @@
 				:name="product.medicine_name"
 				:instructions="product.prescription_dosage_instruction"
 				:selected="selectedProductIds.includes(product.id)"
-				@toggle="$emit('toggle', product.id)"
+				@toggle="onMark(product)"
 				@show-info="showProduct(product)"
 			/>
 			<p class="p-normal mt-6">
@@ -114,7 +114,7 @@ export default defineComponent({
 			required: true,
 		},
 	},
-	emits: ['toggle', 'on-show', 'add-prescription'],
+	emits: ['remove-prescription', 'on-show', 'add-prescription'],
 
 	data() {
 		return {
@@ -151,6 +151,13 @@ export default defineComponent({
 			const additionChange = this.productAdditions.get(this.selectedProduct?.id)
 			if (additionChange) {
 				additionChange.substituteId = sku
+			}
+		},
+		onMark(product: PrescribedProduct) {
+			if (this.selectedProductIds.includes(product.id)) {
+				this.$emit('remove-prescription', product.id)
+			} else {
+				this.showProduct(product)
 			}
 		},
 	},

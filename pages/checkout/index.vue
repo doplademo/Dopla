@@ -1,6 +1,6 @@
 <template>
 	<main class="flex flex-col lg:pb-24">
-		<checkout-hero title="Hi, Ulla!">
+		<checkout-hero :title="`Hi, ${$auth.user.firstname || ''}!`">
 			<template #right>
 				<img :src="Images.checkout" alt="" class="mt-8" />
 			</template>
@@ -19,7 +19,10 @@
 						Basket
 					</p>
 					<!-- billing -->
-					<div class="p-6 mt-4 bg-white rounded lg:mt-0 lg:p-4">
+					<div
+						v-if="basket?.items?.length"
+						class="p-6 mt-4 bg-white rounded lg:mt-0 lg:p-4"
+					>
 						<h4
 							class="heading-four bg-pinkLight font-semibold p-2 mb-2 lg:mb-4"
 						>
@@ -261,7 +264,6 @@ export default defineComponent({
 			value: ValueOf<DeliveryAddress>,
 			index: number
 		) {
-			
 			this.deliveryAddresses?.[index]?.[field] = value
 		},
 		searchZipCode() {

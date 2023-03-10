@@ -3,11 +3,11 @@
 		<text-input
 			id="recipientName"
 			label="Name of recipient*"
-			:value="addressInfo.recipientName"
+			:value="userFullName"
 			field="recipientName"
+			disabled
 			type="text"
 			placeholder="Name of recipient"
-			@change="onChangeText"
 		/>
 		<text-input
 			id="deliveryMethodName"
@@ -94,7 +94,7 @@ import { defineComponent, PropType } from 'vue'
 import TextInput from './Input/TextInput.vue'
 import RadioField from './RadioField.vue'
 import SelectInput from './Input/SelectInput.vue'
-import { DeliveryAddress, PostiAddress } from '~/types/user'
+import { DeliveryAddress, PostiAddress, User } from '~/types/user'
 export default defineComponent({
 	components: { TextInput, RadioField, SelectInput },
 	props: {
@@ -107,6 +107,13 @@ export default defineComponent({
 	computed: {
 		enteredZipCode() {
 			return this.addressInfo.zipCode.length === 5
+		},
+		userFullName() {
+			const user = this.$auth.user as User
+			if (user) {
+				return `${user.firstname} ${user.lastname}`
+			}
+			return ''
 		},
 	},
 	methods: {

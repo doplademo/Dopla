@@ -8,7 +8,7 @@
 					:prescribed-products="prescribedProducts"
 					:selected-product-ids="selectedProductIds"
 					:product-additions="productAdditions"
-					@toggle="toggleProduct"
+					@remove-prescription="removePrescription"
 					@add-prescription="onAddFromInfoModal"
 					@on-show="showOrder = true"
 				/>
@@ -18,7 +18,7 @@
 					:needs-medical-assistance="needsMedicalAssistance"
 					@on-back="showOrder = false"
 					@request-prescription="onRequestPrescription"
-					@remove-product="toggleProduct"
+					@remove-product="removePrescription"
 					@medical-contact="onMedicalContact"
 				/>
 				<no-data v-else-if="isDesktop || !showOrder" />
@@ -43,8 +43,6 @@ import {
 } from '~/types/user'
 import PrescriptionSelect from '~/components/PrescriptionSelect.vue'
 import { getAttributes } from '~/utils/user'
-const NEED_MEDICAL_ASSISTANCE = 'Tarvitsen lääkeneuvontaa puhelimitse'
-const DONT_NEED_MEDICAL_ASSISTANCE = 'En tarvitse lääkeneuvontaa'
 export default defineComponent({
 	components: {
 		GreetingSection,
@@ -106,13 +104,11 @@ export default defineComponent({
 	},
 
 	methods: {
-		toggleProduct(id: string) {
+		removePrescription(id: string) {
 			if (this.selectedProductIds.includes(id)) {
 				this.selectedProductIds = this.selectedProductIds.filter(
 					(product) => product !== id
 				)
-			} else {
-				this.selectedProductIds.push(id)
 			}
 		},
 		onRequestPrescription() {
@@ -143,10 +139,7 @@ export default defineComponent({
 					),
 					contact_phone: user.addresses[0].telephone,
 					contact_proposals_date: new Date().toISOString(),
-					contact_proposals_hours:
-						needsMedicalAssistance === '1'
-							? NEED_MEDICAL_ASSISTANCE
-							: DONT_NEED_MEDICAL_ASSISTANCE,
+					contact_proposals_hours: needsMedicalAssistance,
 				})
 				console.log('setting store')
 				this.$store.commit('appState/setCreatedTask', true)
@@ -163,7 +156,7 @@ export default defineComponent({
 			this.needsMedicalAssistance = value
 		},
 		onAddFromInfoModal(id: string) {
-			console.log('id', id);
+			console.log('id', id)
 			if (!this.selectedProductIds.includes(id)) {
 				this.selectedProductIds.push(id)
 			}

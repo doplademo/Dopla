@@ -76,7 +76,8 @@ export default defineComponent({
 	},
 	computed: {
 		timePassed() {
-			return this.$moment().local().diff(this.task.created_at, 'minutes')
+			const createdAt = this.$moment(this.task.created_at).local()
+			return this.$moment().local().diff(createdAt, 'minutes')
 		},
 		taskCreatedAt() {
 			return this.$moment(this.task.created_at).local().format('DD.MM.YYYY HH:mm')

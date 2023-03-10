@@ -1,4 +1,5 @@
 import { Basket } from '~/types/baskte'
+const DUMMY_ITEM_ID = 40;
 
 export function formatTo2Decimals(num: number) {
 	return `${(Math.round(num * 100) / 100).toFixed(2)} €`
@@ -11,5 +12,11 @@ export function formatPrices(basket: Basket) {
 		basket.items[i].priceString = formatTo2Decimals(basket.items[i].price)
 	}
 	basket.grand_total = total
-    basket.grand_total_string = formatTo2Decimals(total)
+	basket.grand_total_string = formatTo2Decimals(total)
+}
+
+export function removePlaceholderItem(basket: Basket) {
+	console.log(basket?.items[0].item_id)
+	basket.items = basket?.items.filter((item) => item.item_id !== DUMMY_ITEM_ID)
+	basket.items_count = basket?.items.length
 }

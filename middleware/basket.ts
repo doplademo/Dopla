@@ -1,5 +1,5 @@
 import { Context } from '@nuxt/types'
 
-export default function ({ store }: Context) {
-	store.dispatch('basket/getBasket')
+export default async function ({ store }: Context) {
+	await store.dispatch('basket/getBasket')
 }

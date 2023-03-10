@@ -1,6 +1,6 @@
 <template>
 	<div class="flex flex-col w-full">
-		<p class="p-large my-2">00{{ id }}</p>
+		<p class="p-large my-2">{{ id }}</p>
 
 		<!-- Main section -->
 		<div

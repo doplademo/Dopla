@@ -40,15 +40,21 @@
 			<div
 				class="flex justify-between items-center mt-4 pb-3 border-b border-redLightest"
 			>
-				<p class="heading-five font-medium">Prescriptions (4)</p>
+				<p class="heading-five font-medium">
+					Prescriptions ({{ taskProducts.length }})
+				</p>
 				<div class="flex items-center gap-2">
 					<button
 						class="flex gap-2 items-center px-2 py-1 uppercase rounded bg-redLightest"
+						@click="$emit('update-tasks')"
 					>
 						<icon-refresh />
 						<span class="text-sm font-semibold">Update</span>
 					</button>
-					<p class="heading-five font-medium">Updated 13.03.2022 13:33</p>
+					<p class="heading-five font-medium">
+						Updated
+						{{ $moment(lastUpdated).local().format('DD.MM.YYYY HH:mm') }}
+					</p>
 				</div>
 			</div>
 
@@ -59,6 +65,7 @@
 			/> -->
 			<pharmacist-receipt
 				v-if="taskProducts?.length"
+				:manage-url="task?.manage_url"
 				:order-type="orderType"
 				:task-products="taskProducts"
 				:task="task"
@@ -76,7 +83,6 @@ import IconClock from './Icons/IconClock.vue'
 import IconRefresh from './Icons/IconRefresh.vue'
 import PharmacistReceipt from './Icons/PharmacistReceipt.vue'
 import TextInput from './Input/TextInput.vue'
-import PharmacistPrescriptions from './PharmacistPrescriptions.vue'
 import PharmacistNoPrescription from './PharmacistView/PharmacistNoPrescription.vue'
 import OrderType from './TaskTypes/OrderType.vue'
 import { TaskData, TaskProduct, TaskType } from '~/types/pharmacist'
@@ -88,7 +94,6 @@ export default defineComponent({
 		IconCheck,
 		IconClock,
 		IconRefresh,
-		PharmacistPrescriptions,
 		PharmacistNoPrescription,
 		OrderType,
 		PharmacistReceipt,
@@ -96,7 +101,7 @@ export default defineComponent({
 	props: {
 		orderType: {
 			type: String as PropType<TaskType>,
-			required: true,
+			default: '',
 		},
 		task: {
 			type: Object as PropType<TaskData | null>,
@@ -106,7 +111,12 @@ export default defineComponent({
 			type: Array as PropType<TaskProduct[]>,
 			required: true,
 		},
+		lastUpdated: {
+			type: Date,
+			required: true,
+		},
 	},
+	emits: ['update-tasks'],
 	setup() {
 		const ssn = ref('010234-1234')
 		const isOk = ref(false)
@@ -117,6 +127,10 @@ export default defineComponent({
 		}
 	},
 	computed: {},
+
+	mounted() {
+		console.log(this.task)
+	},
 })
 </script>
 

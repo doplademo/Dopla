@@ -29,7 +29,7 @@ export default defineComponent({
 
 <template>
 	<div class="flex items-start border-b border-b-blackLightest py-4">
-		<p class="p-x-small text-blackLight">00{{ id }}</p>
+		<p class="p-x-small text-blackLight">{{ id }}</p>
 
 		<div class="flex flex-col flex-1 mx-2">
 			<p class="p-normal font-medium mb-2">{{ name }}</p>

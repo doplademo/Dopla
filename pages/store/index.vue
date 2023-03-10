@@ -50,8 +50,10 @@ import NewsSection from '~/components/StoreHome/NewsSection.vue'
 import StoreOrderSent from '~/components/StoreOrderSent.vue'
 import { dummyProducts } from '~/dummy/dummyReviews'
 import { GetProductsParams } from '~/types/apiParams'
-import { User } from '~/types/user'
+import { Basket } from '~/types/baskte'
+import { StoreProduct, User } from '~/types/user'
 import {
+	ADD_TO_CART_PATH,
 	GET_CURRENCY,
 	GET_PRODUCTS,
 	UPDATE_PRESCRIPTION,
@@ -108,7 +110,7 @@ export default defineComponent({
 			name: 'Ulla',
 			dummyProducts,
 			user,
-			products: [] as any, // TODO type
+			products: [] as StoreProduct[], // TODO type
 			currencyInfo: null as any, // TODO type
 			attributes,
 			cardNumber: 1,
@@ -137,6 +139,10 @@ export default defineComponent({
 		},
 	},
 
+	mounted() {
+		console.log(this.products[0])
+	},
+
 	methods: {
 		async updatePrescriptions() {
 			try {
@@ -158,6 +164,16 @@ export default defineComponent({
 			} catch (e) {
 				console.log(e)
 			}
+		},
+		addProductToCart(product: StoreProduct, qty: number) {
+			const basket = this.$store.state.basket.basket as Basket
+			this.$axios.$post(ADD_TO_CART_PATH, {
+				cartItem: {
+					sku: product.id,
+					qty,
+					quote_id: basket.id,
+				},
+			})
 		},
 	},
 })

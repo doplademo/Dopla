@@ -10,10 +10,11 @@
 			:id="id"
 			:class="`text-blackBold px-2 py-1 border rounded-sm lg:text-[17px] lg:py-2.5 lg:px-2 lg:rounded-md focus:outline-1 focus:outline-greenBold ${
 				error ? 'border-redBold' : 'border-blackLightest'
-			}`"
+			} ${disabled ? 'opacity-80' : ''}`"
 			:placeholder="placeholder"
 			:value="value"
 			:type="type"
+			:disabled="disabled"
 			@input="textChange"
 		/>
 		<p v-if="error" class="text-redBold text-xs mt-1">{{ error }}</p>
@@ -56,6 +57,10 @@ export default defineComponent({
 		error: {
 			type: String,
 			default: '',
+		},
+		disabled: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	emits: ['change'],

@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 import { Basket } from '~/types/baskte'
-import { formatPrices } from '~/utils/basket'
+import { formatPrices, removePlaceholderItem } from '~/utils/basket'
 
 type State = {
 	basket: Basket | null
@@ -25,6 +25,7 @@ export const actions = {
 		try {
 
 			const basket = (await this.$axios.$get('/V1/carts/mine')) as Basket
+			removePlaceholderItem(basket)
 			formatPrices(basket)
 			commit('updateBasket', basket)
 		} catch (e) {

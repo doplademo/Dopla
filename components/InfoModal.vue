@@ -118,7 +118,9 @@ export default defineComponent({
 			ALTERNATIVES_PATH + this.product!.prescription_oid
 		)) as KeyValueSubstitute
 
-		Object.keys(substitutes).forEach((key) => {
+		const substituteKeys = Object.keys(substitutes)
+
+		substituteKeys.forEach((key) => {
 			const substitute = substitutes[key]
 			this.substitutes.set(substitute.sku, substitute)
 		})
@@ -133,8 +135,11 @@ export default defineComponent({
 			this.selectedSubstitute = substitutes.doctor_prescribed
 		}
 
-		this.selectedSubstitute = substitutes.doctor_prescribed
-		this.amount = this.productAdditions.get(this.product!.id)?.amount || 1
+		this.selectedSubstitute =
+			substitutes.doctor_prescribed || substitutes[substituteKeys[0]]
+		const productAdditions = this.productAdditions.get(this.product!.id)
+		productAdditions!.substituteId = this.selectedSubstitute.sku
+		this.amount = productAdditions?.amount || 1
 	},
 
 	methods: {

@@ -83,7 +83,73 @@ export type ProductRequest = {
 	product_id?: string
 }
 
-export type StoreProduct = {}
+export type Price = {
+	final_price: number
+	max_price: number
+	max_regular_price: number
+	minimal_regular_price: number
+	special_price: number
+	minimal_price: number
+	regular_price: number
+}
+
+export type FormattedPrice = {
+	final_price: string
+	max_price: string
+	max_regular_price: string
+	minimal_regular_price: string
+	special_price: string
+	minimal_price: string
+	regular_price: string
+}
+
+export type PriceInfo = {
+	formatted_prices: FormattedPrice
+	extension_attributes: {
+		msrp: {
+			msrp_price: string
+			is_applicable: string
+			is_shown_price_on_gesture: string
+			msrp_message: string
+			explanation_message: string
+		}
+		tax_adjustments: {
+			formatted_prices: FormattedPrice
+		} & Price
+		weee_adjustments: string
+		weee_attributes: any[]
+	}
+} & Price
+
+export type ProductImages = {
+	url: string
+	code: string
+	height: number
+	width: number
+	label: string
+	resized_width: number
+	resized_height: number
+}
+
+export type StoreProduct = {
+	price_info: PriceInfo
+	images: ProductImages[]
+	url: string
+	id: number
+	name: string
+	type: 'simple'
+	is_salable: '1' | '0'
+	store_id: number
+	currency_code: string
+	extension_attributes: {
+		review_html: string
+		wishlist_button: {
+			post_data: null | string
+			url: string
+			required_options: null | string
+		}
+	}
+}
 
 export type DeliveryAddress = {
 	city: string

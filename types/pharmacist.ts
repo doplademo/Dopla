@@ -21,6 +21,7 @@ export type TaskData = {
 	status: string
 	type: TaskType
 	telephone: string
+	manage_url: string
 }
 
 export type TaskProduct = {

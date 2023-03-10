@@ -15,11 +15,12 @@
 				Order #{{ task?.id }}
 			</p>
 			<p class="p-small font-medium text-blackLight">
-				Updated 13.08.2022 13:59
+				Updated
+				{{ $moment(task?.updated_at).local().format('DD.MM.YYYY HH:mm') }}
 			</p>
 		</div>
 		<div
-			v-if="orderType === 'listing'"
+			v-if="orderType === 'prescription' && task?.requires_contacting === '1'"
 			:class="`flex items-center justify-center p-2 gap-2.5 mt-6 rounded ${
 				wantsMedicalHelp ? 'bg-yellowWarning' : 'border border-blackLight'
 			}`"
@@ -61,18 +62,19 @@
 			{{ taskProducts.length }} Products
 		</p>
 
-		<div v-if="orderType === 'prescription'" class="self-end flex gap-2 my-2">
+		<!-- <div v-if="orderType === 'prescription'" class="self-end flex gap-2 my-2">
 			<button class="p-2.5 font-semibold text-center text-[15px] uppercase">
 				Hold
 			</button>
 			<button class="main-button uppercase">See Order</button>
-		</div>
-		<button
-			v-else-if="orderType === 'payed'"
+		</div> -->
+		<a
+			v-if="manageUrl"
+			:href="manageUrl"
+			target="__blank"
 			class="main-button uppercase self-end my-2"
+			>Manage order</a
 		>
-			manage
-		</button>
 	</div>
 </template>
 
@@ -98,6 +100,10 @@ export default defineComponent({
 		task: {
 			type: Object as PropType<TaskData | null>,
 			required: true,
+		},
+		manageUrl: {
+			type: String,
+			default: '',
 		},
 	},
 })

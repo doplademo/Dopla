@@ -13,9 +13,10 @@ export const REQUEST_PRESCRIPTION = '/V1/prescriptions/create/1'
 export const GET_USER_PATH = '/V1/customers/me'
 export const GET_USER_PRESCRIPTIONS = '/V1/eprescriptions/list/me'
 
+export const ADD_TO_CART_PATH = '/V1/carts/mine/items'
+
 export const getPickupPointsPath = (postcode: string) =>
 	`/V1/smartship/agents?postcode=${postcode}`
-
 
 // pharmacist
 
