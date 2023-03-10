@@ -1,6 +1,6 @@
 
-import fs from 'fs'
-import path from 'path'
+// import fs from 'fs'
+// import path from 'path'
 
 import { ADMIN_LOGIN_PATH, GET_USER_PATH } from './utils/api/urls'
 
@@ -63,14 +63,14 @@ export default {
 		baseURL: BASE_URL,
 	},
 
-	server: {
-		https: {
-			key: fs.readFileSync(path.resolve(__dirname, 'localhost-key.pem')),
-			cert: fs.readFileSync(path.resolve(__dirname, 'localhost.pem')),
-		},
-		// host: '0.0.0.0',
-		// port: 8000,
-	},
+	// server: {
+	// 	https: {
+	// 		key: fs.readFileSync(path.resolve(__dirname, 'localhost-key.pem')),
+	// 		cert: fs.readFileSync(path.resolve(__dirname, 'localhost.pem')),
+	// 	},
+	// 	// host: '0.0.0.0',
+	// 	// port: 8000,
+	// },
 
 	auth: {
 		strategies: {
