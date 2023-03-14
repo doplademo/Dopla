@@ -18,36 +18,45 @@
 					id="name"
 					class-name="my-3"
 					label="Nimi*"
-					placeholder="Placeholder"
+					placeholder="Name"
 					:value="name"
 					field="name"
+					disabled
 				/>
 				<text-input
 					id="email"
 					class-name="my-3"
 					label="Sähköpostiosoite*"
-					placeholder="Placeholder"
+					placeholder="Email"
 					:value="email"
 					field="email"
 					error="Kirjoitathan sähköpostin muodossa xxxx@sähköposti.com"
-					@on-change="setField"
+					@change="setField"
 				/>
 				<text-input
 					id="phone"
 					class-name="my-3"
 					label="Puhelinnumero*"
-					placeholder="Placeholder"
+					placeholder="Phone number"
 					:value="phoneNumber"
 					field="phoneNumber"
-					@on-change="setField"
+					@change="setField"
+				/>
+				<text-input
+					id="city"
+					label="City*"
+					placeholder="City"
+					:value="city"
+					field="city"
+					@change="setField"
 				/>
 				<text-input
 					id="city"
 					label="Kotiosoite*"
-					placeholder="Placeholder"
-					:value="city"
-					field="city"
-					@on-change="setField"
+					placeholder="Home address"
+					:value="homeAddress"
+					field="homeAddress"
+					@change="setField"
 				/>
 
 				<div class="flex justify-between my-3">
@@ -55,10 +64,10 @@
 						id="postecode"
 						class-name="w-5/12"
 						label="Postikoodi*"
-						placeholder="Placeholder"
+						placeholder="Postcode"
 						:value="posteCode"
 						field="posteCode"
-						@on-change="setField"
+						@change="setField"
 					/>
 					<text-input
 						id="post"
@@ -67,7 +76,7 @@
 						placeholder="Placeholder"
 						:value="post"
 						field="post"
-						@on-change="setField"
+						@change="setField"
 					/>
 				</div>
 				<button type="submit" class="main-button uppercase lg:mt-4">
@@ -79,10 +88,13 @@
 	</main>
 </template>
 
-<script>
+<script lang="ts">
+// @ts-nocheck
+import { UserAddress } from '../../types/user'
 import ArrowRightIcon from '~/components/Icons/ArrowRightIcon.vue'
 import TextInput from '~/components/Input/TextInput.vue'
 import BackButton from '~/components/onboarding/BackButton.vue'
+
 export default {
 	components: {
 		BackButton,
@@ -90,7 +102,7 @@ export default {
 		ArrowRightIcon,
 	},
 	data() {
-		const name = 'John Doe'
+		const name = this.$auth.user.firstname + ' ' + this.$auth.user.lastname
 		return {
 			name,
 			email: '',
@@ -98,10 +110,12 @@ export default {
 			city: '',
 			posteCode: '',
 			post: '',
+			homeAddress: '',
 		}
 	},
 	methods: {
-		setField(text, field) {
+		setField(text: string, field: string) {
+			console.log(text, field)
 			switch (field) {
 				case 'email':
 					this.email = text
@@ -112,6 +126,9 @@ export default {
 				case 'city':
 					this.city = text
 					break
+				case 'homeAddress':
+					this.homeAddress = text
+					break
 				case 'posteCode':
 					this.posteCode = text
 					break
@@ -121,7 +138,28 @@ export default {
 			}
 		},
 		onSubmit() {
-			this.$router.replace('/onboarding/registration-result')
+			console.log(this.$auth.user)
+			const data = {
+				firstname: this.$auth.user.firstname,
+				lastname: this.$auth.user.lastname,
+				email: this.email,
+				id: this.$auth.user.id,
+				addresses: [
+					{
+						city: this.city,
+						postcode: this.posteCode,
+						telephone: this.phoneNumber,
+						default_shipping: true,
+						default_billing: true,
+						firstname: this.$auth.user.firstname,
+						lastname: this.$auth.user.lastname,
+						street: [this.homeAddress],
+						country_id: 'FI',
+					},
+				] as UserAddress[],
+			}
+			this.$store.commit('onboarding/updateUserInfo', data)
+			this.$store.dispatch('onboarding/finishRegistration')
 		},
 	},
 }

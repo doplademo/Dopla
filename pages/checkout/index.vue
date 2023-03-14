@@ -91,14 +91,14 @@
 							<address-form
 								:address-info="newDeliveryAddress"
 								:locations="postiAddresses"
-								@submit="onNewDeliveryAddressSubmit"
+								@submit="onAddAddress"
 								@field-change="onNewDeliveryAddressChange"
 							/>
 						</add-field>
 						<!-- Payment info -->
-						<!-- <h4 class="heading-four font-semibold mt-8">Payment</h4>
+						<h4 class="heading-four font-semibold mt-8">Payment</h4>
 
-						<p class="p-normal text-blackMedium mt-6">Payment cards</p> -->
+						<!-- <p class="p-normal text-blackMedium mt-6">Payment cards</p> -->
 
 						<!-- Add payment card -->
 						<!-- <radio-field
@@ -126,7 +126,7 @@
 							selected
 							container-class="bg-greenHover"
 						>
-							<bank-transfer-options />
+							<!-- <bank-transfer-options /> -->
 						</expandible-radio-field>
 						<!-- <expandible-radio-field class="mt-2" title="Apple Pay">
 						</expandible-radio-field>
@@ -160,15 +160,15 @@ import BasketProduct from '~/components/BasketProduct.vue'
 import ExpandibleRadioField from '~/components/ExpandibleRadioField.vue'
 import AddressForm from '~/components/AddressForm.vue'
 import AddField from '~/components/AddField.vue'
-import CardForm from '~/components/CardForm.vue'
-import RadioField from '~/components/RadioField.vue'
+// import CardForm from '~/components/CardForm.vue'
+// import RadioField from '~/components/RadioField.vue'
 import BankTransferOptions from '~/components/BankTransferOptions.vue'
 import CheckBox from '~/components/Input/CheckBox.vue'
 
 import { Images } from '~/utils/Images'
 import CheckoutHero from '~/components/CheckoutHero.vue'
 import { DeliveryAddress, PostiAddress, User, ValueOf } from '~/types/user'
-import { getPickupPointsPath } from '~/utils/api/urls'
+import { ADD_ADDRESS_PATH, getPickupPointsPath } from '~/utils/api/urls'
 import { transformUserAddresses } from '~/utils/user'
 import { Basket } from '~/types/baskte'
 export default defineComponent({
@@ -177,8 +177,8 @@ export default defineComponent({
 		ExpandibleRadioField,
 		AddressForm,
 		AddField,
-		CardForm,
-		RadioField,
+		// CardForm,
+		// RadioField,
 		BankTransferOptions,
 		CheckBox,
 		CheckoutHero,
@@ -190,14 +190,6 @@ export default defineComponent({
 
 		return {
 			products,
-		}
-	},
-
-	asyncData({ $auth }) {
-		const user = $auth.user as User
-		const deliveryAddresses = transformUserAddresses(user?.addresses)
-		return {
-			deliveryAddresses,
 		}
 	},
 
@@ -217,7 +209,6 @@ export default defineComponent({
 		}
 		return {
 			Images,
-			deliveryAddresses: [] as DeliveryAddress[],
 			newDeliveryAddress,
 			deliveryTimeout: null as NodeJS.Timeout | null,
 			postiAddresses: [] as PostiAddress[],
@@ -230,6 +221,10 @@ export default defineComponent({
 	computed: {
 		basket() {
 			return this.$store.state.basket.basket as Basket
+		},
+		deliveryAddresses() {
+			const user = this.$auth.user as User
+			return transformUserAddresses(user?.addresses) || []
 		},
 	},
 	watch: {
@@ -248,8 +243,7 @@ export default defineComponent({
 			},
 		},
 	},
-	mounted() {
-	},
+	mounted() {},
 	methods: {
 		onNewDeliveryAddressChange(
 			field: keyof DeliveryAddress,
@@ -284,12 +278,7 @@ export default defineComponent({
 		onPay() {
 			this.$router.push('/checkout/result')
 		},
-		onNewDeliveryAddressSubmit() {
-			const newDeliveryAddress = this.newDeliveryAddress
-			const id = Math.floor(Math.random() * 100000) + 1
-			newDeliveryAddress.id = id
-			this.deliveryAddresses.push(newDeliveryAddress)
-
+		clearDeliveryAddress() {
 			this.newDeliveryAddress = {
 				city: '',
 				recipientName: '',
@@ -302,6 +291,36 @@ export default defineComponent({
 					name: '',
 					id: '',
 				},
+			}
+		},
+		async onAddAddress() {
+			const body = {
+				addressInformation: {
+					shipping_address: {
+						region: null,
+						region_id: null,
+						region_code: null,
+						country_id: 'FI',
+						street: [this.newDeliveryAddress.streetAddress],
+						telephone: this.$auth.user.addresses[0].telephone,
+						postcode: this.newDeliveryAddress.zipCode,
+						city: this.newDeliveryAddress.city,
+						firstname: this.$auth.user.firstname,
+						lastname: this.$auth.user.lastname,
+						email: this.$auth.user.email,
+					},
+					quote_id: this.basket.id,
+					shipping_carrier_code: 'smartship',
+					shipping_method_code: 'PO2104',
+				},
+			}
+			try {
+				const response = await this.$axios.$post(ADD_ADDRESS_PATH, body)
+				console.log(response)
+				await this.$auth.fetchUser()
+				this.clearDeliveryAddress()
+			} catch (e) {
+				console.log(e)
 			}
 		},
 	},

@@ -85,15 +85,15 @@ export default defineComponent({
 		const data = {} as any
 		try {
 			const { data: currencyInfo } = await $axios.get(GET_CURRENCY)
+			const url = createGetURL<GetProductsParams>(GET_PRODUCTS, {
+				currencyCode: currencyInfo.base_currency_code,
+				searchCriteria: ' ',
+				storeId: 1,
+			})
+			console.log(url);
 			const {
 				data: { items },
-			} = await $axios.get(
-				createGetURL<GetProductsParams>(GET_PRODUCTS, {
-					currencyCode: currencyInfo.base_currency_code,
-					searchCriteria: ' ',
-					storeId: 1,
-				})
-			)
+			} = await $axios.get(url)
 			data.products = items
 			data.currencyInfo = currencyInfo
 		} catch (e) {
@@ -138,8 +138,7 @@ export default defineComponent({
 		},
 	},
 
-	mounted() {
-	},
+	mounted() {},
 
 	methods: {
 		async updatePrescriptions() {
@@ -159,8 +158,7 @@ export default defineComponent({
 				})
 				this.$store.commit('appState/setUpdatedTask', true)
 				await this.$auth.fetchUser()
-			} catch (e) {
-			}
+			} catch (e) {}
 		},
 		addProductToCart(product: StoreProduct, qty: number) {
 			const basket = this.$store.state.basket.basket as Basket

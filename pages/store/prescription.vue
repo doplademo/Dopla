@@ -38,11 +38,12 @@ import { GET_USER_PRESCRIPTIONS, REQUEST_PRESCRIPTION } from '~/utils/api/urls'
 import {
 	PrescribedProduct,
 	PrescribedProductAddition,
-	ProductRequest,
+	// ProductRequest,
 	User,
 } from '~/types/user'
 import PrescriptionSelect from '~/components/PrescriptionSelect.vue'
 import { getAttributes } from '~/utils/user'
+import { Basket } from '~/types/baskte'
 export default defineComponent({
 	components: {
 		GreetingSection,
@@ -71,8 +72,7 @@ export default defineComponent({
 			return {
 				prescribedProducts,
 			}
-		} catch (e) {
-		}
+		} catch (e) {}
 	},
 
 	data() {
@@ -91,6 +91,9 @@ export default defineComponent({
 				this.selectedProductIds.includes(product.id)
 			)
 		},
+		basket() {
+			return this.$store.state.basket.basket as Basket
+		},
 	},
 
 	mounted() {
@@ -100,6 +103,7 @@ export default defineComponent({
 				substituteId: '',
 			})
 		})
+		console.log('basket', this.basket)
 	},
 
 	methods: {
@@ -118,7 +122,7 @@ export default defineComponent({
 				this.$axios.$put(REQUEST_PRESCRIPTION, {
 					ssn: attributes.hetu,
 					additional_information: 'I just renewed my prescription',
-					quote_id: user.group_id,
+					quote_id: this.basket.id,
 					delivery_requests: this.selectedProducts.map(
 						(product: PrescribedProduct) => {
 							const sku = this.productAdditions.get(product.id)!.substituteId
@@ -140,8 +144,7 @@ export default defineComponent({
 					this.selectedProducts
 				)
 				this.$router.push('/store')
-			} catch (e) {
-			}
+			} catch (e) {}
 		},
 		onMedicalContact(value: string) {
 			this.needsMedicalAssistance = value

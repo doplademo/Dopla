@@ -1,6 +1,5 @@
-
-// import fs from 'fs'
-// import path from 'path'
+import fs from 'fs'
+import path from 'path'
 
 import { ADMIN_LOGIN_PATH, GET_USER_PATH } from './utils/api/urls'
 
@@ -29,7 +28,7 @@ export default {
 	},
 
 	// Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-	plugins: [],
+	plugins: ['@/plugins/axios-accessor.ts'],
 
 	// Auto import components: https://go.nuxtjs.dev/config-components
 	components: true,
@@ -63,14 +62,17 @@ export default {
 		baseURL: BASE_URL,
 	},
 
-	// server: {
-	// 	https: {
-	// 		key: fs.readFileSync(path.resolve(__dirname, 'localhost-key.pem')),
-	// 		cert: fs.readFileSync(path.resolve(__dirname, 'localhost.pem')),
-	// 	},
-	// 	// host: '0.0.0.0',
-	// 	// port: 8000,
-	// },
+	server:
+		process.env.MODE === 'DEV'
+			? {
+					https: {
+						key: fs.readFileSync(path.resolve(__dirname, 'localhost-key.pem')),
+						cert: fs.readFileSync(path.resolve(__dirname, 'localhost.pem')),
+					},
+					// host: '0.0.0.0',
+					// port: 8000,
+			  }
+			: {},
 
 	auth: {
 		strategies: {

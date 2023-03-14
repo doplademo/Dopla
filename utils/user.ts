@@ -8,6 +8,7 @@ export type TransformedAttributes = {
 	newsletter2_subscribed: string
 	hetu: string
 	prescription_updated: string
+	passed_onboarding: string
 }
 
 export type KeyValue = {

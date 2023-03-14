@@ -55,7 +55,7 @@
 }
 
 .main-button-shell {
-	@apply flex items-center justify-center rounded-md bg-greenBold text-blackBold;
+	@apply flex items-center justify-center rounded-md bg-greenBold text-blackBold disabled:opacity-50;
 }
 .main-button-danger {
 	@apply flex items-center justify-center rounded-md bg-redBold text-blackBold hover:bg-redStrong;

@@ -9,7 +9,7 @@
 				Tarvitsemme vielä valtuutuksen, jotta palvelu toimii jouhevasti.
 			</p>
 			<!-- Instructions -->
-			<div class="flex flex-col mt-6">
+			<form @submit.prevent="" class="flex flex-col mt-6">
 				<onboarding-instruction
 					title="Apteekin valtuutus ja jatkuva palvelu"
 					:description="`Valtuutan Matinkylän apteekin farmaseuttisen henkilökunnan tarkastelemaan reseptitietojani
@@ -38,7 +38,7 @@
 						<arrow-right-icon />
 					</template>
 				</onboarding-instruction>
-			</div>
+			</form>
 			<hyperlink-normal class="font-medium my-6"
 				>Lue lisää valtuutuksista</hyperlink-normal
 			>
@@ -67,16 +67,22 @@
 				@toggle="news = !news"
 			/>
 
-			<nuxt-link to="/onboarding/user-info" class="main-button uppercase mt-8">
+			<button
+				:disabled="!authorization"
+				type="submit"
+				class="main-button uppercase mt-8"
+				@click.prevent="onSubmit"
+			>
 				<span class="mr-2">seuraava</span>
 				<arrow-right-icon />
-			</nuxt-link>
+			</button>
 		</div>
 	</main>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, ref } from 'vue'
+import { OnboardingAttributes } from '~/types/onboarding'
 import HyperlinkNormal from '~/components/Hyperlink/HyperlinkNormal.vue'
 import ArrowRightIcon from '~/components/Icons/ArrowRightIcon.vue'
 import IconLock from '~/components/Icons/IconLock.vue'
@@ -94,9 +100,6 @@ export default defineComponent({
 		IconRefresh,
 	},
 
-	mounted() {
-	},
-
 	setup() {
 		const authorization = ref(false)
 		const marketing = ref(false)
@@ -107,6 +110,24 @@ export default defineComponent({
 			marketing,
 			news,
 		}
+	},
+
+	mounted() {},
+
+	methods: {
+		onSubmit() {
+			const date = new Date().toISOString()
+			const attributes: OnboardingAttributes = {
+				advertisement_accepted: this.marketing ? '1' : '0',
+				newsletter1_subscribed: this.news ? '1' : '0',
+				terms_accepted: this.authorization ? '1' : '0',
+				...(this.authorization ? { terms_accepted_date: date } : {}),
+				...(this.marketing ? { advertisement_accepted_date: date } : {}),
+				...(this.news ? { newsletter1_subscribed_date: date } : {}),
+			}
+			this.$store.commit('onboarding/updateAttributes', attributes)
+			this.$router.push('/onboarding/user-info')
+		},
 	},
 })
 </script>

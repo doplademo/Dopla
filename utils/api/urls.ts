@@ -12,6 +12,7 @@ export const UPDATE_PRESCRIPTION = '/V1/eprescriptions/savetask/me'
 export const REQUEST_PRESCRIPTION = '/V1/prescriptions/create/1'
 export const GET_USER_PATH = '/V1/customers/me'
 export const GET_USER_PRESCRIPTIONS = '/V1/eprescriptions/list/me'
+export const ADD_ADDRESS_PATH = '/V1/carts/mine/shipping-information'
 
 export const ADD_TO_CART_PATH = '/V1/carts/mine/items'
 
